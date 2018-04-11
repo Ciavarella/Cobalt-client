@@ -1,11 +1,8 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React from "react";
+import ReactDOM from "react-dom";
 
-import registerServiceWorker from './registerServiceWorker';
+import registerServiceWorker from "./registerServiceWorker";
 
-ReactDOM.render(
-  <h1>Cobalt</h1>,
-  document.getElementById('app')
-)
+ReactDOM.render(<h1>Cobalt React</h1>, document.getElementById("app"));
 
-registerServiceWorker()
+registerServiceWorker();
