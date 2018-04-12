@@ -4,16 +4,13 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 
-import { Button, Welcome } from '@storybook/react/demo';
-
-storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
+import Button from '../Elements/Button';
+import Input from '../Elements/Input';
 
 storiesOf('Button', module)
-  .add('with text', () => <Button onClick={action('clicked')}>Hello Button</Button>)
-  .add('with some emoji', () => (
-    <Button onClick={action('clicked')}>
-      <span role="img" aria-label="so cool">
-        😀 😎 👍 💯
-      </span>
-    </Button>
-  ));
+	.add('Default', () => <Button>Default button</Button>)
+	.add('Primary', () => <Button color="primary">Primary Button</Button>)
+	.add('Secondary', () => <Button color="secondary" onClick={() => console.log('secondary click')}>Secondary Button</Button>);
+
+storiesOf('Input', module)
+	.add('Default', () => <Input type="text" placeholder="Default" />)
