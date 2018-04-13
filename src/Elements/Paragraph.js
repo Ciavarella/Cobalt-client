@@ -1,7 +1,7 @@
 import React from "react";
 import { css, withStyles } from "../withStyles";
 
-const Paragraph = ({ size = "medium", styles, ...props }) => (
+const Paragraph = ({ size = "normal", styles, ...props }) => (
   <p {...css(styles.paragraph, styles[size])} {...props} />
 );
 
@@ -12,8 +12,8 @@ export default withStyles(({ theme, text }) => {
     },
 
     /* Size */
-    small: text.small,
-    medium: text.medium,
-    large: text.large
+    sub: text.small,
+    normal: text.medium,
+    leading: text.large
   };
 })(Paragraph);
