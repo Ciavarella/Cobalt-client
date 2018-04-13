@@ -141,3 +141,7 @@ button {
   border: none;
   outline: none;
 }
+
+input {
+  outline: none;
+}
