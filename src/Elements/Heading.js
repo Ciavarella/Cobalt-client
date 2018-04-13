@@ -11,8 +11,14 @@ export default withStyles(({ theme }) => {
     heading: {},
 
     /* Color */
-    default: theme.default,
-    primary: theme.primary,
-    secondary: theme.secondary
+    default: {
+      color: theme.default.color
+    },
+    primary: {
+      color: theme.primary.color
+    },
+    secondary: {
+      color: theme.secondary.color
+    }
   };
 })(Heading);
