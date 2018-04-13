@@ -10,6 +10,7 @@ import Button from "../Elements/Button";
 import Input from "../Elements/Input";
 
 import Heading from "./Elements/Heading";
+import Avatar from "./Elements/Avatar";
 
 storiesOf("Button", module)
   .add("Default", () => <Button>Default button</Button>)
