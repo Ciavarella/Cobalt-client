@@ -14,7 +14,7 @@ const Avatar = ({
   </span>
 );
 
-export default withStyles(({ theme, text }) => {
+export default withStyles(({ theme }) => {
   return {
     avatar: {
       display: "flex",
