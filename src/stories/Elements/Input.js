@@ -8,6 +8,9 @@ import Input from "../../Elements/Input";
 
 storiesOf("Input", module)
   .add("Default", () => <Input type="text" placeholder="Default" />)
+  .add("Email", () => <Input type="email" placeholder="Email" />)
+  .add("Password", () => <Input type="password" placeholder="Password" />)
+  .add("Number", () => <Input type="number" placeholder="Number" />)
   .add("Primary", () => (
     <Input color="primary" type="text" placeholder="Primary" />
   ))
@@ -17,6 +20,4 @@ storiesOf("Input", module)
   .add("Success", () => (
     <Input color="success" type="text" placeholder="Success" />
   ))
-  .add("Error", () => (
-    <Input color="error" type="text" placeholder="Error" />
-  ));
+  .add("Error", () => <Input color="error" type="text" placeholder="Error" />);
