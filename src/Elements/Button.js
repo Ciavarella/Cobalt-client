@@ -9,7 +9,8 @@ export default withStyles(({ theme, text }) => {
   return {
     button: {
       padding: "12px 24px",
-      marginBottom: "12px"
+      marginBottom: "12px",
+      border: "2px solid"
     },
 
     /* Color */
