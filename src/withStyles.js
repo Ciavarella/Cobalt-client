@@ -27,6 +27,20 @@ ThemedStyleSheet.registerTheme({
       ":hover": {
         color: "darkorange"
       }
+    },
+    success: {
+      color: "green",
+      borderColor: "green",
+      ":hover": {
+        color: "darkgreen"
+      },
+    },
+    error: {
+      color: "red",
+      borderColor: "red",
+      ":hover": {
+        color: "darkred"
+      }
     }
   },
 

@@ -7,7 +7,7 @@ import { linkTo } from "@storybook/addon-links";
 import "../index.css";
 
 import Button from "../Elements/Button";
-import Input from "../Elements/Input";
+import Input from "./Elements/Input";
 
 import Heading from "./Elements/Heading";
 import Avatar from "./Elements/Avatar";
@@ -20,7 +20,3 @@ storiesOf("Button", module)
       Secondary Button
     </Button>
   ));
-
-storiesOf("Input", module).add("Default", () => (
-  <Input type="text" placeholder="Default" />
-));
