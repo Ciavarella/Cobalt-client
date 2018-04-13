@@ -1,8 +1,8 @@
 import React from "react";
 import { css, withStyles } from "../withStyles";
 
-const Heading = ({ type, color = "default", styles, ...props }) => {
-  const HeadingTag = `${type}`;
+const Heading = ({ size, color = "default", styles, ...props }) => {
+  const HeadingTag = `h${size}`;
   return <HeadingTag {...css(styles.Heading, styles[color])} {...props} />;
 };
 
