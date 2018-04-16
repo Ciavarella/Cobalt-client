@@ -17,5 +17,4 @@ import Icon from "./Elements/Icon";
 import Card from "./Elements/Card";
 import Checkbox from "./Elements/Checkbox";
 import Notification from "./Elements/Notification";
-import ListItem from "./Elements/ListItem";
 import List from "./Elements/List";

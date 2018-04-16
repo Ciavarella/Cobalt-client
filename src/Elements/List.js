@@ -8,6 +8,8 @@ const List = ({ listType = "ul", styles, ...props }) => {
 
 export default withStyles(({ themes }) => {
   return {
-    list: {}
+    list: {
+      margin: "30px"
+    }
   };
 })(List);
