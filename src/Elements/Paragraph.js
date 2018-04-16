@@ -5,7 +5,7 @@ const Paragraph = ({ size = "normal", styles, ...props }) => (
   <p {...css(styles.paragraph, styles[size])} {...props} />
 );
 
-export default withStyles(({ theme, text }) => {
+export default withStyles(({ themes, text }) => {
   return {
     paragraph: {
       // Add more styling here

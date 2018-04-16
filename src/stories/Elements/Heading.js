@@ -6,12 +6,12 @@ import Heading from "../../Elements/Heading";
 storiesOf("Heading", module)
   .add("h1", () => <Heading size="1">h1 Heading</Heading>)
   .add("h2", () => (
-    <Heading size="2" color="primary">
+    <Heading size="2" appearance="primary">
       h2 Heading
     </Heading>
   ))
   .add("h3", () => (
-    <Heading size="3" color="secondary">
+    <Heading size="3" appearance="secondary">
       h3 Heading
     </Heading>
   ))
