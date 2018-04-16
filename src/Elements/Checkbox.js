@@ -7,6 +7,8 @@ const Checkbox = ({ styles, ...props }) => (
 
 export default withStyles(({ theme }) => {
   return {
-    checkbox: {}
+    checkbox: {
+      margin: "20px"
+    }
   };
 })(Checkbox);
