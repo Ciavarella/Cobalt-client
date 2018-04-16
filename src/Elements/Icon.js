@@ -1,20 +1,20 @@
 import React from "react";
 import { css, withStyles } from "../withStyles";
 
-const Icon = ({ color = "default", size = "small", styles, ...props }) => (
-  <span {...css(styles.icon, styles[size], styles[color])} {...props} />
+const Icon = ({ appearance = "default", size = "small", styles, ...props }) => (
+  <span {...css(styles.icon, styles[size], styles[appearance])} {...props} />
 );
 
-export default withStyles(({ theme, text }) => {
+export default withStyles(({ themes, text }) => {
   return {
     icon: {
       padding: "14px"
     },
 
     /* Color */
-    default: theme.default,
-    primary: theme.primary,
-    secondary: theme.secondary,
+    default: themes.default,
+    primary: themes.primary,
+    secondary: themes.secondary,
 
     /* Size */
     small: text.small,

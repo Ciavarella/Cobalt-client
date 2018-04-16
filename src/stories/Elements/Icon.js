@@ -7,6 +7,18 @@ import { linkTo } from "@storybook/addon-links";
 import Icon from "../../Elements/Icon";
 
 storiesOf("Icon", module)
-  .add("Default", () => <Icon><i class="fab fa-accessible-icon"></i></Icon>)
-  .add("Medium", () => <Icon size="medium"><i class="fab fa-accessible-icon"></i></Icon>)
-  .add("Large", () => <Icon size="large"><i class="fab fa-accessible-icon"></i></Icon>)
+  .add("Default", () => (
+    <Icon>
+      <i class="fab fa-accessible-icon" />
+    </Icon>
+  ))
+  .add("Medium", () => (
+    <Icon size="medium">
+      <i class="fab fa-accessible-icon" />
+    </Icon>
+  ))
+  .add("Large", () => (
+    <Icon size="large">
+      <i class="fab fa-accessible-icon" />
+    </Icon>
+  ));
