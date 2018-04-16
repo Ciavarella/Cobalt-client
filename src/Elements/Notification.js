@@ -8,29 +8,31 @@ const Notification = ({
   ...props
 }) => (
   <div
-    {...css(styles.notification, styles[color], styles[position])}
+    {...css(styles.notification, styles[appearance], styles[position])}
     {...props}
   />
 );
 
-export default withStyles(({ theme }) => {
+export default withStyles(({ themes }) => {
   return {
     notification: {
       position: "fixed",
 
+      /* FlexContainer? */
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
 
+      /* From theme? */
       border: "2px solid",
       borderRadius: "5px",
       padding: "2.5rem"
     },
 
-    /* Color */
-    default: theme.default,
-    success: theme.success,
-    danger: theme.danger,
+    /* Appearance */
+    default: themes.default,
+    success: themes.success,
+    danger: themes.danger,
 
     /* Position */
     bottomRight: {

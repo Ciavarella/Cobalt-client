@@ -9,12 +9,12 @@ storiesOf("Notification", module)
     <Notification>Default! This is the default notification.</Notification>
   ))
   .add("Success", () => (
-    <Notification color="success">
+    <Notification appearance="success">
       Success! This is the success notification.
     </Notification>
   ))
   .add("Danger", () => (
-    <Notification color="Danger">
+    <Notification appearance="danger">
       Danger! This is the danger notification.
     </Notification>
   ))
