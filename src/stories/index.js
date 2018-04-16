@@ -13,12 +13,3 @@ import Heading from "./Elements/Heading";
 import Avatar from "./Elements/Avatar";
 import Paragraph from "./Elements/Paragraph";
 import Icon from "./Elements/Icon";
-
-storiesOf("Button", module)
-  .add("Default", () => <Button>Default button</Button>)
-  .add("Primary", () => <Button color="primary">Primary Button</Button>)
-  .add("Secondary", () => (
-    <Button color="secondary" onClick={() => console.log("secondary click")}>
-      Secondary Button
-    </Button>
-  ));
