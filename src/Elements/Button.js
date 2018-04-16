@@ -1,8 +1,16 @@
 import React from "react";
 import { css, withStyles } from "../withStyles";
 
-const Button = ({ appearance = "default", size = "medium", styles, ...props }) => (
-  <button {...css(styles.button, styles[appearance], styles[size])} {...props} />
+const Button = ({
+  appearance = "default",
+  size = "medium",
+  styles,
+  ...props
+}) => (
+  <button
+    {...css(styles.button, styles[appearance], styles[size])}
+    {...props}
+  />
 );
 
 export default withStyles(({ themes, text }) => {
