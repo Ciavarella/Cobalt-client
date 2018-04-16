@@ -7,9 +7,7 @@ const Icon = ({ appearance = "default", size = "small", styles, ...props }) => (
 
 export default withStyles(({ themes, text }) => {
   return {
-    icon: {
-      padding: "14px"
-    },
+    icon: {},
 
     /* Color */
     default: themes.default,
