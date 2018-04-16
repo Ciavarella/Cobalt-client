@@ -29,15 +29,17 @@ ThemedStyleSheet.registerTheme({
       }
     },
     success: {
-      color: "green",
+      color: "white",
+      backgroundColor: "green",
       borderColor: "green",
       ":hover": {
         color: "darkgreen"
       },
     },
-    error: {
-      color: "red",
+    danger: {
+      color: "white",
       borderColor: "red",
+      backgroundColor: "red",
       ":hover": {
         color: "darkred"
       }
@@ -46,6 +48,9 @@ ThemedStyleSheet.registerTheme({
 
   /* Sizes */
   text: {
+    xs: {
+      fontSize: "12px"
+    },
     small: {
       fontSize: "16px"
     },
