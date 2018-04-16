@@ -1,11 +1,11 @@
 import React from "react";
 import { css, withStyles } from "../withStyles";
 
-const Button = ({ color = "default", size = "medium", styles, ...props }) => (
-  <button {...css(styles.button, styles[color], styles[size])} {...props} />
+const Button = ({ appearance = "default", size = "medium", styles, ...props }) => (
+  <button {...css(styles.button, styles[appearance], styles[size])} {...props} />
 );
 
-export default withStyles(({ theme, text }) => {
+export default withStyles(({ themes, text }) => {
   return {
     button: {
       minWidth: "120px",
@@ -16,11 +16,11 @@ export default withStyles(({ theme, text }) => {
     },
 
     /* Color */
-    default: theme.default,
-    primary: theme.primary,
-    secondary: theme.secondary,
-    success: theme.success,
-    danger: theme.danger,
+    default: themes.default,
+    primary: themes.primary,
+    secondary: themes.secondary,
+    success: themes.success,
+    danger: themes.danger,
 
     /* Size */
     xs: text.xs,

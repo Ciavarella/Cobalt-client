@@ -4,7 +4,7 @@ import { css, withStyles } from "react-with-styles";
 
 ThemedStyleSheet.registerTheme({
   /* Colors */
-  theme: {
+  themes: {
     default: {
       color: "black",
       backgroundColor: "white",
