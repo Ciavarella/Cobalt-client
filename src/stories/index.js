@@ -11,4 +11,6 @@ import Input from "./Elements/Input";
 import Heading from "./Elements/Heading";
 import Avatar from "./Elements/Avatar";
 import Paragraph from "./Elements/Paragraph";
+import Checkbox from "./Elements/Checkbox";
 import Notification from "./Elements/Notification";
+
