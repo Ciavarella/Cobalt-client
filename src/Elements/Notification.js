@@ -3,7 +3,7 @@ import { css, withStyles } from "../withStyles";
 
 const Notification = ({
   styles,
-  color = "default",
+  appearance = "default",
   position = "bottomRight",
   ...props
 }) => (
