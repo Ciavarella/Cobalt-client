@@ -10,9 +10,15 @@ export default withStyles(({ themes, text }) => {
     icon: {},
 
     /* Color */
-    default: themes.default,
-    primary: themes.primary,
-    secondary: themes.secondary,
+    default: {
+      color: themes.default.color
+    },
+    primary: {
+      color: themes.primary.color
+    },
+    secondary: {
+      color: themes.secondary.color
+    },
 
     /* Size */
     small: text.small,
