@@ -27,10 +27,10 @@ export default withStyles(() => {
     	flexDirection: 'row',
     	alignItems: 'center'
     },
-    left: {
+    start: {
     	alignItems: 'flex-start'
     },
-    right: {
+    end: {
     	alignItems: 'flex-end'
     },
     center: {

@@ -14,14 +14,26 @@ storiesOf("FlexContainer", module)
   		<Paragraph size="2" appearance="primary">Paragraph to demonstrate row</Paragraph>
   		<Button appearance="primary">Yay, FlexContainer!</Button>
 		</FlexContainer>)
+  .add("Row (Top)", () => 
+  	<FlexContainer direction="row" align="start">
+  		<Heading size="2" appearance="default">Flex: Row</Heading>
+  		<Paragraph size="2" appearance="primary">Paragraph to demonstrate row</Paragraph>
+  		<Button appearance="primary">Yay, FlexContainer!</Button>
+		</FlexContainer>)
+  .add("Row (Bottom)", () => 
+  	<FlexContainer direction="row" align="end">
+  		<Heading size="2" appearance="default">Flex: Row</Heading>
+  		<Paragraph size="2" appearance="primary">Paragraph to demonstrate row</Paragraph>
+  		<Button appearance="primary">Yay, FlexContainer!</Button>
+		</FlexContainer>)
   .add("Column (Left)", () => 
-  	<FlexContainer direction="column" align="left">
+  	<FlexContainer direction="column" align="start">
   		<Heading size="2" appearance="default">Flex: Row</Heading>
   		<Paragraph size="2" appearance="primary">Paragraph to demonstrate row</Paragraph>
   		<Button appearance="primary">Yay, FlexContainer!</Button>
 		</FlexContainer>)
   .add("Column (Right)", () => 
-  	<FlexContainer direction="column" align="right">
+  	<FlexContainer direction="column" align="end">
   		<Heading size="2" appearance="default">Flex: Row</Heading>
   		<Paragraph size="2" appearance="primary">Paragraph to demonstrate row</Paragraph>
   		<Button appearance="primary">Yay, FlexContainer!</Button>
