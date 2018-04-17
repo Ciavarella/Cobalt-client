@@ -19,3 +19,4 @@ import Checkbox from "./Elements/Checkbox";
 import Notification from "./Elements/Notification";
 import FlexContainer from "./Containers/FlexContainer";
 import List from "./Elements/List";
+import LandingPage from "./Views/LandingPage";
