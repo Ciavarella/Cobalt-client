@@ -5,15 +5,15 @@ const Paragraph = ({ size = "normal", styles, ...props }) => (
   <p {...css(styles.paragraph, styles[size])} {...props} />
 );
 
-export default withStyles(({ themes, text }) => {
+export default withStyles(({ themes, text, colors }) => {
   return {
     paragraph: {
-      // Add more styling here
+      color: colors.COLOR_DARK_METAL
     },
 
     /* Size */
-    sub: text.small,
-    normal: text.medium,
-    leading: text.large
+    sub: text.xs,
+    normal: text.small,
+    leading: text.medium
   };
 })(Paragraph);

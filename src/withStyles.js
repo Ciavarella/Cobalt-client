@@ -67,13 +67,13 @@ ThemedStyleSheet.registerTheme({
   /* Sizes */
   text: {
     xs: {
-      fontSize: "12px"
+      fontSize: "10px"
     },
     small: {
-      fontSize: "16px"
+      fontSize: "14px"
     },
     medium: {
-      fontSize: "18px"
+      fontSize: "16px"
     },
     large: {
       fontSize: "24px"

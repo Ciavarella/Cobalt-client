@@ -29,12 +29,6 @@ export default withStyles(({ themes, text }) => {
     primary: themes.primary,
     secondary: themes.secondary,
     success: themes.success,
-    danger: themes.danger,
-
-    /* Size */
-    xs: text.xs,
-    small: text.small,
-    medium: text.medium,
-    large: text.large
+    danger: themes.danger
   };
 })(Button);
