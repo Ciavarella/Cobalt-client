@@ -5,6 +5,18 @@ import * as THEME from "./MainTheme";
 
 ThemedStyleSheet.registerTheme({
   /* Colors */
+  colors: {
+    primary: THEME.COLOR_PRIMARY,
+    secondary: THEME.COLOR_SECONDARY,
+    success: THEME.COLOR_SUCCESS,
+    danger: THEME.COLOR_DANGER,
+    nightsky: THEME.COLOR_NIGHTSKY,
+    dawn: THEME.COLOR_DAWN,
+    carbon: THEME.COLOR_CARBON,
+    aluminum: THEME.COLOR_ALUMINUM,
+    darkMetal: THEME.COLOR_DARK_METAL
+  },
+  /* themes */
   themes: {
     default: {
       color: THEME.COLOR_NIGHTSKY,
