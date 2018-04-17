@@ -17,10 +17,11 @@ export default withStyles(({ themes, text }) => {
   return {
     button: {
       minWidth: "120px",
-      padding: "12px 24px",
-      border: "2px solid",
+      padding: "16px 24px",
+      border: "none",
       borderRadius: "4px",
-      margin: "12px 12px 12px 12px"
+      margin: "12px 12px 12px 12px",
+      fontWeight: "bold"
     },
 
     /* Color */
