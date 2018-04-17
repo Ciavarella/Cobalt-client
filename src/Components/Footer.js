@@ -7,7 +7,7 @@ import ListItem from "../Elements/ListItem";
 const Footer = ({ size = "medium", styles, ...props }) => (
   <footer {...css(styles.footer, styles[size])} {...props}>
     <FlexContainer direction="column" align="start">
-      <List direction="row" listType="ul">
+      <List direction="row">
         <ListItem>
           <a href="#">About</a>
         </ListItem>
