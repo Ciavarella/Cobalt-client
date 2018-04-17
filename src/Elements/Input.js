@@ -5,19 +5,23 @@ const Input = ({ appearance = "default", styles, ...props }) => (
   <input {...css(styles.input, styles[appearance])} {...props} />
 );
 
-export default withStyles(({ themes }) => {
+export default withStyles(({ themes, colors }) => {
   return {
     input: {
       padding: "12px",
       margin: "20px",
-      border: "2px solid"
+      border: "1px solid",
+      borderRadius: "2px",
+      ":focus": {
+        borderColor: colors.secondary
+      }
     },
 
     default: {
-      borderColor: themes.default.borderColor
+      borderColor: colors.aluminum
     },
     primary: {
-      borderColor: "blue"
+      borderColor: themes.primary.borderColor
     },
     secondary: {
       borderColor: themes.secondary.borderColor
