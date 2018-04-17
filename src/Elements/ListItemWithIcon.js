@@ -1,0 +1,29 @@
+import React from "react";
+import { css, withStyles } from "../withStyles";
+import Icon from "./Icon";
+
+const ListItemWithIcon = ({ iconPosition = "left", styles, ...props }) => (
+  <li {...css(styles[iconPosition], styles.listItemWithIcon)} {...props}>
+    <Icon>
+      <i class="fab fa-angellist" />
+    </Icon>
+    {props.children}
+  </li>
+);
+
+export default withStyles(({ themes }) => {
+  return {
+    listItemWithIcon: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      width: "100%"
+    },
+    left: {
+      flexDirection: "row"
+    },
+    right: {
+      flexDirection: "row-reverse"
+    }
+  };
+})(ListItemWithIcon);
