@@ -2,11 +2,14 @@ import React from "react";
 import { css, withStyles } from "../withStyles";
 import Icon from "./Icon";
 
-const ListItemWithIcon = ({ iconPosition = "left", styles, ...props }) => (
+const ListItemWithIcon = ({
+  icon = null,
+  iconPosition = "left",
+  styles,
+  ...props
+}) => (
   <li {...css(styles[iconPosition], styles.listItemWithIcon)} {...props}>
-    <Icon>
-      <i class="fab fa-angellist" />
-    </Icon>
+    <Icon>{icon}</Icon>
     {props.children}
   </li>
 );
