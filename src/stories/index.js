@@ -25,6 +25,7 @@ import NotFound from "./Views/NotFound";
 
 /* Components */
 import Header from "./Components/Header";
+import Footer from "./Components/Footer";
 import SubscriptionCard from "./Components/SubscriptionCard";
 
 /* Containers */
