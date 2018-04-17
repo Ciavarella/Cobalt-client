@@ -1,47 +1,53 @@
 import ThemedStyleSheet from "react-with-styles/lib/ThemedStyleSheet";
 import aphroditeInterface from "react-with-styles-interface-aphrodite/no-important";
 import { css, withStyles } from "react-with-styles";
+import * as THEME from "./MainTheme";
 
 ThemedStyleSheet.registerTheme({
   /* Colors */
   themes: {
     default: {
-      color: "black",
+      color: THEME.COLOR_NIGHTSKY,
       backgroundColor: "white",
-      borderColor: "black",
+      borderColor: THEME.COLOR_NIGHTSKY,
       ":hover": {
-        color: "grey"
+        color: THEME.COLOR_NIGHTSKY_HIGHLIGHT
       }
     },
     primary: {
       color: "white",
       borderColor: "transparent",
-      backgroundColor: "blue",
+      backgroundColor: THEME.COLOR_PRIMARY,
       ":hover": {
-        color: "lightblue"
+        color: "white",
+        backgroundColor: THEME.COLOR_PRIMARY_HIGHLIGHT
       }
     },
     secondary: {
-      color: "orange",
-      borderColor: "orange",
+      color: "white",
+      backgroundColor: THEME.COLOR_SECONDARY,
+      borderColor: THEME.COLOR_SECONDARY,
       ":hover": {
-        color: "darkorange"
+        color: "white",
+        backgroundColor: THEME.COLOR_SECONDARY_HIGHLIGHT
       }
     },
     success: {
       color: "white",
-      backgroundColor: "green",
-      borderColor: "green",
+      backgroundColor: THEME.COLOR_SUCCESS,
+      borderColor: THEME.COLOR_SUCCESS,
       ":hover": {
-        color: "darkgreen"
-      },
+        color: "white",
+        backgroundColor: THEME.COLOR_SUCCESS_HIGHLIGHT
+      }
     },
     danger: {
       color: "white",
-      borderColor: "red",
-      backgroundColor: "red",
+      borderColor: THEME.COLOR_DANGER,
+      backgroundColor: THEME.COLOR_DANGER,
       ":hover": {
-        color: "darkred"
+        color: "white",
+        backgroundColor: THEME.COLOR_DANGER_HIGHLIGHT
       }
     }
   },
