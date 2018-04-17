@@ -25,6 +25,7 @@ storiesOf("Input with icon", module)
   .add("Primay color", () => (
     <InputWithIcon
       icon={<i class="fas fa-users" />}
+      appearance="primary"
       iconAppearance="primary"
       type="text"
       placeholder="Right side"
