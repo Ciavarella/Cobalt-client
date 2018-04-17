@@ -9,16 +9,12 @@ export default withStyles(({ themes, colors }) => {
   return {
     input: {
       padding: "12px",
-<<<<<<< HEAD
       margin: "20px",
       border: "1px solid",
       borderRadius: "2px",
       ":focus": {
         borderColor: colors.secondary
       }
-=======
-      border: "2px solid"
->>>>>>> Removed margin from Input
     },
 
     default: {
