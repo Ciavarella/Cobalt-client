@@ -10,13 +10,15 @@ const FlexContainer = ({
   ...props
 }) => {
   const flexSize = `flex${flex}`;
+  const alignItems = `align${align}`;
+  const justifyContent = `justify${justify}`;
   return (
     <div
       {...css(
         styles.flexContainer,
         styles[direction],
-        styles.align[align],
-        styles.justify[justify],
+        styles[alignItems],
+        styles[justifyContent],
         styles[flexSize]
       )}
       {...props}
@@ -37,33 +39,29 @@ export default withStyles(() => {
       flexDirection: "row",
       alignItems: "center"
     },
-    justify: {
-      start: {
-        justifyContent: "flex-start"
-      },
-      end: {
-        justifyContent: "flex-end"
-      },
-      center: {
-        justifyContent: "center"
-      },
-      spaceBetween: {
-        justifyContent: "space-around"
-      },
-      spaceAround: {
-        justifyContent: "space-around"
-      }
+    alignstart: {
+      alignItems: "flex-start"
     },
-    align: {
-      start: {
-        alignItems: "flex-start"
-      },
-      end: {
-        alignItems: "flex-end"
-      },
-      center: {
-        alignItems: "center"
-      }
+    alignend: {
+      alignItems: "flex-end"
+    },
+    aligncenter: {
+      alignItems: "center"
+    },
+    justifycenter: {
+      justifyContent: "center"
+    },
+    justifystart: {
+      justifyContent: "flex-start"
+    },
+    justifyend: {
+      justifyContent: "flex-end"
+    },
+    justifybetween: {
+      justifyContent: "space-between"
+    },
+    justifyaround: {
+      justifyContent: "space-around"
     },
     flex1: {
       flex: "1"

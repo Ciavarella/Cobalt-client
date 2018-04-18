@@ -9,14 +9,14 @@ import Heading from "../Elements/Heading";
 
 const Header = ({ styles, ...props }) => (
   <header {...css(styles.header)} {...props}>
-    <FlexContainer direction="row" justify="spaceBetween">
+    <FlexContainer direction="row" justify="between">
       <FlexContainer direction="row" justify="start" flex="1">
         <Heading style={{ margin: "0" }} size="2">
           Feed.io
         </Heading>
       </FlexContainer>
 
-      <FlexContainer direction="row" justify="spaceBetween" flex="1">
+      <FlexContainer direction="row" justify="between" flex="1">
         <List direction="row">
           <ListItem>
             <a href="#">About</a>

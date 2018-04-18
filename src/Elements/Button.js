@@ -2,7 +2,7 @@ import React from "react";
 import { css, withStyles } from "../withStyles";
 
 const Button = ({
-  appearance = "default",
+  appearance = "primary",
   size = "medium",
   styles,
   ...props
