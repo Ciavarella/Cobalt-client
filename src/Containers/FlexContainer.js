@@ -27,7 +27,8 @@ const FlexContainer = ({
 export default withStyles(() => {
   return {
     flexContainer: {
-      display: "flex"
+      display: "flex",
+      padding: "20px"
     },
     column: {
       flexDirection: "column"
