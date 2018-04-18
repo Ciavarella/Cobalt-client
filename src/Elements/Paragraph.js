@@ -8,7 +8,7 @@ const Paragraph = ({ size = "normal", styles, ...props }) => (
 export default withStyles(({ themes, text, colors }) => {
   return {
     paragraph: {
-      color: colors.COLOR_DARK_METAL
+      color: colors.darkMetal
     },
 
     /* Size */
