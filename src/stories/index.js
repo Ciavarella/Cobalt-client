@@ -24,3 +24,4 @@ import SubscriptionCard from "./Components/SubscriptionCard";
 
 /* Views */
 import NotFound from "./Views/NotFound";
+import Modal from "./Components/Modal";
