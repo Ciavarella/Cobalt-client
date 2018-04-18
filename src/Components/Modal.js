@@ -3,22 +3,33 @@ import { css, withStyles } from "../withStyles";
 
 import FlexContainer from "../Containers/FlexContainer";
 
-const Modal = ({ styles, ...props }) => (
-  <div {...css(styles.modal)} {...props}>
-    <FlexContainer>
-      <div>{props.children}</div>
-    </FlexContainer>
+const Modal = ({ fade = null, styles, ...props }) => (
+  <div {...css(styles[fade], styles.overlay)} {...props}>
+    <div {...css(styles.modal)}>
+      <FlexContainer>{props.children}</FlexContainer>
+    </div>
   </div>
 );
 
 export default withStyles(({ colors }) => {
   return {
     modal: {
+      backgroundColor: colors.carbon,
+      padding: "40px"
+    },
+    overlay: {
       width: "100%",
-      heigth: "100%",
+      height: "100%",
       position: "fixed",
-      backgroundColor: colors.darkMetal,
-      zIndex: "99"
+      top: "0",
+      left: "0",
+      zIndex: "99",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center"
+    },
+    fade: {
+      backgroundColor: "rgba(0, 0, 0, 0.7)"
     }
   };
 })(Modal);
