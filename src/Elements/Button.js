@@ -20,13 +20,14 @@ export default withStyles(({ themes, text }) => {
       padding: "16px 24px",
       border: "none",
       borderRadius: "4px",
-      margin: "12px 12px 12px 12px",
+      margin: "12px 12px 12px 0px",
       fontWeight: "bold"
     },
 
     /* Color */
     default: themes.default,
     primary: themes.primary,
+    primaryGradient: themes.primaryGradient,
     secondary: themes.secondary,
     success: themes.success,
     danger: themes.danger
