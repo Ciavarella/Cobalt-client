@@ -17,18 +17,23 @@ const CopyTextfield = ({ url = "Url should go here", styles, ...props }) => {
 
     document.execCommand("copy");
   };
-
+  /** Inline style does not look good, need to refactor Button & Input components or this component **/
   return (
     <FlexContainer direction="row">
+      <Button
+        style={{ marginRight: "0", height: "40px" }}
+        appearance="primary"
+        onClick={copyToClipboard}
+      >
+        Copy
+      </Button>
       <Input
+        style={{ marginLeft: "0" }}
         ref={nodeRef => (textInput = nodeRef)}
         onClick={copyToClipboard}
         value={url}
         readOnly
       />
-      <Button appearance="primary" onClick={copyToClipboard}>
-        Copy
-      </Button>
     </FlexContainer>
   );
 };
