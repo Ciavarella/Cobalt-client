@@ -38,19 +38,14 @@ ThemedStyleSheet.registerTheme({
       borderColor: "transparent",
       backgroundColor: THEME.COLOR_PRIMARY,
       ":hover": {
-        color: "white",
         backgroundColor: THEME.COLOR_PRIMARY_HIGHLIGHT
       }
-    },
-    primaryGradient: {
-      background: THEME.GRADIENT_PRIMARY
     },
     secondary: {
       color: "white",
       backgroundColor: THEME.COLOR_SECONDARY,
       borderColor: THEME.COLOR_SECONDARY,
       ":hover": {
-        color: "white",
         backgroundColor: THEME.COLOR_SECONDARY_HIGHLIGHT
       }
     },
@@ -59,7 +54,6 @@ ThemedStyleSheet.registerTheme({
       backgroundColor: THEME.COLOR_SUCCESS,
       borderColor: THEME.COLOR_SUCCESS,
       ":hover": {
-        color: "white",
         backgroundColor: THEME.COLOR_SUCCESS_HIGHLIGHT
       }
     },
@@ -68,9 +62,20 @@ ThemedStyleSheet.registerTheme({
       borderColor: THEME.COLOR_DANGER,
       backgroundColor: THEME.COLOR_DANGER,
       ":hover": {
-        color: "white",
         backgroundColor: THEME.COLOR_DANGER_HIGHLIGHT
       }
+    },
+    primaryGradient: {
+      background: THEME.GRADIENT_PRIMARY
+    },
+    secondaryGradient: {
+      background: THEME.GRADIENT_SECONDARY
+    },
+    successGradient: {
+      background: THEME.GRADIENT_SUCCESS
+    },
+    dangerGradient: {
+      background: THEME.GRADIENT_DANGER
     }
   },
 
