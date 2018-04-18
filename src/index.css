@@ -56,14 +56,26 @@ p {
   margin-bottom: 1.2rem;
 }
 
+p:last-child {
+  margin-bottom: 0;
+}
+
 /* Form elements */
 
 input {
   font-size: 12px;
 }
 
+input:last-child {
+  margin-right: 0;
+}
+
 /* Buttons */
 
 button {
   font-size: 12px;
+}
+
+button:last-child {
+  margin-right: 0;
 }
