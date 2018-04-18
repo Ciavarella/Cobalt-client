@@ -16,3 +16,14 @@ export const COLOR_SUCCESS_HIGHLIGHT = "#8BF9E7";
 export const COLOR_DANGER_HIGHLIGHT = "#FF8FB5";
 export const COLOR_NIGHTSKY_HIGHLIGHT = "#8F87A1";
 export const COLOR_DAWN_HIGHLIGHT = "#A3AAD4";
+
+/* GRADIENTS */
+
+export const GRADIENT_PRIMARY = `linear-gradient(to top, ${COLOR_PRIMARY}, ${COLOR_PRIMARY_HIGHLIGHT})`;
+export const GRADIENT_SECONDARY = `linear-gradient(to top, ${COLOR_SECONDARY}, ${COLOR_SECONDARY_HIGHLIGHT})`;
+export const GRADIENT_SUCCESS = `linear-gradient(to top, ${COLOR_SUCCESS}, ${COLOR_SUCCESS_HIGHLIGHT})`;
+export const GRADIENT_DANGER = `linear-gradient(to top, ${COLOR_DANGER}, ${COLOR_DANGER_HIGHLIGHT})`;
+
+export const linearGradient = (direction, color1, color2) => {
+  return `linear-gradient(to ${direction}, ${color1}, ${color2}`;
+};
