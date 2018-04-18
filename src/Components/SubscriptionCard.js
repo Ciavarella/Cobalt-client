@@ -100,9 +100,13 @@ class SubscriptionCard extends React.Component {
                 >
                   <i className={card.icon} />
                 </Icon>
-                <Paragraph size="leading" style={{ padding: "5px" }}>
+                <Heading
+                  size="3"
+                  appearance="primary"
+                  style={{ padding: "5px" }}
+                >
                   $ {card.price} / month
-                </Paragraph>
+                </Heading>
               </FlexContainer>
 
               <List>
