@@ -27,9 +27,12 @@ export default withStyles(({ themes, text }) => {
     /* Color */
     default: themes.default,
     primary: themes.primary,
-    primaryGradient: themes.primaryGradient,
     secondary: themes.secondary,
     success: themes.success,
-    danger: themes.danger
+    danger: themes.danger,
+    primaryGradient: themes.primaryGradient,
+    secondaryGradient: themes.secondaryGradient,
+    successGradient: themes.successGradient,
+    dangerGradient: themes.dangerGradient
   };
 })(Button);
