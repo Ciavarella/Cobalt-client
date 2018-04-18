@@ -24,7 +24,7 @@ storiesOf("List", module)
     </List>
   ))
   .add("Ordered list(column)", () => (
-    <List listType="ol">
+    <List style={{ marginLeft: "20px" }} listType="ol">
       <ListItem>List item</ListItem>
       <ListItem>List item 2</ListItem>
       <ListItem>List item 3</ListItem>
@@ -38,7 +38,7 @@ storiesOf("List", module)
     </List>
   ))
   .add("List with icon (left)", () => (
-    <List>
+    <List style={{ width: "10%" }}>
       <ListItemWithIcon icon={<i className="fab fa-angellist" />}>
         List item
       </ListItemWithIcon>

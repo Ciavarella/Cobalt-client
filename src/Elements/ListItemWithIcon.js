@@ -5,11 +5,12 @@ import Icon from "./Icon";
 const ListItemWithIcon = ({
   icon = null,
   iconPosition = "left",
+  iconAppearance = "default",
   styles,
   ...props
 }) => (
   <li {...css(styles[iconPosition], styles.listItemWithIcon)} {...props}>
-    <Icon>{icon}</Icon>
+    <Icon appearance={iconAppearance}>{icon}</Icon>
     {props.children}
   </li>
 );
@@ -19,13 +20,13 @@ export default withStyles(({ themes }) => {
     listItemWithIcon: {
       display: "flex",
       alignItems: "center",
-      justifyContent: "space-between",
       width: "100%"
     },
     left: {
       flexDirection: "row"
     },
     right: {
+      justifyContent: "space-between",
       flexDirection: "row-reverse"
     }
   };

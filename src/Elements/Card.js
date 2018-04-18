@@ -8,8 +8,7 @@ const Card = ({ appearance = "default", shadow = null, styles, ...props }) => (
 export default withStyles(({ themes, shadow }) => {
   return {
     card: {
-      padding: "40px",
-      margin: "40px"
+      padding: "40px"
     },
 
     /* Color */

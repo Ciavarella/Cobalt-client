@@ -20,7 +20,7 @@ import Notification from "./Elements/Notification";
 import FlexContainer from "./Containers/FlexContainer";
 import List from "./Elements/List";
 import Header from "./Components/Header";
-import PaymentArea from "./Views/PaymentArea";
+import SubscriptionCard from "./Views/SubscriptionCard";
 
 /* Views */
 import NotFound from "./Views/NotFound";
