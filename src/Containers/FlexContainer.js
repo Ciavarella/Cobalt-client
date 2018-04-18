@@ -2,39 +2,48 @@ import React from "react";
 import { css, withStyles } from "../withStyles";
 
 const FlexContainer = ({
-	styles,
-	direction = 'column',
-	align = 'center',
-	...props
+  styles,
+  direction = "column",
+  align = "center",
+  position = null,
+  ...props
 }) => (
-	<div 
-		{...css(styles.flexContainer, styles[direction], styles[align])}
-		{...props} 
-	>
-	{props.children}
-	</div>
+  <div
+    {...css(
+      styles.flexContainer,
+      styles[direction],
+      styles[align],
+      styles[position]
+    )}
+    {...props}
+  >
+    {props.children}
+  </div>
 );
 
 export default withStyles(() => {
   return {
     flexContainer: {
-    	display: 'flex'
+      display: "flex"
     },
     column: {
-    	flexDirection: 'column',
+      flexDirection: "column"
     },
     row: {
-    	flexDirection: 'row',
-    	alignItems: 'center'
+      flexDirection: "row",
+      alignItems: "center"
     },
     start: {
-    	alignItems: 'flex-start'
+      alignItems: "flex-start"
     },
     end: {
-    	alignItems: 'flex-end'
+      alignItems: "flex-end"
     },
     center: {
-    	alignItems: 'center'
+      alignItems: "center"
+    },
+    spaceBetween: {
+      justifyContent: "space-between"
     }
   };
 })(FlexContainer);
