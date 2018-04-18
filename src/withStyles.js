@@ -16,6 +16,13 @@ ThemedStyleSheet.registerTheme({
     aluminum: THEME.COLOR_ALUMINUM,
     darkMetal: THEME.COLOR_DARK_METAL
   },
+  /* Gradients */
+  gradients: {
+    primary: THEME.GRADIENT_PRIMARY,
+    secondary: THEME.GRADIENT_SECONDARY,
+    success: THEME.GRADIENT_SUCCESS,
+    danger: THEME.GRADIENT_DANGER
+  },
   /* themes */
   themes: {
     default: {
@@ -34,6 +41,9 @@ ThemedStyleSheet.registerTheme({
         color: "white",
         backgroundColor: THEME.COLOR_PRIMARY_HIGHLIGHT
       }
+    },
+    primaryGradient: {
+      background: THEME.GRADIENT_PRIMARY
     },
     secondary: {
       color: "white",
