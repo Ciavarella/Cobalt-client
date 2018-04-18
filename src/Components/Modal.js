@@ -5,13 +5,13 @@ import FlexContainer from "../Containers/FlexContainer";
 
 const Modal = ({ fade = null, styles, ...props }) => (
   <div {...css(styles[fade], styles.overlay)} {...props}>
-    <div {...css(styles.rounded, styles.modal)}>
+    <div {...css(styles.rounded, styles.shadow, styles.modal)}>
       <FlexContainer>{props.children}</FlexContainer>
     </div>
   </div>
 );
 
-export default withStyles(({ colors, rounded }) => {
+export default withStyles(({ colors, rounded, shadow }) => {
   return {
     modal: {
       backgroundColor: colors.carbon,
@@ -32,6 +32,7 @@ export default withStyles(({ colors, rounded }) => {
     fade: {
       backgroundColor: "rgba(0, 0, 0, 0.7)"
     },
-    rounded: rounded
+    rounded: rounded,
+    shadow: shadow
   };
 })(Modal);
