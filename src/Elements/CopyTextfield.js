@@ -20,13 +20,16 @@ const CopyTextfield = ({ url = "Url should go here", styles, ...props }) => {
 
   return (
     <div>
-      <FlexContainer direction="row" align="center">
+      <FlexContainer direction="row">
         <Input
           ref={nodeRef => (textInput = nodeRef)}
           onClick={copyToClipboard}
           value={url}
+          readOnly
         />
-        <Button onClick={copyToClipboard}>Copy</Button>
+        <Button appearance="primary" onClick={copyToClipboard}>
+          Copy
+        </Button>
       </FlexContainer>
     </div>
   );
