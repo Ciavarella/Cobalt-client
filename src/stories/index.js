@@ -21,6 +21,7 @@ import FlexContainer from "./Containers/FlexContainer";
 import List from "./Elements/List";
 import Header from "./Components/Header";
 import SubscriptionCard from "./Components/SubscriptionCard";
+import Navigation from "./Components/Navigation";
 
 /* Views */
 import NotFound from "./Views/NotFound";
