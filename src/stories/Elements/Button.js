@@ -23,6 +23,11 @@ storiesOf("Button", module)
       Secondary
     </Button>
   ))
+  .add("Secondary (Gradient)", () => (
+    <Button appearance="secondaryGradient" size="xs">
+      Secondary Gradient
+    </Button>
+  ))
   .add("Success", () => (
     <Button
       appearance="success"
@@ -32,6 +37,11 @@ storiesOf("Button", module)
       Success
     </Button>
   ))
+  .add("Success (Gradient)", () => (
+    <Button appearance="successGradient" size="xs">
+      Success Gradient
+    </Button>
+  ))
   .add("Danger", () => (
     <Button
       appearance="danger"
@@ -39,5 +49,10 @@ storiesOf("Button", module)
       onClick={() => console.log("Danger click")}
     >
       Danger
+    </Button>
+  ))
+  .add("Danger (Gradient)", () => (
+    <Button appearance="dangerGradient" size="xs">
+      Danger Gradient
     </Button>
   ));
