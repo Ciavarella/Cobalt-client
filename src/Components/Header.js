@@ -9,15 +9,15 @@ import Heading from "../Elements/Heading";
 
 const Header = ({ styles, ...props }) => (
   <header {...css(styles.header)} {...props}>
-    <FlexContainer direction="row" position="spaceBetween">
-      <FlexContainer direction="row">
+    <FlexContainer direction="row" justify="spaceBetween">
+      <FlexContainer direction="row" justify="start" flex="1">
         <Heading style={{ margin: "0" }} size="2">
           Feed.io
         </Heading>
       </FlexContainer>
 
-      <FlexContainer direction="row" position="spaceBetween">
-        <List direction="row" style={{ width: "350px" }}>
+      <FlexContainer direction="row" justify="spaceBetween" flex="1">
+        <List direction="row">
           <ListItem>
             <a href="#">About</a>
           </ListItem>
@@ -31,6 +31,8 @@ const Header = ({ styles, ...props }) => (
             <a href="#">Contact</a>
           </ListItem>
         </List>
+      </FlexContainer>
+      <FlexContainer direction="row">
         <Button>Log in</Button>
         <Button>Sign up</Button>
       </FlexContainer>

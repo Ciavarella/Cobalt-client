@@ -9,10 +9,9 @@ const List = ({ direction = "column", listType = "ul", styles, ...props }) => {
 export default withStyles(({ themes }) => {
   return {
     list: {
-      marginLeft: "20px",
-      width: "30%",
       display: "flex",
-      alignItems: "flex-start"
+      alignItems: "flex-start",
+      flex: "1"
     },
     column: {
       flexDirection: "column"
