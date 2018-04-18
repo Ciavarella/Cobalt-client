@@ -9,6 +9,11 @@ storiesOf("Button", module)
       Primary
     </Button>
   ))
+  .add("Primary (Gradient)", () => (
+    <Button appearance="primaryGradient" size="xs">
+      Primary Gradient
+    </Button>
+  ))
   .add("Secondary", () => (
     <Button
       appearance="secondary"

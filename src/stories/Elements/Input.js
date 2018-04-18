@@ -11,7 +11,7 @@ storiesOf("Input", module)
   .add("Email", () => <Input type="email" placeholder="Email" />)
   .add("Password", () => <Input type="password" placeholder="Password" />)
   .add("Number", () => <Input type="number" placeholder="Number" />)
-  .add("Secondary", () => (
+  .add("Focused", () => (
     <Input appearance="secondary" type="text" placeholder="Secondary" />
   ))
   .add("Success", () => (
