@@ -17,6 +17,7 @@ const CopyTextfield = ({ url = "Url should go here", styles, ...props }) => {
 
     document.execCommand("copy");
   };
+  /** TODO **/
   /** Inline style does not look good, need to refactor Button & Input components or this component **/
   return (
     <FlexContainer direction="row">
