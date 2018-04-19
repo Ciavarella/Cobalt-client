@@ -13,7 +13,7 @@ const InputWithIcon = ({
   styles,
   ...props
 }) => (
-  <div>
+  <div {...css(styles.inputDiv)} {...props}>
     {iconPosition === "left" ? (
       <Icon appearance={iconAppearance}>{icon}</Icon>
     ) : (
@@ -30,6 +30,10 @@ const InputWithIcon = ({
 
 export default withStyles(({ themes }) => {
   return {
-    inputWithIcon: {}
+    inputWithIcon: {},
+    inputDiv: {
+      display: "flex",
+      width: "100%"
+    }
   };
 })(InputWithIcon);
