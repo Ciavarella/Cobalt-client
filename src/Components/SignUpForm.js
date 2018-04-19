@@ -33,7 +33,7 @@ class SignUpForm extends React.Component {
 
   render() {
     return (
-      <div {...css(this.styles, this.styles.signupForm)}>
+      <div {...css(this.styles, this.styles.signUpForm)}>
         <FlexContainer>
           <Heading size="2">Sign up here</Heading>
           <form onSubmit={this.handleSubmit}>
@@ -93,6 +93,10 @@ export default withStyles(({ themes, text, colors }) => {
     signUpForm: {
       ":nth-child(1n) form input": {
         margin: "0"
+      },
+      ":nth-child(1n) label": {
+        marginTop: "20px",
+        marginBottom: "5px"
       }
     },
     primary: colors.primary,
