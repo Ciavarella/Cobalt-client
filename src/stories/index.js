@@ -18,8 +18,6 @@ import Card from "./Elements/Card";
 import Checkbox from "./Elements/Checkbox";
 import Notification from "./Elements/Notification";
 import List from "./Elements/List";
-import Header from "./Components/Header";
-import SubscriptionCard from "./Components/SubscriptionCard";
 import CopyTextfield from "./Elements/CopyTextfield";
 
 /* Views */
