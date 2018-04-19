@@ -3,8 +3,11 @@ import { css, withStyles } from "../withStyles";
 
 import FlexContainer from "../Containers/FlexContainer";
 
-const Modal = ({ fade = null, styles, ...props }) => (
-  <div {...css(styles[fade], styles.overlay)} {...props}>
+const Modal = ({ fade = null, withOverlay, styles, ...props }) => (
+  <div
+    {...css(withOverlay === true && styles.overlayColor, styles.overlay)}
+    {...props}
+  >
     <div {...css(styles.rounded, styles.shadow, styles.modal)}>
       <FlexContainer>{props.children}</FlexContainer>
     </div>
@@ -29,7 +32,7 @@ export default withStyles(({ colors, rounded, shadow }) => {
       justifyContent: "center",
       alignItems: "center"
     },
-    fade: {
+    overlayColor: {
       backgroundColor: "rgba(0, 0, 0, 0.7)"
     },
     rounded: rounded,

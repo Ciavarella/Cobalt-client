@@ -28,7 +28,7 @@ storiesOf("Modal", module)
   .add("Modal (with overlay)", () => (
     <React.Fragment>
       <Heading size="1">Stuff behind the modal</Heading>
-      <Modal fade="fade">
+      <Modal withOverlay>
         <Heading size="3" appearance="primary">
           Are you sure?
         </Heading>
