@@ -24,7 +24,7 @@ class LoginForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     console.log(
-      `Email:::${this.state.email}, Password:::${this.state.password}`
+      `Email::: ${this.state.email}, Password::: ${this.state.password}`
     );
     //Todo: On submit send both email and password for validation
   }
@@ -46,8 +46,10 @@ class LoginForm extends React.Component {
                 </label>
                 <InputWithIcon
                   name="email"
-                  icon={<i class="fas fa-check" />}
+                  icon="fas fa-check"
                   iconPosition="right"
+                  iconBackground="primary"
+                  iconFillColor="white"
                   type="text"
                   placeholder="Email..."
                   value={this.state.email}
@@ -61,8 +63,10 @@ class LoginForm extends React.Component {
                 </label>
                 <InputWithIcon
                   name="password"
-                  icon={<i class="fas fa-check" />}
+                  icon="fas fa-check"
                   iconPosition="right"
+                  iconBackground="primary"
+                  iconFillColor="white"
                   type="text"
                   placeholder="Password..."
                   value={this.state.password}
