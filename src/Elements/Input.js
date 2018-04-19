@@ -12,6 +12,8 @@ export default withStyles(({ themes, colors }) => {
       margin: "20px",
       border: "1px solid",
       borderRadius: "2px",
+      width: "100%",
+      minWidth: "120px",
       ":focus": {
         borderColor: colors.secondary
       }
