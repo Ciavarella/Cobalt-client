@@ -40,9 +40,13 @@ class JoinSession extends React.Component {
               placeholder="Session code..."
               value={this.state.code}
               onChange={this.handleChange}
-              style={{ marginLeft: "0px", width: "400px" }}
+              style={{
+                marginLeft: "0px",
+                width: "400px",
+                borderRadius: "0px 4px 4px 0px"
+              }}
             />
-            <Button appearance="primaryGradient">JOIN</Button>
+            <Button appearance="primary">JOIN</Button>
           </FlexContainer>
         </form>
       </FlexContainer>
