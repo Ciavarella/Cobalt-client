@@ -18,7 +18,7 @@ const Navigation = ({ styles, ...props }) => (
     <FlexContainer align="start">
       <ul {...css(styles.dashboardNav)}>
         <li>
-          <Icon appearance="dawn">
+          <Icon appearance="danger">
             <i class="fas fa-columns" />
           </Icon>Dashboard
         </li>
