@@ -26,6 +26,7 @@ import NotFound from "./Views/NotFound";
 /* Components */
 import Header from "./Components/Header";
 import SubscriptionCard from "./Components/SubscriptionCard";
+import Navigation from "./Components/Navigation";
 
 /* Containers */
 import FlexContainer from "./Containers/FlexContainer";
