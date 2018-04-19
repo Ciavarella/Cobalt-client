@@ -28,7 +28,9 @@ import Header from "./Components/Header";
 import Footer from "./Components/Footer";
 import SubscriptionCard from "./Components/SubscriptionCard";
 import Navigation from "./Components/Navigation";
+import Modal from "./Components/Modal";
 import LoginForm from "./Components/LoginForm";
+
 
 /* Containers */
 import FlexContainer from "./Containers/FlexContainer";

@@ -98,6 +98,10 @@ ThemedStyleSheet.registerTheme({
 
   shadow: {
     boxShadow: "0 1px 1px rgba(0, 0, 0, .1)"
+  },
+
+  rounded: {
+    borderRadius: "4px"
   }
 });
 ThemedStyleSheet.registerInterface(aphroditeInterface);
