@@ -14,7 +14,8 @@ ThemedStyleSheet.registerTheme({
     dawn: THEME.COLOR_DAWN,
     carbon: THEME.COLOR_CARBON,
     aluminum: THEME.COLOR_ALUMINUM,
-    darkMetal: THEME.COLOR_DARK_METAL
+    darkMetal: THEME.COLOR_DARK_METAL,
+    sand: THEME.COLOR_SAND
   },
   /* Gradients */
   gradients: {
