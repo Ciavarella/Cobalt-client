@@ -30,7 +30,7 @@ import SubscriptionCard from "./Components/SubscriptionCard";
 import Navigation from "./Components/Navigation";
 import Modal from "./Components/Modal";
 import LoginForm from "./Components/LoginForm";
-
+import SignUpForm from "./Components/SignUpForm";
 
 /* Containers */
 import FlexContainer from "./Containers/FlexContainer";
