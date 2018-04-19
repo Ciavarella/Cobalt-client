@@ -1,38 +1,40 @@
 import React from "react";
 import { css, withStyles } from "../withStyles";
 
-const Icon = ({ appearance = "default", size = "small", styles, ...props }) => (
-  <span {...css(styles.icon, styles[size], styles[appearance])} {...props} />
+const Icon = ({
+  icon = null,
+  fillColor = "white",
+  size = "small",
+  styles,
+  ...props
+}) => (
+  <span {...css(styles.icon, styles[size], styles[fillColor])} {...props}>
+    <i className={icon} />
+  </span>
 );
 
-export default withStyles(({ themes, text, colors }) => {
+export default withStyles(({ colors, text }) => {
   return {
     icon: {
       padding: "14px"
     },
-    /* TODO: Refactor to accept icon-name, height, width, fillColor, use svg */
-    /* Color */
-
-    /* Color */
-    default: {
-      color: themes.default.color
-    },
-    primary: {
-      color: themes.primary.color
-    },
-    secondary: {
-      color: themes.secondary.color
-    },
-    danger: {
-      color: colors.danger
-    },
-    dawn: {
-      color: colors.dawn
-    },
+    /** TODO: change from fontawesome to svg? */
 
     /* Size */
+    xs: text.xs,
     small: text.small,
     medium: text.medium,
-    large: text.large
+    large: text.large,
+    /* Color */
+    primary: { color: colors.primary },
+    secondary: { color: colors.secondary },
+    danger: { color: colors.danger },
+    dawn: { color: colors.dawn },
+    nightsky: { color: colors.nightsky },
+    carbon: { color: colors.carbon },
+    darkMetal: { color: colors.darkMetal },
+    aluminum: { color: colors.aluminum },
+    sand: { color: colors.sand },
+    white: { color: "#FFF" }
   };
 })(Icon);

@@ -6,34 +6,48 @@ import Input from "./Input";
 const InputWithIcon = ({
   appearance = "default",
   icon = null,
-  iconAppearance = "default",
+  iconFillColor = "default",
   iconPosition = "left",
-  iconColor = "default",
+  iconBackground = null,
   placeholder = null,
   styles,
   ...props
 }) => (
-  <div {...css(styles.inputDiv)} {...props}>
-    {iconPosition === "left" ? (
-      <Icon appearance={iconAppearance}>{icon}</Icon>
-    ) : (
-      ""
-    )}
+  <div {...css(styles.inputWithIcon, styles[iconPosition])} {...props}>
+    <div {...css(styles[iconBackground], styles.flex)}>
+      <Icon fillColor={iconFillColor} icon={icon} />
+    </div>
     <Input appearance={appearance} placeholder={placeholder} />
-    {iconPosition === "right" ? (
-      <Icon appearance={iconAppearance}>{icon}</Icon>
-    ) : (
-      ""
-    )}
   </div>
 );
 
-export default withStyles(({ themes }) => {
+export default withStyles(({ themes, colors }) => {
   return {
-    inputWithIcon: {},
-    inputDiv: {
+    inputWithIcon: {
       display: "flex",
-      width: "100%"
-    }
+      width: "100%",
+      alignItems: "center"
+    },
+    left: {
+      ":nth-child(1n) input": {
+        marginLeft: "0px"
+      }
+    },
+    right: {
+      flexDirection: "row-reverse",
+      marginRight: "0px"
+    },
+    flex: {
+      display: "flex"
+    },
+    primary: { backgroundColor: colors.primary },
+    secondary: { backgroundColor: colors.secondary },
+    danger: { backgroundColor: colors.danger },
+    dawn: { backgroundColor: colors.dawn },
+    nightsky: { backgroundColor: colors.nightsky },
+    carbon: { backgroundColor: colors.carbon },
+    darkMetal: { backgroundColor: colors.darkMetal },
+    aluminum: { backgroundColor: colors.aluminum },
+    sand: { backgroundColor: colors.sand }
   };
 })(InputWithIcon);
