@@ -39,7 +39,7 @@ class SignUpForm extends React.Component {
           <form onSubmit={this.handleSubmit}>
             <FlexContainer>
               <FlexContainer align="start" style={{ width: "400px" }}>
-                <label style={{ marginBottom: "5px" }}>Name</label>
+                <label>Name</label>
                 <InputWithIcon
                   name="name"
                   icon="fas fa-check"
@@ -51,9 +51,7 @@ class SignUpForm extends React.Component {
                   value={this.state.name}
                   onChange={this.handleChange}
                 />
-                <label style={{ marginTop: "20px", marginBottom: "5px" }}>
-                  Email
-                </label>
+                <label>Email</label>
                 <InputWithIcon
                   name="email"
                   icon="fas fa-check"
@@ -65,9 +63,7 @@ class SignUpForm extends React.Component {
                   value={this.state.name}
                   onChange={this.handleChange}
                 />
-                <label style={{ marginTop: "20px", marginBottom: "5px" }}>
-                  Password
-                </label>
+                <label>Password</label>
                 <InputWithIcon
                   name="password"
                   icon="fas fa-check"
@@ -95,8 +91,8 @@ class SignUpForm extends React.Component {
 export default withStyles(({ themes, text, colors }) => {
   return {
     signUpForm: {
-      ":nth-child(1n) form input ": {
-        margin: "0px"
+      ":nth-child(1n) form input": {
+        margin: "0"
       }
     },
     primary: colors.primary,
