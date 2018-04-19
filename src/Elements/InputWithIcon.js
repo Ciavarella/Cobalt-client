@@ -1,6 +1,7 @@
 import React from "react";
 import { css, withStyles } from "../withStyles";
 import Icon from "./Icon";
+import Input from "./Input";
 
 const InputWithIcon = ({
   appearance = "default",
@@ -8,6 +9,7 @@ const InputWithIcon = ({
   iconAppearance = "default",
   iconPosition = "left",
   iconColor = "default",
+  placeholder = null,
   styles,
   ...props
 }) => (
@@ -17,7 +19,7 @@ const InputWithIcon = ({
     ) : (
       ""
     )}
-    <input {...css(styles.input, styles[appearance])} {...props} />
+    <Input appearance={appearance} placeholder={placeholder} />
     {iconPosition === "right" ? (
       <Icon appearance={iconAppearance}>{icon}</Icon>
     ) : (
@@ -28,25 +30,6 @@ const InputWithIcon = ({
 
 export default withStyles(({ themes }) => {
   return {
-    input: {
-      padding: "12px",
-      border: "2px solid"
-    },
-
-    default: {
-      borderColor: themes.default.borderColor
-    },
-    primary: {
-      borderColor: themes.primary.borderColor
-    },
-    secondary: {
-      borderColor: themes.secondary.borderColor
-    },
-    success: {
-      borderColor: themes.success.borderColor
-    },
-    danger: {
-      borderColor: themes.danger.borderColor
-    }
+    inputWithIcon: {}
   };
 })(InputWithIcon);

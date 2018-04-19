@@ -17,11 +17,18 @@ import Icon from "./Elements/Icon";
 import Card from "./Elements/Card";
 import Checkbox from "./Elements/Checkbox";
 import Notification from "./Elements/Notification";
-import FlexContainer from "./Containers/FlexContainer";
 import List from "./Elements/List";
-import Header from "./Components/Header";
-import SubscriptionCard from "./Components/SubscriptionCard";
+import CopyTextfield from "./Elements/CopyTextfield";
 
 /* Views */
 import NotFound from "./Views/NotFound";
+
+/* Components */
+import Header from "./Components/Header";
+import Footer from "./Components/Footer";
+import SubscriptionCard from "./Components/SubscriptionCard";
+import Navigation from "./Components/Navigation";
 import Modal from "./Components/Modal";
+
+/* Containers */
+import FlexContainer from "./Containers/FlexContainer";
