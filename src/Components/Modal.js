@@ -3,7 +3,7 @@ import { css, withStyles } from "../withStyles";
 
 import FlexContainer from "../Containers/FlexContainer";
 
-const Modal = ({ withOverlay, styles, ...props }) => (
+const Modal = ({ withOverlay = false, styles, ...props }) => (
   <div
     {...css(withOverlay === true && styles.overlayColor, styles.overlay)}
     {...props}
