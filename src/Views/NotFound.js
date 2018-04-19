@@ -7,18 +7,21 @@ import Button from "../Elements/Button";
 
 import openBoxIcon from "../assets/open-box.svg";
 
-const NotFound = ({ url, styles, ...props }) => (
-  <div {...css(styles.notFound)}>
-    <FlexContainer>
-      <img {...css(styles.icon)} src={openBoxIcon} />
-      <Heading size="2">404 page not found</Heading>
-      <Paragraph>
-        We are sorry but the page: "{url}" could not be found
-      </Paragraph>
-      <Button appearance="primary">Click here to go back</Button>
-    </FlexContainer>
-  </div>
-);
+const NotFound = ({ styles, ...props }) => {
+  return (
+    <div {...css(styles.notFound)}>
+      <FlexContainer>
+        <img {...css(styles.icon)} src={openBoxIcon} alt="Empty Box" />
+        <Heading size="2">404 page not found</Heading>
+        <Paragraph>
+          We are sorry but the page: "{props.location.pathname.replace("/", "")}"
+          could not be found
+        </Paragraph>
+        <Button appearance="primary">Click here to go back</Button>
+      </FlexContainer>
+    </div>
+  );
+};
 
 export default withStyles(({ colors }) => {
   return {
