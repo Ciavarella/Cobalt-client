@@ -1,6 +1,7 @@
 import React from "react";
 import { css, withStyles } from "../withStyles";
 import Icon from "./Icon";
+import ListItem from "./ListItem";
 
 const ListItemWithIcon = ({
   icon = null,
@@ -9,10 +10,10 @@ const ListItemWithIcon = ({
   styles,
   ...props
 }) => (
-  <li {...css(styles[iconPosition], styles.listItemWithIcon)} {...props}>
+  <ListItem {...css(styles[iconPosition], styles.listItemWithIcon)} {...props}>
     <Icon appearance={iconAppearance}>{icon}</Icon>
     {props.children}
-  </li>
+  </ListItem>
 );
 
 export default withStyles(({ themes }) => {

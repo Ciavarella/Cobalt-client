@@ -25,16 +25,18 @@ storiesOf("Input with icon", module)
   .add("Primay color", () => (
     <InputWithIcon
       icon={<i class="fas fa-users" />}
+      appearance="primary"
       iconAppearance="primary"
       type="text"
-      placeholder="Right side"
+      placeholder="Primary color"
     />
   ))
   .add("Secondary color", () => (
     <InputWithIcon
       icon={<i class="fas fa-users" />}
+      appearance="secondary"
       iconAppearance="secondary"
       type="text"
-      placeholder="Right side"
+      placeholder="Secondary color"
     />
   ));
