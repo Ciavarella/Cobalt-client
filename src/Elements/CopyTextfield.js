@@ -17,35 +17,37 @@ const CopyTextfield = ({ url = "Url should go here", styles, ...props }) => {
 
     document.execCommand("copy");
   };
-  /** TODO **/
-  /** Inline style does not look good, need to refactor Button & Input components or this component **/
+
   return (
-    <FlexContainer direction="row">
-      <Button
-        style={{
-          marginRight: "0",
-          height: "41px",
-          borderRadius: "4px 0px 0px 4px"
-        }}
-        appearance="primary"
-        onClick={copyToClipboard}
-      >
-        Copy
-      </Button>
-      <Input
-        style={{ marginLeft: "0", borderRadius: "0px 4px 4px 0px" }}
-        ref={nodeRef => (textInput = nodeRef)}
-        onClick={copyToClipboard}
-        value={url}
-        readOnly
-      />
-    </FlexContainer>
+    <div {...css(styles.textfield)} {...props}>
+      <FlexContainer direction="row">
+        <Button appearance="primary" onClick={copyToClipboard}>
+          Copy
+        </Button>
+        <Input
+          ref={nodeRef => (textInput = nodeRef)}
+          onClick={copyToClipboard}
+          value={url}
+          readOnly
+        />
+      </FlexContainer>
+    </div>
   );
 };
 
 export default withStyles(({ themes }) => {
   return {
-    textfield: {},
+    textfield: {
+      ":nth-child(1n) button": {
+        marginRight: "0",
+        height: "41px",
+        borderRadius: "4px 0px 0px 4px"
+      },
+      ":nth-child(1n) input": {
+        marginLeft: "0",
+        borderRadius: "0px 4px 4px 0px"
+      }
+    },
 
     default: {
       color: themes.default.color
