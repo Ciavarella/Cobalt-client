@@ -10,6 +10,7 @@ const InputWithIcon = ({
   iconPosition = "left",
   iconBackground = null,
   placeholder = null,
+  name = null,
   styles,
   ...props
 }) => (
@@ -17,7 +18,7 @@ const InputWithIcon = ({
     <div {...css(styles[iconBackground], styles.flex)}>
       <Icon fillColor={iconFillColor} icon={icon} />
     </div>
-    <Input appearance={appearance} placeholder={placeholder} />
+    <Input name={name} appearance={appearance} placeholder={placeholder} />
   </div>
 );
 
