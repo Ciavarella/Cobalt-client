@@ -4,4 +4,4 @@ import { storiesOf } from "@storybook/react";
 
 import Navigation from "../../Components/Navigation";
 
-storiesOf("Navigation", module).add("Navigation", () => <Navigation />);
+storiesOf("Sidebar", module).add("Sidebar", () => <Navigation />);
