@@ -6,17 +6,25 @@ import Paragraph from "../Elements/Paragraph";
 import Button from "../Elements/Button";
 
 const NotFound = ({ url, styles, ...props }) => (
-  <FlexContainer>
-    <Heading size="2">404 page not found</Heading>
-    <Paragraph>We are sorry but the page: "{url}" could not be found</Paragraph>
-    <Button appearance="primary">Click here to go back</Button>
-  </FlexContainer>
+  <div {...css(styles.notFound)}>
+    <FlexContainer>
+      <Heading size="2">404 page not found</Heading>
+      <Paragraph>
+        We are sorry but the page: "{url}" could not be found
+      </Paragraph>
+      <Button appearance="primary">Click here to go back</Button>
+    </FlexContainer>
+  </div>
 );
 
-export default withStyles(({ theme }) => {
+export default withStyles(({ colors }) => {
   return {
     notFound: {
-      // Add some styling here
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100vh",
+      backgroundColor: colors.sand
     }
   };
 })(NotFound);
