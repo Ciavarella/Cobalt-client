@@ -23,6 +23,9 @@ export default withStyles(({ themes, text, colors }) => {
     secondary: {
       color: themes.secondary.color
     },
+    danger: {
+      color: colors.danger
+    },
     dawn: {
       color: colors.dawn
     },
