@@ -18,6 +18,7 @@ import Card from "./Elements/Card";
 import Checkbox from "./Elements/Checkbox";
 import Notification from "./Elements/Notification";
 import List from "./Elements/List";
+import CopyTextfield from "./Elements/CopyTextfield";
 
 /* Views */
 import NotFound from "./Views/NotFound";
