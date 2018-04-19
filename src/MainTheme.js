@@ -9,6 +9,7 @@ export const COLOR_NIGHTSKY = "#554F64";
 export const COLOR_DAWN = "#6C7297";
 export const COLOR_ALUMINUM = "#EDEDED";
 export const COLOR_DARK_METAL = "#737373";
+export const COLOR_SAND = "#F9F7F9";
 
 export const COLOR_PRIMARY_HIGHLIGHT = "#FFC38F";
 export const COLOR_SECONDARY_HIGHLIGHT = "#77E9FF";

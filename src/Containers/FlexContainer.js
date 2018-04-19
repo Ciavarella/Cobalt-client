@@ -3,6 +3,7 @@ import { css, withStyles } from "../withStyles";
 
 const FlexContainer = ({
   styles,
+  element = "div",
   direction = "column",
   align = "center",
   justify = "start",
@@ -12,8 +13,9 @@ const FlexContainer = ({
   const flexSize = `flex${flex}`;
   const alignItems = `align${align}`;
   const justifyContent = `justify${justify}`;
+  const ElementType = `${element}`;
   return (
-    <div
+    <ElementType
       {...css(
         styles.flexContainer,
         styles[direction],
@@ -29,8 +31,7 @@ const FlexContainer = ({
 export default withStyles(() => {
   return {
     flexContainer: {
-      display: "flex",
-      padding: "20px"
+      display: "flex"
     },
     column: {
       flexDirection: "column"
