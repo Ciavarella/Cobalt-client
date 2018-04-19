@@ -10,6 +10,7 @@ import InputWithIcon from "../Elements/InputWithIcon";
 class LoginForm extends React.Component {
   constructor({ styles, ...props }) {
     super(props);
+    this.styles = styles;
     this.state = {
       email: "",
       password: "",
@@ -22,7 +23,9 @@ class LoginForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state.email, this.state.password);
+    console.log(
+      `Email:::${this.state.email}, Password:::${this.state.password}`
+    );
     //Todo: On submit send both email and password for validation
   }
 
@@ -32,7 +35,7 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <div {...css(this.styles, this.styles.loginForm)}>
         <FlexContainer>
           <Heading size="2">Log in as presenter</Heading>
           <form onSubmit={this.handleSubmit}>
@@ -43,10 +46,8 @@ class LoginForm extends React.Component {
                 </label>
                 <InputWithIcon
                   name="email"
-                  appearance="primary"
                   icon={<i class="fas fa-check" />}
                   iconPosition="right"
-                  iconAppearance="primary"
                   type="text"
                   placeholder="Email..."
                   value={this.state.email}
@@ -60,10 +61,8 @@ class LoginForm extends React.Component {
                 </label>
                 <InputWithIcon
                   name="password"
-                  appearance="primary"
                   icon={<i class="fas fa-check" />}
                   iconPosition="right"
-                  iconAppearance="primary"
                   type="text"
                   placeholder="Password..."
                   value={this.state.password}
@@ -88,7 +87,11 @@ class LoginForm extends React.Component {
 
 export default withStyles(({ themes, text, colors }) => {
   return {
-    loginForm: {},
+    loginForm: {
+      ":nth-child(1n) form input": {
+        margin: "0px"
+      }
+    },
     primary: colors.primary,
     danger: colors.danger
   };
