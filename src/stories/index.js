@@ -31,7 +31,7 @@ import Navigation from "./Components/Navigation";
 import Modal from "./Components/Modal";
 import LoginForm from "./Components/LoginForm";
 import SignUpForm from "./Components/SignUpForm";
-import JoinSession from "./Components/JoinSession";
+import SessionItem from "./Components/SessionItem";
 
 /* Containers */
 import FlexContainer from "./Containers/FlexContainer";
