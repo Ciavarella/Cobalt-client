@@ -13,14 +13,14 @@ import Checkbox from "../../Elements/Checkbox";
 
 const Preferences = ({ styles }) => (
   <div {...css(styles.preferences)}>
-    <FlexContainer>
+    <FlexContainer align="start">
       <Heading appearance="primary" size="2">
         Preferences
       </Heading>
       <Paragraph size="normal">
-        Here you can set some preferred settings for your session. Don't worry,
-        you can change them before starting!
+        Here you can set some preferred settings for your session.
       </Paragraph>
+      <Paragraph>Don't worry, you can change them before starting!</Paragraph>
 
       <FlexContainer
         direction="row"
@@ -73,12 +73,17 @@ const Preferences = ({ styles }) => (
         </FlexContainer>
       </FlexContainer>
 
-      <FlexContainer direction="row">
-        <FlexContainer>
+      <FlexContainer
+        direction="row"
+        justify="between"
+        style={{ width: "450px" }}
+      >
+        <FlexContainer direction="row">
           <Checkbox />
           <Paragraph>Allow comments</Paragraph>
         </FlexContainer>
-        <FlexContainer>
+
+        <FlexContainer direction="row">
           <Checkbox />
           <Paragraph>Some other setting</Paragraph>
         </FlexContainer>

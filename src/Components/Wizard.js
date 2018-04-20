@@ -59,15 +59,7 @@ class Wizard extends React.Component {
               {child}
             </li>
           ))}
-          <Button
-            style={{
-              position: "absolute",
-              top: "230px",
-              right: "0"
-            }}
-            onClick={this.nextPage}
-            appearance="secondary"
-          >
+          <Button onClick={this.nextPage} appearance="secondary">
             NEXT - {this.state.currentPage + 1} / 3
           </Button>
         </Modal>

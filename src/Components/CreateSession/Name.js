@@ -11,14 +11,18 @@ import InputWithIcon from "../../Elements/InputWithIcon";
 import Icon from "../../Elements/Icon";
 
 const Name = ({ styles }) => (
-  <FlexContainer>
+  <FlexContainer align="start">
     <Heading appearance="primary" size="2">
       Session name
     </Heading>
     <Paragraph size="normal">
       What do you want to call your session? Try to be descriptive!
     </Paragraph>
-    <Input type="text" placeholder="Enter session name" />
+    <Input
+      type="text"
+      placeholder="Enter session name"
+      style={{ marginLeft: "0px" }}
+    />
   </FlexContainer>
 );
 
