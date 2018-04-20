@@ -33,8 +33,8 @@ const Header = ({ styles, ...props }) => (
         </List>
       </FlexContainer>
       <FlexContainer direction="row">
-        <Button>Log in</Button>
-        <Button>Sign up</Button>
+        <Button appearance="secondary">Log in</Button>
+        <Button appearance="primary">Sign up</Button>
       </FlexContainer>
     </FlexContainer>
   </header>
@@ -42,6 +42,8 @@ const Header = ({ styles, ...props }) => (
 
 export default withStyles(({ themes, text }) => {
   return {
-    header: {}
+    header: {
+      padding: "20px"
+    }
   };
 })(Header);
