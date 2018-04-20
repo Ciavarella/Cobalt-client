@@ -9,6 +9,7 @@ import Button from "../../Elements/Button";
 import Input from "../../Elements/Input";
 import InputWithIcon from "../../Elements/InputWithIcon";
 import Icon from "../../Elements/Icon";
+import Checkbox from "../../Elements/Checkbox";
 
 const Preferences = ({ styles }) => (
   <div {...css(styles.preferences)}>
@@ -69,6 +70,17 @@ const Preferences = ({ styles }) => (
             placeholder="Ex. Welcome to my lecture!"
             style={{ marginLeft: "0px", width: "200px" }}
           />
+        </FlexContainer>
+      </FlexContainer>
+
+      <FlexContainer direction="row">
+        <FlexContainer>
+          <Checkbox />
+          <Paragraph>Allow comments</Paragraph>
+        </FlexContainer>
+        <FlexContainer>
+          <Checkbox />
+          <Paragraph>Some other setting</Paragraph>
         </FlexContainer>
       </FlexContainer>
     </FlexContainer>
