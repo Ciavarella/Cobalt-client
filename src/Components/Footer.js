@@ -9,22 +9,22 @@ const Footer = ({ size = "medium", styles, ...props }) => (
     <FlexContainer direction="column" align="start">
       <List direction="row">
         <ListItem>
-          <a {...css(styles.footer)} {...props} href="#">
+          <a {...props} href="#">
             About
           </a>
         </ListItem>
         <ListItem>
-          <a {...css(styles.footer)} {...props} href="#">
+          <a {...props} href="#">
             Press
           </a>
         </ListItem>
         <ListItem>
-          <a {...css(styles.footer)} {...props} href="#">
+          <a {...props} href="#">
             Developers
           </a>
         </ListItem>
         <ListItem>
-          <a {...css(styles.footer)} {...props} href="#">
+          <a {...props} href="#">
             Channels
           </a>
         </ListItem>
@@ -36,17 +36,11 @@ const Footer = ({ size = "medium", styles, ...props }) => (
 export default withStyles(({ themes, text }) => {
   return {
     footer: {
-      padding: "4px"
-    },
-
-    /* Color */
-    default: themes.default,
-    primary: themes.primary,
-    secondary: themes.secondary,
-
-    /* Size */
-    small: text.small,
-    medium: text.medium,
-    large: text.large
+      padding: "20px",
+      ":nth-child(1n) a": {
+        marginRight: "20px",
+        fontSize: "12px"
+      }
+    }
   };
 })(Footer);
