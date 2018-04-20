@@ -11,12 +11,12 @@ const Header = ({ styles, ...props }) => (
   <header {...css(styles.header)} {...props}>
     <FlexContainer direction="row" justify="between">
       <FlexContainer direction="row" justify="start" flex="1">
-        <Heading style={{ margin: "0" }} size="2">
-          Feed.io
+        <Heading {...css(styles.logo)} size="2">
+          Feed<span>.io</span>
         </Heading>
       </FlexContainer>
 
-      <FlexContainer direction="row" justify="between" flex="1">
+      <FlexContainer direction="row" justify="end" flex="1">
         <List direction="row">
           <ListItem>
             <a href="#">About</a>
@@ -40,10 +40,28 @@ const Header = ({ styles, ...props }) => (
   </header>
 );
 
-export default withStyles(({ themes, text }) => {
+export default withStyles(({ themes, colors }) => {
   return {
     header: {
-      padding: "20px"
+      padding: "20px",
+      width: "100%",
+      position: "absolute",
+      zIndex: 999,
+      background: "transparent",
+      ":nth-child(1n) a": {
+        color: "#FFF",
+        fontSize: "12px",
+        fontWeight: "600",
+        ":hover": {
+          color: colors.dawn
+        }
+      }
+    },
+    logo: {
+      color: "#FFF",
+      ":nth-child(1n) span": {
+        color: colors.danger
+      }
     }
   };
 })(Header);
