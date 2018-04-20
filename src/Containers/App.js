@@ -5,20 +5,20 @@ import Footer from "../Components/Footer";
 
 import NotFound from "../Views/NotFound";
 import SocketClient from "../Views/Client";
+import LoginForm from "../Components/LoginForm";
+import withPublicRoot from "../Containers/PublicRoot";
+import LandingPage from "../Views/LandingPage";
 
 class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Header />
-        <main className="App-content">
-          <Switch>
-            <Route exact path="/" />
+        <Switch>
+          <Route exact path="/" component={withPublicRoot(LandingPage)} />
+          <Route exact path="/login" component={withPublicRoot(LoginForm)} />
+          <Route path="*" component={NotFound} />
+        </Switch>
             <Route path="/:sessionId" component={SocketClient} />
-            <Route path="*" component={NotFound} />
-          </Switch>
-        </main>
-        <Footer />
       </div>
     );
   }
