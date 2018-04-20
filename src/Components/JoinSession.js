@@ -18,7 +18,13 @@ class JoinSession extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleSubmit(e) {}
+  handleSubmit(e) {
+    e.preventDefault();
+    /** TODO: Handle submit here
+     *  use "this.state.code" to get the code
+     *
+     */
+  }
 
   handleChange(e) {
     this.setState({ code: e.target.value });
@@ -29,7 +35,7 @@ class JoinSession extends React.Component {
       <FlexContainer>
         <Heading size="2">Have a unique code?</Heading>
         <Heading size="3">Paste it here to enter your session!</Heading>
-        <form action="">
+        <form onSubmit={this.handleSubmit}>
           <FlexContainer direction="row">
             <span {...css(this.props.styles.inputPrefix)}>
               http://feedback.io/
@@ -46,7 +52,7 @@ class JoinSession extends React.Component {
                 borderRadius: "0px 4px 4px 0px"
               }}
             />
-            <Button appearance="primary">JOIN</Button>
+            <Button appearance="secondary">JOIN</Button>
           </FlexContainer>
         </form>
       </FlexContainer>
@@ -58,7 +64,8 @@ export default withStyles(({ themes, text, colors }) => {
   return {
     JoinSession: {},
     inputPrefix: {
-      backgroundColor: colors.primary,
+      backgroundColor: colors.secondary,
+      color: "white",
       height: "40px",
       display: "flex",
       alignItems: "center",
