@@ -34,7 +34,9 @@ const LoginForm = ({
                 name="email"
                 icon="fas fa-check"
                 iconPosition="right"
-                iconBackground="primary"
+                iconBackground={
+                  touched.email && errors.email ? "danger" : "primary"
+                }
                 iconFillColor="white"
                 type="text"
                 placeholder="Email..."
@@ -56,7 +58,9 @@ const LoginForm = ({
                 name="password"
                 icon="fas fa-check"
                 iconPosition="right"
-                iconBackground="primary"
+                iconBackground={
+                  touched.password && errors.password ? "danger" : "primary"
+                }
                 iconFillColor="white"
                 type="password"
                 placeholder="Password..."
