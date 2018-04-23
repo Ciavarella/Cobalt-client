@@ -4,6 +4,7 @@ import { storiesOf } from "@storybook/react";
 
 import Name from "../../Components/CreateSession/Name";
 import Preferences from "../../Components/CreateSession/Preferences";
+import End from "../../Components/CreateSession/End";
 import Wizard from "../../Components/Wizard";
 
 storiesOf("Wizard", module)
@@ -11,7 +12,7 @@ storiesOf("Wizard", module)
     <Wizard>
       <Name />
       <Preferences />
-      <div style={{ color: "white" }}>Page Three</div>
+      <End />
     </Wizard>
   ))
   .add("Step one", () => (
@@ -23,6 +24,12 @@ storiesOf("Wizard", module)
   .add("Step two", () => (
     <Wizard>
       <Preferences />
+      <div style={{ color: "white" }}>Dummy</div>
+    </Wizard>
+  ))
+  .add("Step three", () => (
+    <Wizard>
+      <End />
       <div style={{ color: "white" }}>Dummy</div>
     </Wizard>
   ));

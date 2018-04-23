@@ -85,7 +85,7 @@ const Icon = ({
 export default withStyles(({ colors, text }) => {
   return {
     icon: {
-      padding: "14px"
+      padding: "13px"
     },
     /** TODO: change from fontawesome to svg? */
 

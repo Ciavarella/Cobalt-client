@@ -18,12 +18,24 @@ class Wizard extends React.Component {
     };
 
     this.nextPage = this.nextPage.bind(this);
+    this.previousPage = this.previousPage.bind(this);
   }
 
   nextPage(e) {
     this.state.currentPage < this.props.children.length - 1
       ? this.setState({ currentPage: this.state.currentPage + 1 })
       : this.setState({ currentPage: 0 });
+  }
+
+  previousPage(e) {
+    e.preventDefault();
+    this.state.currentPage > 0
+      ? this.setState({ currentPage: this.state.currentPage - 1 })
+      : this.setState({ currentPage: 0 });
+  }
+
+  submitSettings(e) {
+    /** Handle the finished settings */
   }
 
   render() {
@@ -34,20 +46,35 @@ class Wizard extends React.Component {
           justify="between"
           style={{ padding: "40px" }}
         >
-          <Icon
-            icon="fas fa-arrow-left"
-            fillColor="darkMetal"
+          <a
+            href=""
+            onClick={this.previousPage}
             style={{
-              border: "2px solid"
+              zIndex: "99999"
             }}
-          />
-          <Icon
-            icon="fas fa-times"
-            fillColor="darkMetal"
+          >
+            <Icon
+              icon="fas fa-arrow-left"
+              fillColor="white"
+              style={{
+                border: "2px solid"
+              }}
+            />
+          </a>
+          <a
+            href="#"
             style={{
-              border: "2px solid"
+              zIndex: "99999"
             }}
-          />
+          >
+            <Icon
+              icon="fas fa-times"
+              fillColor="white"
+              style={{
+                border: "2px solid"
+              }}
+            />
+          </a>
         </FlexContainer>
         <Modal>
           {this.props.children.map((child, i) => (
@@ -59,8 +86,15 @@ class Wizard extends React.Component {
               {child}
             </li>
           ))}
-          <Button onClick={this.nextPage} appearance="secondary">
-            NEXT - {this.state.currentPage + 1} / 3
+          <Button
+            onClick={
+              this.state.currentPage === 2 ? this.submitSettings : this.nextPage
+            }
+            appearance="secondary"
+          >
+            {this.state.currentPage === 2
+              ? "FINISH - " + (this.state.currentPage + 1) + " / 3"
+              : "NEXT - " + (this.state.currentPage + 1) + " / 3"}
           </Button>
         </Modal>
       </div>
@@ -68,8 +102,15 @@ class Wizard extends React.Component {
   }
 }
 
-export default withStyles(({ theme }) => {
+export default withStyles(({ colors }) => {
   return {
-    wizard: {}
+    wizard: {
+      ":nth-child(1) a > span": {
+        backgroundColor: colors.carbon,
+        ":hover": {
+          backgroundColor: colors.nightsky
+        }
+      }
+    }
   };
 })(Wizard);

@@ -25,28 +25,23 @@ const Preferences = ({ styles }) => (
       <FlexContainer
         direction="row"
         justify="between"
-        style={{ width: "450px" }}
+        style={{ width: "450px", marginBottom: "20px" }}
       >
         <FlexContainer align="start">
-          <Paragraph size="sub" style={{ marginBottom: "0px" }}>
-            Max attendees
-          </Paragraph>
+          <Paragraph size="sub">Max attendees</Paragraph>
           <InputWithIcon
             icon="fas fa-users"
             iconFillColor="white"
-            iconBackground="nightsky"
-            style={{ marginTop: "0px" }}
+            iconBackground="primary"
           />
         </FlexContainer>
 
         <FlexContainer align="start">
-          <Paragraph size="sub" style={{ marginBottom: "0px" }}>
-            Warning threshold
-          </Paragraph>
+          <Paragraph size="sub">Warning threshold</Paragraph>
           <InputWithIcon
             icon="fas fa-exclamation-triangle"
             iconFillColor="white"
-            iconBackground="nightsky"
+            iconBackground="primary"
           />
         </FlexContainer>
       </FlexContainer>
@@ -54,13 +49,13 @@ const Preferences = ({ styles }) => (
       <FlexContainer
         direction="row"
         justify="between"
-        style={{ width: "450px" }}
+        style={{ width: "450px", marginBottom: "20px" }}
       >
         <FlexContainer align="start">
           <Paragraph size="sub">Engagement description</Paragraph>
           <Input
             placeholder="Ex. Are you able to follow..?"
-            style={{ marginLeft: "0px", width: "200px" }}
+            style={{ marginLeft: "0px", marginTop: "0px", width: "200px" }}
           />
         </FlexContainer>
 
@@ -68,7 +63,7 @@ const Preferences = ({ styles }) => (
           <Paragraph size="sub">Lobby message</Paragraph>
           <Input
             placeholder="Ex. Welcome to my lecture!"
-            style={{ marginLeft: "0px", width: "200px" }}
+            style={{ marginLeft: "0px", marginTop: "0px", width: "200px" }}
           />
         </FlexContainer>
       </FlexContainer>
@@ -76,7 +71,7 @@ const Preferences = ({ styles }) => (
       <FlexContainer
         direction="row"
         justify="between"
-        style={{ width: "450px" }}
+        style={{ width: "450px", paddingRight: "18px" }}
       >
         <FlexContainer direction="row">
           <Checkbox />
@@ -94,6 +89,11 @@ const Preferences = ({ styles }) => (
 
 export default withStyles(({}) => {
   return {
-    preferences: {}
+    preferences: {
+      ":nth-child(1n) div div input": {
+        margin: "0px",
+        borderRadius: "0px 4px 4px 0px"
+      }
+    }
   };
 })(Preferences);
