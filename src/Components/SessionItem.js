@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { css, withStyles } from "../withStyles";
 
 import Card from "../Elements/Card";
@@ -7,111 +7,51 @@ import Heading from "../Elements/Heading";
 import Paragraph from "../Elements/Paragraph";
 import FlexContainer from "../Containers/FlexContainer";
 
-class SessionItem extends React.Component {
-  constructor({ styles, ...props }) {
-    super(props);
-    this.state = {};
+const stripStringLength = string => string.slice(0, 80) + "...";
 
-    // maybe bind this here when function is ready to be build.
-  }
-
-  // Function here
-
-  render() {
-    return (
-      <div>
-        <FlexContainer>
-          <Heading>Your Sessions</Heading>
+const SessionItem = ({
+  date,
+  attendees,
+  title,
+  description,
+  styles,
+  ...props
+}) => {
+  return (
+    <div {...css(styles, styles.sessionItem)}>
+      <FlexContainer
+        direction="row"
+        justify="center"
+        style={{ flexWrap: "wrap" }}
+      >
+        <Card appearance="secondary" style={{ margin: "10px", width: "400px" }}>
           <FlexContainer
             direction="row"
-            justify="center"
-            style={{ flexWrap: "wrap" }}
+            justify="around"
+            align="start"
+            style={{ marginBottom: "50px" }}
           >
-            {/** THIS IS JUST FOR SOME SPACING! **/}
-            <Card
-              appearance="secondary"
-              style={{ margin: "10px", width: "400px" }}
-            >
-              <FlexContainer
-                direction="row"
-                justify="between"
-                align="start"
-                style={{ marginBottom: "50px" }}
-              >
-                <Paragraph>20 April, 2018</Paragraph>
-                <Paragraph>233 Attendees</Paragraph>
-              </FlexContainer>
-              <FlexContainer align="start">
-                <Heading size="4">Awsome session title</Heading>
-                <Paragraph
-                  style={{
-                    width: "310px",
-                    height: "32px",
-                    overflow: "hidden",
-                    display: "-webkit-box",
-                    webkitLineClamp: "2",
-                    webkitBoxOrient: "vertical"
-                  }}
-                >
-                  Description here!
-                </Paragraph>
-              </FlexContainer>
-            </Card>
-
-            {/** THIS IS JUST FOR SOM SPACING! **/}
-            <Card
-              appearance="primary"
-              style={{ margin: "10px", width: "400px" }}
-            >
-              <FlexContainer
-                direction="row"
-                justify="between"
-                align="start"
-                style={{ marginBottom: "50px" }}
-              >
-                <Paragraph>20 April, 2018</Paragraph>
-                <Paragraph>233 Attendees</Paragraph>
-              </FlexContainer>
-              <FlexContainer align="start">
-                <Heading size="4">Long session title</Heading>
-                <Paragraph
-                  style={{
-                    width: "310px",
-                    height: "32px",
-                    overflow: "hidden",
-                    display: "-webkit-box",
-                    webkitLineClamp: "2",
-                    webkitBoxOrient: "vertical"
-                  }}
-                >
-                  WARNING! This is a much longer text than the other but it will
-                  still limit the rows to two rows! And add some dots beacuse it
-                  does not matter how long the text are here we are till fixing
-                  it to be two rows, not more than that!
-                </Paragraph>
-              </FlexContainer>
-            </Card>
-
-            {/** THIS IS JUST FOR SOM SPACING! **/}
-            <Card
-              appearance="primary"
-              style={{ margin: "10px", width: "400px", height: "217px" }}
-            >
-              <FlexContainer style={{ height: "100%" }} justify="center">
-                <Heading size="4">Host a new session!</Heading>
-                <Button appearance="secondary">Start New</Button>
-              </FlexContainer>
-            </Card>
+            <Paragraph>{date}</Paragraph>
+            <Paragraph>Attendees: {attendees}</Paragraph>
           </FlexContainer>
-        </FlexContainer>
-      </div>
-    );
-  }
-}
+          <FlexContainer align="start">
+            <Heading size="4">{title}</Heading>
+            <Paragraph>{stripStringLength(description)}</Paragraph>
+          </FlexContainer>
+        </Card>
+      </FlexContainer>
+    </div>
+  );
+};
 
 export default withStyles(({ themes, colors }) => {
   return {
-    sessionItem: {},
+    sessionItem: {
+      ":nth-child(1) p": {
+        width: "310px",
+        height: "32px"
+      }
+    },
 
     primary: colors.primary,
     danger: colors.danger,
