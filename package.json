@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/chas-academy/Cobalt/issues"
   },
-  "homepage": "https://github.com/chas-academy/Cobalt/tree/master",
+  "homepage": "",
   "dependencies": {
     "aphrodite": "^2.1.1",
     "react": "^16.2.0",
