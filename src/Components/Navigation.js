@@ -9,11 +9,11 @@ import ListItem from "../Elements/ListItem";
 import Heading from "../Elements/Heading";
 
 const Navigation = ({ styles, match, ...props }) => {
-  const activeRoute = "dashboard";
+  console.log(props);
   return (
     <aside {...css(styles.sidebar)}>
       <div {...css(styles.logoArea)}>
-        <Link to="dashboard">
+        <Link to={`${match.url}`}>
           <Heading {...css(styles.logo)} size="2">
             Feed<span>.io</span>
           </Heading>
@@ -22,7 +22,7 @@ const Navigation = ({ styles, match, ...props }) => {
       <span {...css(styles.divider)} />
       <FlexContainer align="start">
         <ul {...css(styles.dashboardNav)}>
-          <Link to={`${match.url}/`}>
+          <Link to={`${match.url}`}>
             <li>
               <Icon fillColor="danger" icon="fas fa-columns" />Dashboard
             </li>
@@ -47,7 +47,7 @@ const Navigation = ({ styles, match, ...props }) => {
               <Icon fillColor="dawn" icon="fas fa-cog" />Settings
             </li>
           </Link>
-          <Link to={`${match.url}/logout`}>
+          <Link to={`/auth/logout`}>
             <li>
               <Icon fillColor="dawn" icon="fas fa-power-off" />Log out
             </li>
