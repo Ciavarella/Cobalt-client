@@ -58,6 +58,7 @@ export default withStyles(({ themes, text, colors }) => {
   return {
     sidebar: {
       display: "flex",
+      flex: "1",
       flexDirection: "column",
       backgroundColor: colors.carbon,
       color: colors.dawn,
