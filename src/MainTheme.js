@@ -25,6 +25,11 @@ export const GRADIENT_SECONDARY = `linear-gradient(to top, ${COLOR_SECONDARY}, $
 export const GRADIENT_SUCCESS = `linear-gradient(to top, ${COLOR_SUCCESS}, ${COLOR_SUCCESS_HIGHLIGHT})`;
 export const GRADIENT_DANGER = `linear-gradient(to top, ${COLOR_DANGER}, ${COLOR_DANGER_HIGHLIGHT})`;
 
+export const GRADIENT_PRIMARY_INVERSE = `linear-gradient(to bottom, ${COLOR_PRIMARY}, ${COLOR_PRIMARY_HIGHLIGHT})`;
+export const GRADIENT_SECONDARY_INVERSE = `linear-gradient(to bottom, ${COLOR_SECONDARY}, ${COLOR_SECONDARY_HIGHLIGHT})`;
+export const GRADIENT_SUCCESS_INVERSE = `linear-gradient(to bottom, ${COLOR_SUCCESS}, ${COLOR_SUCCESS_HIGHLIGHT})`;
+export const GRADIENT_DANGER_INVERSE = `linear-gradient(to bottom, ${COLOR_DANGER}, ${COLOR_DANGER_HIGHLIGHT})`;
+
 export const linearGradient = (direction, color1, color2) => {
   return `linear-gradient(to ${direction}, ${color1}, ${color2}`;
 };
