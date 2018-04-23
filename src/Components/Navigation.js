@@ -18,34 +18,22 @@ const Navigation = ({ styles, ...props }) => (
     <FlexContainer align="start">
       <ul {...css(styles.dashboardNav)}>
         <li>
-          <Icon appearance="danger">
-            <i class="fas fa-columns" />
-          </Icon>Dashboard
+          <Icon fillColor="danger" icon="fas fa-columns" />Dashboard
         </li>
         <li>
-          <Icon appearance="dawn">
-            <i class="fas fa-plus" />
-          </Icon>New session
+          <Icon fillColor="dawn" icon="fas fa-plus" />New session
         </li>
         <li>
-          <Icon appearance="dawn">
-            <i class="fas fa-user" />
-          </Icon>My profile
+          <Icon fillColor="dawn" icon="fas fa-user" />My profile
         </li>
         <li>
-          <Icon appearance="dawn">
-            <i class="fas fa-tag" />
-          </Icon>Upgrade plan
+          <Icon fillColor="dawn" icon="fas fa-tag" />Upgrade plan
         </li>
         <li>
-          <Icon appearance="dawn">
-            <i class="fas fa-cog" />
-          </Icon>Settings
+          <Icon fillColor="dawn" icon="fas fa-cog" />Settings
         </li>
         <li>
-          <Icon appearance="dawn">
-            <i class="fas fa-power-off" />
-          </Icon>Log out
+          <Icon fillColor="dawn" icon="fas fa-power-off" />Log out
         </li>
       </ul>
     </FlexContainer>
