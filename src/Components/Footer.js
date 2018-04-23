@@ -30,6 +30,7 @@ export default withStyles(({ themes, text }) => {
     footer: {
       padding: "20px",
       color: "#FFF",
+      zIndex: "99",
       ":nth-child(1n) a": {
         marginRight: "20px",
         fontSize: "10px"
