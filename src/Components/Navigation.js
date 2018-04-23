@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { css, withStyles } from "../withStyles";
 
 import FlexContainer from "../Containers/FlexContainer";
@@ -7,52 +8,69 @@ import Icon from "../Elements/Icon";
 import ListItem from "../Elements/ListItem";
 import Heading from "../Elements/Heading";
 
-const Navigation = ({ styles, ...props }) => (
-  <aside {...css(styles.sidebar)} {...props}>
-    <div {...css(styles.logoArea)}>
-      <Heading {...css(styles.logo)} size="2">
-        Feed<span>.io</span>
-      </Heading>
-    </div>
-    <span {...css(styles.divider)} />
-    <FlexContainer align="start">
-      <ul {...css(styles.dashboardNav)}>
+const Navigation = ({ styles, match, ...props }) => {
+  const activeRoute = "dashboard";
+  return (
+    <aside {...css(styles.sidebar)}>
+      <div {...css(styles.logoArea)}>
+        <Link to="dashboard">
+          <Heading {...css(styles.logo)} size="2">
+            Feed<span>.io</span>
+          </Heading>
+        </Link>
+      </div>
+      <span {...css(styles.divider)} />
+      <FlexContainer align="start">
+        <ul {...css(styles.dashboardNav)}>
+          <Link to={`${match.url}/`}>
+            <li>
+              <Icon fillColor="danger" icon="fas fa-columns" />Dashboard
+            </li>
+          </Link>
+          <Link to={`${match.url}/new`}>
+            <li>
+              <Icon fillColor="dawn" icon="fas fa-plus" />New session
+            </li>
+          </Link>
+          <Link to={`${match.url}/profile`}>
+            <li>
+              <Icon fillColor="dawn" icon="fas fa-user" />My profile
+            </li>
+          </Link>
+          <Link to={`${match.url}/upgrade`}>
+            <li>
+              <Icon fillColor="dawn" icon="fas fa-tag" />Upgrade plan
+            </li>
+          </Link>
+          <Link to={`${match.url}/settings`}>
+            <li>
+              <Icon fillColor="dawn" icon="fas fa-cog" />Settings
+            </li>
+          </Link>
+          <Link to={`${match.url}/logout`}>
+            <li>
+              <Icon fillColor="dawn" icon="fas fa-power-off" />Log out
+            </li>
+          </Link>
+        </ul>
+      </FlexContainer>
+      <ul {...css(styles.footer)}>
         <li>
-          <Icon fillColor="danger" icon="fas fa-columns" />Dashboard
+          <a href="#">About</a>
         </li>
         <li>
-          <Icon fillColor="dawn" icon="fas fa-plus" />New session
+          <a href="#">Github</a>
         </li>
         <li>
-          <Icon fillColor="dawn" icon="fas fa-user" />My profile
+          <a href="#">Developers</a>
         </li>
         <li>
-          <Icon fillColor="dawn" icon="fas fa-tag" />Upgrade plan
-        </li>
-        <li>
-          <Icon fillColor="dawn" icon="fas fa-cog" />Settings
-        </li>
-        <li>
-          <Icon fillColor="dawn" icon="fas fa-power-off" />Log out
+          <a href="#">Chas Academy</a>
         </li>
       </ul>
-    </FlexContainer>
-    <ul {...css(styles.footer)}>
-      <li>
-        <a href="#">About</a>
-      </li>
-      <li>
-        <a href="#">Github</a>
-      </li>
-      <li>
-        <a href="#">Developers</a>
-      </li>
-      <li>
-        <a href="#">Chas Academy</a>
-      </li>
-    </ul>
-  </aside>
-);
+    </aside>
+  );
+};
 
 export default withStyles(({ themes, text, colors }) => {
   return {
