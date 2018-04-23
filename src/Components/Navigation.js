@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { css, withStyles } from "../withStyles";
 
 import FlexContainer from "../Containers/FlexContainer";
@@ -8,7 +8,13 @@ import Icon from "../Elements/Icon";
 import ListItem from "../Elements/ListItem";
 import Heading from "../Elements/Heading";
 
-const Navigation = ({ styles, match, ...props }) => {
+const Navigation = ({ styles, colors, match, ...props }) => {
+  const activeLink = {
+    color: "white",
+    fontWeight: "600",
+    backgroundColor: "#A3AAD4"
+  };
+
   return (
     <aside {...css(styles.sidebar)}>
       <div {...css(styles.logoArea)}>
@@ -21,36 +27,36 @@ const Navigation = ({ styles, match, ...props }) => {
       <span {...css(styles.divider)} />
       <FlexContainer align="start">
         <ul {...css(styles.dashboardNav)}>
-          <Link to={`${match.url}`}>
+          <NavLink activeStyle={activeLink} exact to={`${match.url}`}>
             <li>
-              <Icon fillColor="danger" icon="fas fa-columns" />Dashboard
+              <Icon fillColor="dawn" icon="fas fa-columns" />Dashboard
             </li>
-          </Link>
-          <Link to={`${match.url}/new`}>
+          </NavLink>
+          <NavLink activeStyle={activeLink} exact to={`${match.url}/new`}>
             <li>
               <Icon fillColor="dawn" icon="fas fa-plus" />New session
             </li>
-          </Link>
-          <Link to={`${match.url}/profile`}>
+          </NavLink>
+          <NavLink activeStyle={activeLink} exact to={`${match.url}/profile`}>
             <li>
               <Icon fillColor="dawn" icon="fas fa-user" />My profile
             </li>
-          </Link>
-          <Link to={`${match.url}/upgrade`}>
+          </NavLink>
+          <NavLink activeStyle={activeLink} exact to={`${match.url}/upgrade`}>
             <li>
               <Icon fillColor="dawn" icon="fas fa-tag" />Upgrade plan
             </li>
-          </Link>
-          <Link to={`${match.url}/settings`}>
+          </NavLink>
+          <NavLink activeStyle={activeLink} exact to={`${match.url}/settings`}>
             <li>
               <Icon fillColor="dawn" icon="fas fa-cog" />Settings
             </li>
-          </Link>
-          <Link to={`/auth/logout`}>
+          </NavLink>
+          <NavLink exact to={`/auth/logout`}>
             <li>
               <Icon fillColor="dawn" icon="fas fa-power-off" />Log out
             </li>
-          </Link>
+          </NavLink>
         </ul>
       </FlexContainer>
       <ul {...css(styles.footer)}>
@@ -104,6 +110,7 @@ export default withStyles(({ themes, text, colors }) => {
     },
     dashboardNav: {
       marginTop: "45px",
+      width: "100%",
       ":nth-child(1n) li": {
         display: "flex",
         justifyContent: "flex-start",
@@ -144,6 +151,11 @@ export default withStyles(({ themes, text, colors }) => {
           cursor: "pointer"
         }
       }
+    },
+    activeLink: {
+      color: "white",
+      fontWeight: "600",
+      backgroundColor: colors.dawn
     }
   };
 })(Navigation);
