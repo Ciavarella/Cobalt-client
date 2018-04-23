@@ -22,7 +22,8 @@ ThemedStyleSheet.registerTheme({
     primary: THEME.GRADIENT_PRIMARY,
     secondary: THEME.GRADIENT_SECONDARY,
     success: THEME.GRADIENT_SUCCESS,
-    danger: THEME.GRADIENT_DANGER
+    danger: THEME.GRADIENT_DANGER,
+    carbon: THEME.GRADIENT_CARBON
   },
   /* themes */
   themes: {
