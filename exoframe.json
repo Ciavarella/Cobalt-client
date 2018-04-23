@@ -1,0 +1,6 @@
+{
+  "name": "cobalt_dev",
+  "domain": "TRAEFIK_ENV.chas.school",
+  "project": "cobalt-dev",
+  "template": "dockerfile"
+}
