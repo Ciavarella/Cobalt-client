@@ -19,6 +19,9 @@ export default withStyles(({ themes }) => {
     },
     secondary: {
       color: themes.secondary.color
+    },
+    white: {
+      color: "white"
     }
   };
 })(Heading);
