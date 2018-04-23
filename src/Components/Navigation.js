@@ -9,7 +9,6 @@ import ListItem from "../Elements/ListItem";
 import Heading from "../Elements/Heading";
 
 const Navigation = ({ styles, match, ...props }) => {
-  console.log(props);
   return (
     <aside {...css(styles.sidebar)}>
       <div {...css(styles.logoArea)}>
