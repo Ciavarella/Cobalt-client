@@ -31,6 +31,7 @@ import Navigation from "./Components/Navigation";
 import Modal from "./Components/Modal";
 import LoginForm from "./Components/LoginForm";
 import SignUpForm from "./Components/SignUpForm";
+import JoinSession from "./Components/JoinSession";
 import SessionItem from "./Components/SessionItem";
 import SessionItemCard from "./Components/SessionItemCard";
 
