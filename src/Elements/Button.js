@@ -16,7 +16,7 @@ const Button = ({
 export default withStyles(({ themes, text }) => {
   return {
     button: {
-      minWidth: "120px",
+      minWidth: "100px",
       padding: "16px 24px",
       border: "none",
       borderRadius: "4px",

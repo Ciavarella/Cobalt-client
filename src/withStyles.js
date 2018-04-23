@@ -68,16 +68,40 @@ ThemedStyleSheet.registerTheme({
       }
     },
     primaryGradient: {
-      background: THEME.GRADIENT_PRIMARY
+      background: THEME.GRADIENT_PRIMARY,
+      ":active": {
+        background: THEME.GRADIENT_PRIMARY_INVERSE
+      },
+      ":hover": {
+        background: THEME.COLOR_PRIMARY_HIGHLIGHT
+      }
     },
     secondaryGradient: {
-      background: THEME.GRADIENT_SECONDARY
+      background: THEME.GRADIENT_SECONDARY,
+      ":active": {
+        background: THEME.GRADIENT_SECONDARY_INVERSE
+      },
+      ":hover": {
+        background: THEME.COLOR_SECONDARY_HIGHLIGHT
+      }
     },
     successGradient: {
-      background: THEME.GRADIENT_SUCCESS
+      background: THEME.GRADIENT_SUCCESS,
+      ":active": {
+        background: THEME.GRADIENT_SUCCESS_INVERSE
+      },
+      ":hover": {
+        background: THEME.COLOR_SUCCESS_HIGHLIGHT
+      }
     },
     dangerGradient: {
-      background: THEME.GRADIENT_DANGER
+      background: THEME.GRADIENT_DANGER,
+      ":active": {
+        background: THEME.GRADIENT_DANGER_INVERSE
+      },
+      ":hover": {
+        background: THEME.COLOR_DANGER_HIGHLIGHT
+      }
     }
   },
 
