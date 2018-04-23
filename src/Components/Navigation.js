@@ -52,7 +52,7 @@ const Navigation = ({ styles, colors, match, ...props }) => {
               <Icon fillColor="dawn" icon="fas fa-cog" />Settings
             </li>
           </NavLink>
-          <NavLink exact to={`/auth/logout`}>
+          <NavLink exact to={`/`}>
             <li>
               <Icon fillColor="dawn" icon="fas fa-power-off" />Log out
             </li>
