@@ -11,13 +11,12 @@ storiesOf("Input", module)
   .add("Email", () => <Input type="email" placeholder="Email" />)
   .add("Password", () => <Input type="password" placeholder="Password" />)
   .add("Number", () => <Input type="number" placeholder="Number" />)
-  .add("Primary", () => (
-    <Input color="primary" type="text" placeholder="Primary" />
-  ))
-  .add("Secondary", () => (
-    <Input color="secondary" type="text" placeholder="Secondary" />
+  .add("Focused", () => (
+    <Input appearance="secondary" type="text" placeholder="Secondary" />
   ))
   .add("Success", () => (
-    <Input color="success" type="text" placeholder="Success" />
+    <Input appearance="success" type="text" placeholder="Success" />
   ))
-  .add("Error", () => <Input color="error" type="text" placeholder="Error" />);
+  .add("Error", () => (
+    <Input appearance="danger" type="text" placeholder="Error" />
+  ));

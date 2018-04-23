@@ -6,17 +6,32 @@ import { linkTo } from "@storybook/addon-links";
 
 import "../index.css";
 
-import Button from "../Elements/Button";
+/* Elements */
+import Button from "./Elements/Button";
 import Input from "./Elements/Input";
+import InputWithIcon from "./Elements/InputWithIcon";
 import Heading from "./Elements/Heading";
 import Avatar from "./Elements/Avatar";
 import Paragraph from "./Elements/Paragraph";
+import Icon from "./Elements/Icon";
+import Card from "./Elements/Card";
+import Checkbox from "./Elements/Checkbox";
+import Notification from "./Elements/Notification";
+import List from "./Elements/List";
+import CopyTextfield from "./Elements/CopyTextfield";
 
-storiesOf("Button", module)
-  .add("Default", () => <Button>Default button</Button>)
-  .add("Primary", () => <Button color="primary">Primary Button</Button>)
-  .add("Secondary", () => (
-    <Button color="secondary" onClick={() => console.log("secondary click")}>
-      Secondary Button
-    </Button>
-  ));
+/* Views */
+import NotFound from "./Views/NotFound";
+
+/* Components */
+import Header from "./Components/Header";
+import Footer from "./Components/Footer";
+import SubscriptionCard from "./Components/SubscriptionCard";
+import Navigation from "./Components/Navigation";
+import Modal from "./Components/Modal";
+import LoginForm from "./Components/LoginForm";
+import SignUpForm from "./Components/SignUpForm";
+import JoinSession from "./Components/JoinSession";
+
+/* Containers */
+import FlexContainer from "./Containers/FlexContainer";

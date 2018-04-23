@@ -1,24 +1,24 @@
 import React from "react";
 import { css, withStyles } from "../withStyles";
 
-const Heading = ({ size, color = "default", styles, ...props }) => {
+const Heading = ({ size, appearance = "default", styles, ...props }) => {
   const HeadingTag = `h${size}`;
-  return <HeadingTag {...css(styles.Heading, styles[color])} {...props} />;
+  return <HeadingTag {...css(styles.Heading, styles[appearance])} {...props} />;
 };
 
-export default withStyles(({ theme }) => {
+export default withStyles(({ themes }) => {
   return {
     heading: {},
 
     /* Color */
     default: {
-      color: theme.default.color
+      color: themes.default.color
     },
     primary: {
-      color: theme.primary.color
+      color: themes.primary.color
     },
     secondary: {
-      color: theme.secondary.color
+      color: themes.secondary.color
     }
   };
 })(Heading);

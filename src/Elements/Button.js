@@ -1,26 +1,38 @@
 import React from "react";
 import { css, withStyles } from "../withStyles";
 
-const Button = ({ color = "default", size = "medium", styles, ...props }) => (
-  <button {...css(styles.button, styles[color], styles[size])} {...props} />
+const Button = ({
+  appearance = "primary",
+  size = "medium",
+  styles,
+  ...props
+}) => (
+  <button
+    {...css(styles.button, styles[appearance], styles[size])}
+    {...props}
+  />
 );
 
-export default withStyles(({ theme, text }) => {
+export default withStyles(({ themes, text }) => {
   return {
     button: {
-      padding: "12px 24px",
-      marginBottom: "12px",
-      border: "2px solid"
+      minWidth: "100px",
+      padding: "16px 24px",
+      border: "none",
+      borderRadius: "4px",
+      margin: "12px 12px 12px 0px",
+      fontWeight: "bold"
     },
 
     /* Color */
-    default: theme.default,
-    primary: theme.primary,
-    secondary: theme.secondary,
-
-    /* Size */
-    small: text.small,
-    medium: text.medium,
-    large: text.large
+    default: themes.default,
+    primary: themes.primary,
+    secondary: themes.secondary,
+    success: themes.success,
+    danger: themes.danger,
+    primaryGradient: themes.primaryGradient,
+    secondaryGradient: themes.secondaryGradient,
+    successGradient: themes.successGradient,
+    dangerGradient: themes.dangerGradient
   };
 })(Button);

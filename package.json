@@ -11,7 +11,7 @@
   "bugs": {
     "url": "https://github.com/chas-academy/Cobalt/issues"
   },
-  "homepage": "https://github.com/chas-academy/Cobalt/tree/master",
+  "homepage": "",
   "dependencies": {
     "aphrodite": "^2.1.1",
     "react": "^16.2.0",
@@ -21,7 +21,9 @@
     "react-with-styles": "^3.1.1",
     "react-with-styles-interface-aphrodite": "^5.0.0",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "socket.io-client": "^2.1.0",
+    "webfontloader": "^1.6.28"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^3.4.1",

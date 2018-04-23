@@ -1,32 +1,38 @@
 import React from "react";
 import { css, withStyles } from "../withStyles";
 
-const Input = ({ color = "default", styles, ...props }) => (
-  <input {...css(styles.input, styles[color])} {...props} />
+const Input = ({ appearance = "default", styles, ...props }) => (
+  <input {...css(styles.input, styles[appearance])} {...props} />
 );
 
-export default withStyles(({ theme }) => {
+export default withStyles(({ themes, colors }) => {
   return {
     input: {
       padding: "12px",
       margin: "20px",
-      border: "2px solid"
+      border: "1px solid",
+      borderRadius: "2px",
+      width: "100%",
+      minWidth: "120px",
+      ":focus": {
+        borderColor: colors.secondary
+      }
     },
 
     default: {
-      borderColor: theme.default.borderColor
+      borderColor: colors.aluminum
     },
     primary: {
-      borderColor: "blue"
+      borderColor: themes.primary.borderColor
     },
     secondary: {
-      borderColor: theme.secondary.borderColor
+      borderColor: themes.secondary.borderColor
     },
     success: {
-      borderColor: theme.success.borderColor
+      borderColor: themes.success.borderColor
     },
-    error: {
-      borderColor: theme.error.borderColor
+    danger: {
+      borderColor: themes.danger.borderColor
     }
   };
 })(Input);

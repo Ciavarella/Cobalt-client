@@ -14,7 +14,7 @@ const Avatar = ({
   </span>
 );
 
-export default withStyles(({ theme }) => {
+export default withStyles(({ themes }) => {
   return {
     avatar: {
       display: "flex",
@@ -23,8 +23,8 @@ export default withStyles(({ theme }) => {
       borderRadius: "50%",
 
       /* could be made dynamic */
-      backgroundColor: theme.primary.backgroundColor,
-      color: theme.primary.color
+      backgroundColor: themes.primary.backgroundColor,
+      color: themes.primary.color
     },
 
     /* Image */
