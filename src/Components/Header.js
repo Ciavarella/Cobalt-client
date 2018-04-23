@@ -1,5 +1,6 @@
 import React from "react";
 import { css, withStyles } from "../withStyles";
+import { Link } from "react-router-dom";
 
 import FlexContainer from "../Containers/FlexContainer";
 import Button from "../Elements/Button";
@@ -19,22 +20,26 @@ const Header = ({ styles, ...props }) => (
       <FlexContainer direction="row" justify="end" flex="1">
         <List direction="row">
           <ListItem>
-            <a href="#">About</a>
+            <Link to="about">About</Link>
           </ListItem>
           <ListItem>
-            <a href="#">Tour</a>
+            <Link to="tour">Tour</Link>
           </ListItem>
           <ListItem>
-            <a href="#">Pricing</a>
+            <Link to="pricing">Pricing</Link>
           </ListItem>
           <ListItem>
-            <a href="#">Contact</a>
+            <Link to="contact">Contact</Link>
           </ListItem>
         </List>
       </FlexContainer>
       <FlexContainer direction="row">
-        <Button appearance="secondary">Log in</Button>
-        <Button appearance="primary">Sign up</Button>
+        <Link to="dashboard">
+          <Button appearance="secondary">Log in</Button>
+        </Link>
+        <Link to="signup">
+          <Button appearance="primary">Sign up</Button>
+        </Link>
       </FlexContainer>
     </FlexContainer>
   </header>
