@@ -11,9 +11,10 @@ import Navigation from "../Components/Navigation";
 import openBoxIcon from "../assets/open-box.svg";
 
 const Dashboard = ({ styles, ...props }) => {
+  console.log(props);
   return (
     <div {...css(styles.dashboard)}>
-      <Navigation />
+      <Navigation {...props} />
       <div {...css(styles.main)}>
         <div {...css(styles.header)}>
           <FlexContainer direction="row" align="center" justify="end">
@@ -24,12 +25,18 @@ const Dashboard = ({ styles, ...props }) => {
             <Avatar size="medium" />
           </FlexContainer>
         </div>
-        <FlexContainer justify="center" align="center">
-          <img {...css(styles.icon)} src={openBoxIcon} alt="Empty Box" />
-          <Heading size="2">You don't have any sessions saved</Heading>
-          <Paragraph>Empty</Paragraph>
-          <Button appearance="primaryGradient">Host your first session!</Button>
-        </FlexContainer>
+        <div {...css(styles.content)}>
+          <FlexContainer justify="center" align="center">
+            <img {...css(styles.icon)} src={openBoxIcon} alt="Empty Box" />
+            <Heading size="2">You don't have any sessions saved</Heading>
+            <Paragraph>
+              Why don't you get started right now? Let's host your ﬁrst session!
+            </Paragraph>
+            <Button appearance="primaryGradient">
+              Host your first session!
+            </Button>
+          </FlexContainer>
+        </div>
       </div>
     </div>
   );
@@ -47,15 +54,22 @@ export default withStyles(({ colors }) => {
     },
     header: {
       width: "100%",
-      height: "100%",
       padding: "15px",
+      backgroundColor: "white",
       borderBottom: `1px solid ${colors.aluminum}`
     },
-    main: {
+    content: {
       height: "100%",
       display: "flex",
+      alignItem: "center",
+      justifyContent: "center"
+    },
+    main: {
+      minHeight: "100vh",
+      display: "flex",
       flexDirection: "column",
-      flex: "2"
+      flex: "2",
+      backgroundColor: colors.sand
     }
   };
 })(Dashboard);
