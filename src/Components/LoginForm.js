@@ -44,10 +44,12 @@ const LoginForm = ({
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {errors.email &&
-                touched.email && (
-                  <Paragraph size="sub">{errors.email}</Paragraph>
-                )}
+              <FlexContainer style={{ minHeight: "20px" }}>
+                {errors.email &&
+                  touched.email && (
+                    <Paragraph size="sub">{errors.email}</Paragraph>
+                  )}
+              </FlexContainer>
               <label
                 htmlFor="password"
                 style={{ marginTop: "20px", marginBottom: "5px" }}
@@ -68,10 +70,12 @@ const LoginForm = ({
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {errors.password &&
-                touched.password && (
-                  <Paragraph size="sub">{errors.password}</Paragraph>
-                )}
+              <FlexContainer style={{ minHeight: "20px" }}>
+                {errors.password &&
+                  touched.password && (
+                    <Paragraph size="sub">{errors.password}</Paragraph>
+                  )}
+              </FlexContainer>
             </FlexContainer>
             <Button disabled={isSubmitting}>Log In</Button>
           </FlexContainer>
