@@ -5,8 +5,12 @@ import Footer from "../Components/Footer";
 
 import NotFound from "../Views/NotFound";
 import SocketClient from "../Views/Client";
+<<<<<<< HEAD
 import Dashboard from "../Views/Dashboard/Dashboard";
 import LoginForm from "../Components/LoginForm";
+=======
+import Login from "../Views/Login";
+>>>>>>> Changed path on /login to use loginview
 import withPublicRoot from "../Containers/PublicRoot";
 import LandingPage from "../Views/LandingPage";
 
@@ -16,7 +20,7 @@ class App extends React.Component {
       <div className="App">
         <Switch>
           <Route exact path="/" component={withPublicRoot(LandingPage)} />
-          <Route exact path="/login" component={withPublicRoot(LoginForm)} />
+          <Route exact path="/login" component={withPublicRoot(Login)} />
           <Route path="/session/:sessionId" component={SocketClient} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="*" component={NotFound} />
