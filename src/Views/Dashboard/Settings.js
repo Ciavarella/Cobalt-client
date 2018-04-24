@@ -8,7 +8,7 @@ const Settings = ({ styles, ...props }) => {
   return (
     <div {...css(styles.Settings)}>
       <FlexContainer justify="center" align="center">
-        <Icon icon="fas fa-tag" />
+        <Icon icon="fas fa-cog" fillColor="dawn" />
         <Heading size="2">Settings</Heading>
       </FlexContainer>
     </div>

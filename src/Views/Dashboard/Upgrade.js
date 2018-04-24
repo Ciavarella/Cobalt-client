@@ -8,8 +8,8 @@ const Upgrade = ({ styles, ...props }) => {
   return (
     <div {...css(styles.upgrade)}>
       <FlexContainer justify="center" align="center">
-        <Icon icon="fas fa-tag" />
-        <Heading size="2">Upgrade</Heading>
+        <Icon icon="fas fa-tag" fillColor="dawn" />
+        <Heading size="2">Not available.</Heading>
       </FlexContainer>
     </div>
   );

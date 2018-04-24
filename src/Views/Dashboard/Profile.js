@@ -8,7 +8,7 @@ const Profile = ({ styles, ...props }) => {
   return (
     <div {...css(styles.Profile)}>
       <FlexContainer justify="center" align="center">
-        <Icon icon="fas fa-tag" />
+        <Icon icon="fas fa-user" fillColor="dawn" />
         <Heading size="2">Profile</Heading>
       </FlexContainer>
     </div>
