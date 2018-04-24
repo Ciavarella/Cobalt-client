@@ -1,8 +1,26 @@
 import React from "react";
 import { css, withStyles } from "../withStyles";
+import Icon from "./Icon";
 
-const Input = ({ appearance = "default", styles, ...props }) => (
-  <input {...css(styles.input, styles[appearance])} {...props} />
+const Input = ({
+  icon = null,
+  iconFillColor = "default",
+  iconPosition = "left",
+  iconBackground = null,
+  appearance = "default",
+  styles,
+  ...props
+}) => (
+  <div>
+    {icon ? (
+      <div {...css(styles[iconBackground])}>
+        <Icon iconFillColor={iconFillColor} icon={icon} />
+      </div>
+    ) : (
+      ""
+    )}
+    <input {...css(styles.input, styles[appearance])} {...props} />
+  </div>
 );
 
 export default withStyles(({ themes, colors }) => {
