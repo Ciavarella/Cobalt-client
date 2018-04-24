@@ -71,21 +71,11 @@ export default withStyles(({ themes, colors }) => {
       }
     },
 
-    default: {
-      borderColor: colors.aluminum
-    },
-    primary: {
-      borderColor: themes.primary.borderColor
-    },
-    secondary: {
-      borderColor: themes.secondary.borderColor
-    },
-    success: {
-      borderColor: themes.success.borderColor
-    },
-    danger: {
-      borderColor: themes.danger.borderColor
-    },
+    default: { borderColor: colors.aluminum },
+    primary: { borderColor: themes.primary.borderColor },
+    secondary: { borderColor: themes.secondary.borderColor },
+    success: { borderColor: themes.success.borderColor },
+    danger: { borderColor: themes.danger.borderColor },
     iconBackgroundprimary: { backgroundColor: colors.primary },
     iconBackgroundsecondary: { backgroundColor: colors.secondary },
     iconBackgrounddanger: { backgroundColor: colors.danger },
