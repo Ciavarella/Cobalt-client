@@ -38,6 +38,8 @@ class Wizard extends React.Component {
     /** Handle the finished settings */
   }
 
+  /** TODO:  FIX THIS SHIT! vertical-align: -.125em; */
+
   render() {
     return (
       <div {...css(this.props.styles.wizard)} {...this.props}>
