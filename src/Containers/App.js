@@ -10,6 +10,7 @@ import Login from "../Views/Login";
 import withPublicRoot from "../Containers/PublicRoot";
 import LandingPage from "../Views/LandingPage";
 import CreateSession from "../Views/CreateSession";
+import SignUp from "../Views/SignUp";
 
 class App extends React.Component {
   render() {
@@ -23,6 +24,7 @@ class App extends React.Component {
             path="/createsession"
             component={withPublicRoot(CreateSession)}
           />
+          <Route exact path="/signup" component={withPublicRoot(SignUp)} />
           <Route path="/session/:sessionId" component={SocketClient} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="*" component={NotFound} />
