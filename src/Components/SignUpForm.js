@@ -111,16 +111,23 @@ const formikForm = withFormik({
     };
   },
   validationSchema: Yup.object().shape({
-    name: Yup.string().required("Name is required"),
+    name: Yup.string()
+      .strict(false)
+      .trim("Your name should'nt include leading or trailing whitespace")
+      .min(2, "Must be longer than 2 characters")
+      .max(40, "Seems you got a pretty long name there")
+      .required("Name is required"),
     email: Yup.string()
       .email("Email is not valid")
       .required("Email is required"),
     password: Yup.string()
       .min(6, "Password must be 6 characters or longer")
+      .strict(false)
+      .trim("Your password should'nt include leading or trailing whitespace")
       .required("Password is required")
   }),
   handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
-    //TODO: send a request to db and check if the email allready exists
+    //TODO: send a request to db and check if the email already exists
     setTimeout(() => {
       if (values.email === "test@test.com") {
         setErrors({ email: "That email is already registered" });
