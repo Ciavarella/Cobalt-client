@@ -30,7 +30,6 @@ const Input = ({
 export default withStyles(({ themes, colors }) => {
   return {
     input: {
-      height: "auto",
       padding: "13px",
       margin: "20px",
       border: "1px solid",
@@ -43,7 +42,8 @@ export default withStyles(({ themes, colors }) => {
     },
     container: {
       display: "flex",
-      alignItems: "center"
+      alignItems: "center",
+      width: "100%"
     },
     icon: {
       display: "flex"
