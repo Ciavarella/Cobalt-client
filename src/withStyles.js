@@ -67,6 +67,14 @@ ThemedStyleSheet.registerTheme({
         backgroundColor: THEME.COLOR_DANGER_HIGHLIGHT
       }
     },
+    carbon: {
+      color: "white",
+      borderColor: THEME.COLOR_DANGER,
+      backgroundColor: THEME.COLOR_CARBON,
+      ":hover": {
+        backgroundColor: THEME.COLOR_CARBON_HIGHLIGHT
+      }
+    },
     primaryGradient: {
       background: THEME.GRADIENT_PRIMARY,
       ":active": {
@@ -124,7 +132,6 @@ ThemedStyleSheet.registerTheme({
   shadow: {
     boxShadow: "0 1px 1px rgba(0, 0, 0, .1)"
   },
-
   rounded: {
     borderRadius: "4px"
   }

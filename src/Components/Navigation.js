@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, NavLink } from "react-router-dom";
 import { css, withStyles } from "../withStyles";
 
 import FlexContainer from "../Containers/FlexContainer";
@@ -7,57 +8,80 @@ import Icon from "../Elements/Icon";
 import ListItem from "../Elements/ListItem";
 import Heading from "../Elements/Heading";
 
-const Navigation = ({ styles, ...props }) => (
-  <aside {...css(styles.sidebar)} {...props}>
-    <div {...css(styles.logoArea)}>
-      <Heading {...css(styles.logo)} size="2">
-        Feed<span>.io</span>
-      </Heading>
-    </div>
-    <span {...css(styles.divider)} />
-    <FlexContainer align="start">
-      <ul {...css(styles.dashboardNav)}>
+const Navigation = ({ styles, colors, match, ...props }) => {
+  const activeLink = {
+    color: "white",
+    fontWeight: "600",
+    backgroundColor: "#A3AAD4"
+  };
+
+  return (
+    <aside {...css(styles.sidebar)}>
+      <div {...css(styles.logoArea)}>
+        <Link to={`${match.url}`}>
+          <Heading {...css(styles.logo)} size="2">
+            Feed<span>.io</span>
+          </Heading>
+        </Link>
+      </div>
+      <span {...css(styles.divider)} />
+      <FlexContainer align="start">
+        <ul {...css(styles.dashboardNav)}>
+          <NavLink activeStyle={activeLink} exact to={`${match.url}`}>
+            <li>
+              <Icon fillColor="dawn" icon="fas fa-columns" />Dashboard
+            </li>
+          </NavLink>
+          <NavLink activeStyle={activeLink} exact to={`${match.url}/new`}>
+            <li>
+              <Icon fillColor="dawn" icon="fas fa-plus" />New session
+            </li>
+          </NavLink>
+          <NavLink activeStyle={activeLink} exact to={`${match.url}/profile`}>
+            <li>
+              <Icon fillColor="dawn" icon="fas fa-user" />My profile
+            </li>
+          </NavLink>
+          <NavLink activeStyle={activeLink} exact to={`${match.url}/upgrade`}>
+            <li>
+              <Icon fillColor="dawn" icon="fas fa-tag" />Upgrade plan
+            </li>
+          </NavLink>
+          <NavLink activeStyle={activeLink} exact to={`${match.url}/settings`}>
+            <li>
+              <Icon fillColor="dawn" icon="fas fa-cog" />Settings
+            </li>
+          </NavLink>
+          <NavLink exact to={`/`}>
+            <li>
+              <Icon fillColor="dawn" icon="fas fa-power-off" />Log out
+            </li>
+          </NavLink>
+        </ul>
+      </FlexContainer>
+      <ul {...css(styles.footer)}>
         <li>
-          <Icon fillColor="danger" icon="fas fa-columns" />Dashboard
+          <a href="#">About</a>
         </li>
         <li>
-          <Icon fillColor="dawn" icon="fas fa-plus" />New session
+          <a href="#">Github</a>
         </li>
         <li>
-          <Icon fillColor="dawn" icon="fas fa-user" />My profile
+          <a href="#">Developers</a>
         </li>
         <li>
-          <Icon fillColor="dawn" icon="fas fa-tag" />Upgrade plan
-        </li>
-        <li>
-          <Icon fillColor="dawn" icon="fas fa-cog" />Settings
-        </li>
-        <li>
-          <Icon fillColor="dawn" icon="fas fa-power-off" />Log out
+          <a href="#">Chas Academy</a>
         </li>
       </ul>
-    </FlexContainer>
-    <ul {...css(styles.footer)}>
-      <li>
-        <a href="#">About</a>
-      </li>
-      <li>
-        <a href="#">Github</a>
-      </li>
-      <li>
-        <a href="#">Developers</a>
-      </li>
-      <li>
-        <a href="#">Chas Academy</a>
-      </li>
-    </ul>
-  </aside>
-);
+    </aside>
+  );
+};
 
 export default withStyles(({ themes, text, colors }) => {
   return {
     sidebar: {
       display: "flex",
+      flex: "1",
       flexDirection: "column",
       backgroundColor: colors.carbon,
       color: colors.dawn,
@@ -86,6 +110,7 @@ export default withStyles(({ themes, text, colors }) => {
     },
     dashboardNav: {
       marginTop: "45px",
+      width: "100%",
       ":nth-child(1n) li": {
         display: "flex",
         justifyContent: "flex-start",
@@ -126,6 +151,11 @@ export default withStyles(({ themes, text, colors }) => {
           cursor: "pointer"
         }
       }
+    },
+    activeLink: {
+      color: "white",
+      fontWeight: "600",
+      backgroundColor: colors.dawn
     }
   };
 })(Navigation);
