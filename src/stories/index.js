@@ -22,6 +22,7 @@ import CopyTextfield from "./Elements/CopyTextfield";
 
 /* Views */
 import NotFound from "./Views/NotFound";
+import Login from "./Views/Login";
 
 /* Components */
 import Header from "./Components/Header";
