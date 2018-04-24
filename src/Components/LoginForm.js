@@ -24,7 +24,9 @@ const LoginForm = ({
   return (
     <div {...css(styles, styles.loginForm)}>
       <FlexContainer>
-        <Heading size="2">Log in as presenter</Heading>
+        <Heading appearance="primary" size="2">
+          Log in as presenter
+        </Heading>
         <form onSubmit={handleSubmit}>
           <FlexContainer>
             <FlexContainer align="start" style={{ width: "400px" }}>
@@ -81,7 +83,7 @@ const LoginForm = ({
             <Button disabled={isSubmitting}>Log In</Button>
           </FlexContainer>
         </form>
-        <Paragraph>
+        <Paragraph appearance="white">
           Don't have an account? <a href="#">Sign up here!</a>
         </Paragraph>
       </FlexContainer>

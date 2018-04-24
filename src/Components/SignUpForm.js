@@ -23,7 +23,9 @@ const SignUpForm = ({
   return (
     <div {...css(styles, styles.signUpForm)}>
       <FlexContainer>
-        <Heading size="2">Sign up here</Heading>
+        <Heading size="2" appearance="primary">
+          Sign up here
+        </Heading>
         <form onSubmit={handleSubmit}>
           <FlexContainer>
             <FlexContainer align="start" style={{ width: "400px" }}>
@@ -94,7 +96,7 @@ const SignUpForm = ({
             <Button disabled={isSubmitting}>Sign Up</Button>
           </FlexContainer>
         </form>
-        <Paragraph>
+        <Paragraph appearance="white">
           Already have an account? <a href="#">Log in here!</a>
         </Paragraph>
       </FlexContainer>
