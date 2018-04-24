@@ -93,6 +93,12 @@ export default withStyles(({}) => {
       ":nth-child(1n) div div input": {
         margin: "0px",
         borderRadius: "0px 4px 4px 0px"
+      },
+      ":nth-child(1n) div div svg": {
+        verticalAlign: "0px"
+      },
+      ":nth-child(1n) div div span": {
+        padding: "12.5px"
       }
     }
   };
