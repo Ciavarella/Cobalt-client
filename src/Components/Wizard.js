@@ -19,9 +19,11 @@ class Wizard extends React.Component {
 
     this.nextPage = this.nextPage.bind(this);
     this.previousPage = this.previousPage.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   nextPage(e) {
+    e.preventDefault();
     this.state.currentPage < this.props.children.length - 1
       ? this.setState({ currentPage: this.state.currentPage + 1 })
       : this.setState({ currentPage: 0 });
@@ -34,9 +36,18 @@ class Wizard extends React.Component {
       : this.setState({ currentPage: 0 });
   }
 
-  submitSettings(e) {
+  handleSubmit(e) {
     /** Handle the finished settings */
+    console.log(e.target);
   }
+
+  dummyFunction(e) {
+    /** This is only used to prevent the button for breaking during storybook */
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
+  /** TODO: Set up redux with each input from each step so we can handle all the settings at once */
 
   render() {
     return (
@@ -76,27 +87,33 @@ class Wizard extends React.Component {
             />
           </a>
         </FlexContainer>
-        <Modal>
-          {this.props.children.map((child, i) => (
-            <li
-              style={{
-                display: i === this.state.currentPage ? "flex" : "none"
-              }}
+        <form onSubmit={this.handeSubmit}>
+          <Modal>
+            {this.props.children.map((child, i) => (
+              <li
+                key={i}
+                style={{
+                  display: i === this.state.currentPage ? "flex" : "none"
+                }}
+              >
+                {child}
+              </li>
+            ))}
+            <Button
+              id="submitButton"
+              onClick={
+                this.state.currentPage === 2
+                  ? this.dummyFunction
+                  : this.nextPage
+              }
+              appearance="secondary"
             >
-              {child}
-            </li>
-          ))}
-          <Button
-            onClick={
-              this.state.currentPage === 2 ? this.submitSettings : this.nextPage
-            }
-            appearance="secondary"
-          >
-            {this.state.currentPage === 2
-              ? "FINISH - " + (this.state.currentPage + 1) + " / 3"
-              : "NEXT - " + (this.state.currentPage + 1) + " / 3"}
-          </Button>
-        </Modal>
+              {this.state.currentPage === 2
+                ? "FINISH - " + (this.state.currentPage + 1) + " / 3"
+                : "NEXT - " + (this.state.currentPage + 1) + " / 3"}
+            </Button>
+          </Modal>
+        </form>
       </div>
     );
   }

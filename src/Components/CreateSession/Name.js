@@ -20,6 +20,7 @@ const Name = ({ styles }) => (
     </Paragraph>
     <Input
       type="text"
+      name="name"
       placeholder="Enter session name"
       style={{ marginLeft: "0px" }}
     />

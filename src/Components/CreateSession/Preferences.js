@@ -30,6 +30,7 @@ const Preferences = ({ styles }) => (
         <FlexContainer align="start">
           <Paragraph size="sub">Max attendees</Paragraph>
           <InputWithIcon
+            name="attendees"
             icon="fas fa-users"
             iconFillColor="white"
             iconBackground="primary"
@@ -39,6 +40,7 @@ const Preferences = ({ styles }) => (
         <FlexContainer align="start">
           <Paragraph size="sub">Warning threshold</Paragraph>
           <InputWithIcon
+            name="threshold"
             icon="fas fa-exclamation-triangle"
             iconFillColor="white"
             iconBackground="primary"
@@ -54,6 +56,7 @@ const Preferences = ({ styles }) => (
         <FlexContainer align="start">
           <Paragraph size="sub">Engagement description</Paragraph>
           <Input
+            name="description"
             placeholder="Ex. Are you able to follow..?"
             style={{ marginLeft: "0px", marginTop: "0px", width: "200px" }}
           />
@@ -62,6 +65,7 @@ const Preferences = ({ styles }) => (
         <FlexContainer align="start">
           <Paragraph size="sub">Lobby message</Paragraph>
           <Input
+            name="message"
             placeholder="Ex. Welcome to my lecture!"
             style={{ marginLeft: "0px", marginTop: "0px", width: "200px" }}
           />
