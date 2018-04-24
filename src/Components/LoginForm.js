@@ -17,7 +17,8 @@ const LoginForm = ({
   errors, //this is where all the errors are set, to call it use for example errors.email to get the email errors
   touched, //this gets set by handleBlur and is used to not show the error message until the user is finished writing and is moving on to another field
   handleBlur,
-  isSubmitting
+  isSubmitting,
+  ...props
   // gets set by handleSubmit and returns a bool, can be used to disable buttons while submitting
 }) => {
   return (
@@ -52,7 +53,7 @@ const LoginForm = ({
               </FlexContainer>
               <label
                 htmlFor="password"
-                style={{ marginTop: "20px", marginBottom: "5px" }}
+                style={{ marginTop: "10px", marginBottom: "5px" }}
               >
                 Password
               </label>
@@ -89,7 +90,7 @@ const LoginForm = ({
 };
 
 const formikForm = withFormik({
-  mapPropsToValues(props) {
+  mapPropsToValues() {
     return {
       email: "",
       password: ""
@@ -104,6 +105,7 @@ const formikForm = withFormik({
       .required("Password is required")
   }),
   handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
+    //TODO: send a request to db and check if the email and password is correct
     setTimeout(() => {
       if (values.email === "test@test.com") {
         setErrors({ email: "That email is invalid" });

@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { css, withStyles } from "../withStyles";
+import { withFormik } from "formik";
+import Yup from "yup";
 
 import FlexContainer from "../Containers/FlexContainer";
 import Button from "../Elements/Button";
@@ -7,86 +9,129 @@ import Heading from "../Elements/Heading";
 import Paragraph from "../Elements/Paragraph";
 import InputWithIcon from "../Elements/InputWithIcon";
 
-class SignUpForm extends React.Component {
-  constructor({ styles, ...props }) {
-    super(props);
-    this.styles = styles;
-    this.state = {
+const SignUpForm = ({
+  styles,
+  handleSubmit,
+  handleChange,
+  values,
+  errors,
+  touched,
+  handleBlur,
+  isSubmitting,
+  ...props
+}) => {
+  return (
+    <div {...css(styles, styles.signUpForm)}>
+      <FlexContainer>
+        <Heading size="2">Sign up here</Heading>
+        <form onSubmit={handleSubmit}>
+          <FlexContainer>
+            <FlexContainer align="start" style={{ width: "400px" }}>
+              <label htmlFor="name">Name</label>
+              <InputWithIcon
+                name="name"
+                icon="fas fa-check"
+                iconPosition="right"
+                iconBackground={
+                  touched.name && errors.name ? "danger" : "primary"
+                }
+                iconFillColor="white"
+                type="text"
+                placeholder="Name..."
+                value={values.name}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <FlexContainer style={{ minHeight: "20px" }}>
+                {errors.name &&
+                  touched.name && (
+                    <Paragraph size="sub">{errors.name}</Paragraph>
+                  )}
+              </FlexContainer>
+              <label htmlFor="email">Email</label>
+              <InputWithIcon
+                name="email"
+                icon="fas fa-check"
+                iconPosition="right"
+                iconBackground={
+                  touched.email && errors.email ? "danger" : "primary"
+                }
+                iconFillColor="white"
+                type="text"
+                placeholder="Email..."
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <FlexContainer style={{ minHeight: "20px" }}>
+                {errors.email &&
+                  touched.email && (
+                    <Paragraph size="sub">{errors.email}</Paragraph>
+                  )}
+              </FlexContainer>
+              <label htmlFor="password">Password</label>
+              <InputWithIcon
+                name="password"
+                icon="fas fa-check"
+                iconPosition="right"
+                iconBackground={
+                  touched.password && errors.password ? "danger" : "primary"
+                }
+                iconFillColor="white"
+                type="password"
+                placeholder="Password..."
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <FlexContainer style={{ minHeight: "20px" }}>
+                {errors.password &&
+                  touched.password && (
+                    <Paragraph size="sub">{errors.password}</Paragraph>
+                  )}
+              </FlexContainer>
+            </FlexContainer>
+            <Button disabled={isSubmitting}>Sign Up</Button>
+          </FlexContainer>
+        </form>
+        <Paragraph>
+          Already have an account? <a href="#">Log in here!</a>
+        </Paragraph>
+      </FlexContainer>
+    </div>
+  );
+};
+
+const formikForm = withFormik({
+  mapPropsToValues() {
+    return {
       name: "",
       email: "",
       password: ""
     };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+  },
+  validationSchema: Yup.object().shape({
+    name: Yup.string().required("Name is required"),
+    email: Yup.string()
+      .email("Email is not valid")
+      .required("Email is required"),
+    password: Yup.string()
+      .min(6, "Password must be 6 characters or longer")
+      .required("Password is required")
+  }),
+  handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
+    //TODO: send a request to db and check if the email allready exists
+    setTimeout(() => {
+      if (values.email === "test@test.com") {
+        setErrors({ email: "That email is already registered" });
+      } else {
+        console.log(values);
+        resetForm();
+      }
+      setSubmitting(false);
+    }, 2000);
   }
-
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    // Todo: Send for validation
-    console.log(this.state.name, this.state.email, this.state.password);
-  }
-
-  render() {
-    return (
-      <div {...css(this.styles, this.styles.signUpForm)}>
-        <FlexContainer>
-          <Heading size="2">Sign up here</Heading>
-          <form onSubmit={this.handleSubmit}>
-            <FlexContainer>
-              <FlexContainer align="start" style={{ width: "400px" }}>
-                <label>Name</label>
-                <InputWithIcon
-                  name="name"
-                  icon="fas fa-check"
-                  iconPosition="right"
-                  iconBackground="primary"
-                  iconFillColor="white"
-                  type="text"
-                  placeholder="Name..."
-                  value={this.state.name}
-                  onChange={this.handleChange}
-                />
-                <label>Email</label>
-                <InputWithIcon
-                  name="email"
-                  icon="fas fa-check"
-                  iconPosition="right"
-                  iconBackground="primary"
-                  iconFillColor="white"
-                  type="text"
-                  placeholder="Email..."
-                  value={this.state.name}
-                  onChange={this.handleChange}
-                />
-                <label>Password</label>
-                <InputWithIcon
-                  name="password"
-                  icon="fas fa-check"
-                  iconPosition="right"
-                  iconBackground="primary"
-                  iconFillColor="white"
-                  type="password"
-                  placeholder="Password..."
-                  value={this.state.name}
-                  onChange={this.handleChange}
-                />
-              </FlexContainer>
-              <Button>Sign Up</Button>
-            </FlexContainer>
-          </form>
-          <Paragraph>
-            Already have an account? <a href="#">Log in here!</a>
-          </Paragraph>
-        </FlexContainer>
-      </div>
-    );
-  }
-}
+})(SignUpForm);
 
 export default withStyles(({ themes, text, colors }) => {
   return {
@@ -103,4 +148,4 @@ export default withStyles(({ themes, text, colors }) => {
     danger: colors.danger,
     success: colors.success
   };
-})(SignUpForm);
+})(formikForm);
