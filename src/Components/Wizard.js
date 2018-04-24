@@ -44,7 +44,6 @@ class Wizard extends React.Component {
   dummyFunction(e) {
     /** This is only used to prevent the button for breaking during storybook */
     e.preventDefault();
-    e.stopPropagation();
   }
 
   /** TODO: Set up redux with each input from each step so we can handle all the settings at once */
