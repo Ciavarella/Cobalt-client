@@ -33,7 +33,7 @@ const Sessions = ({ styles, ...props }) => {
         direction="row"
         style={{ flexWrap: "wrap" }}
       >
-        <SessionItem />
+        <SessionItem description="This is a much longer longer description but it should only be two rows and not more than that" />
         <SessionItem />
         <SessionItem />
         <SessionItem />

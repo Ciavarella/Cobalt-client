@@ -38,7 +38,9 @@ const SessionItem = ({
             <Heading size="3" appearance="white">
               {title}
             </Heading>
-            <Paragraph>{stripStringLength(description)}</Paragraph>
+            <Paragraph style={{ height: "32px" }}>
+              {stripStringLength(description)}
+            </Paragraph>
           </FlexContainer>
         </Card>
       </FlexContainer>
