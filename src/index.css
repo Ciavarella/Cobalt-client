@@ -95,6 +95,8 @@ input {
 
 button {
   color: #fff;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
 }
 
 button:last-child,
