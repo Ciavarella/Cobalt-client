@@ -10,10 +10,10 @@ import FlexContainer from "../Containers/FlexContainer";
 const stripStringLength = string => string.slice(0, 80) + "...";
 
 const SessionItem = ({
-  date,
-  attendees,
-  title,
-  description,
+  date = "June 12, 2018",
+  attendees = "233",
+  title = "Session title",
+  description = "This is the default description",
   styles,
   ...props
 }) => {
@@ -24,18 +24,20 @@ const SessionItem = ({
         justify="center"
         style={{ flexWrap: "wrap" }}
       >
-        <Card appearance="secondary" style={{ margin: "10px", width: "400px" }}>
+        <Card style={{ margin: "12px 12px 0px 0px", width: "400px" }}>
           <FlexContainer
             direction="row"
-            justify="around"
+            justify="between"
             align="start"
             style={{ marginBottom: "50px" }}
           >
-            <Paragraph>{date}</Paragraph>
-            <Paragraph>Attendees: {attendees}</Paragraph>
+            <Paragraph size="sub">{date}</Paragraph>
+            <Paragraph size="sub">Attendees: {attendees}</Paragraph>
           </FlexContainer>
           <FlexContainer align="start">
-            <Heading size="4">{title}</Heading>
+            <Heading size="3" appearance="white">
+              {title}
+            </Heading>
             <Paragraph>{stripStringLength(description)}</Paragraph>
           </FlexContainer>
         </Card>
@@ -47,9 +49,10 @@ const SessionItem = ({
 export default withStyles(({ themes, colors }) => {
   return {
     sessionItem: {
-      ":nth-child(1) p": {
-        width: "310px",
-        height: "32px"
+      cursor: "pointer",
+      transition: "all 0.3s ease",
+      ":hover": {
+        transform: "translateY(-8px)"
       }
     },
 
