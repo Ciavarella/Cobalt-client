@@ -112,8 +112,8 @@ const formikForm = withFormik({
   },
   validationSchema: Yup.object().shape({
     name: Yup.string()
-      .strict(false)
       .trim("Your name should'nt include leading or trailing whitespace")
+      .strict(false)
       .min(2, "Must be longer than 2 characters")
       .max(40, "Seems you got a pretty long name there")
       .required("Name is required"),
@@ -121,9 +121,9 @@ const formikForm = withFormik({
       .email("Email is not valid")
       .required("Email is required"),
     password: Yup.string()
-      .min(6, "Password must be 6 characters or longer")
-      .strict(false)
       .trim("Your password should'nt include leading or trailing whitespace")
+      .strict(false)
+      .min(6, "Password must be 6 characters or longer")
       .required("Password is required")
   }),
   handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
