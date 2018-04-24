@@ -21,7 +21,6 @@ export default withStyles(({ colors, gradients }) => {
       height: "100%",
       width: "100%",
       position: "absolute",
-      // zIndex: "-99",
       background: gradients.carbon
     },
     icon: {
