@@ -19,4 +19,21 @@ storiesOf("Input", module)
   ))
   .add("Error", () => (
     <Input appearance="danger" type="text" placeholder="Error" />
+  ))
+  .add("Input with icon(left)", () => (
+    <Input
+      icon="fas fa-users"
+      iconBackground="secondary"
+      type="text"
+      placeholder="Default"
+    />
+  ))
+  .add("Input with icon(right)", () => (
+    <Input
+      icon="fas fa-users"
+      iconPosition="right"
+      iconBackground="secondary"
+      type="text"
+      placeholder="Default"
+    />
   ));
