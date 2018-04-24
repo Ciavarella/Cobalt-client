@@ -1,39 +1,54 @@
 import React from "react";
 import { css, withStyles } from "../withStyles";
-import FlexContainer from "../Containers/FlexContainer"; // See if this is needed.
-import Header from "../Components/Header";
-import Footer from "../Components/Footer";
+
 import LoginForm from "../Components/LoginForm";
 
 const Login = ({ styles, ...props }) => {
   return (
-    <div>
-      <Header />
-      <FlexContainer {...css(styles.login)}>
-        <LoginForm />
-        <Footer {...css(styles.footer)} />
-      </FlexContainer>
+    <div {...css(styles.content)}>
+      <LoginForm />
+
+      <div {...css(styles.background)} />
     </div>
   );
 };
 
-export default withStyles(({ colors }) => {
+export default withStyles(({ colors, gradients }) => {
   return {
-    login: {
+    background: {
       display: "flex",
-      color: "white",
-      flexDirection: "column",
-      justifyContent: "center",
-      backgroundColor: "grey",
-      height: "100vh"
-    },
-    footer: {
-      color: "white",
+      height: "100%",
+      width: "100%",
       position: "absolute",
-      bottom: "0",
-      width: "100vw",
-      paddingBottom: "14px",
-      paddingLeft: "14px"
+      zIndex: "-99",
+      background:
+        "url('https://images.unsplash.com/photo-1490806230066-f7e6f7bf5052?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=2ca889535ea01f912f94ac4ddf0034e0&auto=format&fit=crop&w=2066&q=80')",
+      backgroundSize: "cover",
+      ":before": {
+        content: '""',
+        top: "0",
+        left: "0",
+        width: "100%",
+        height: "100%",
+        position: "absolute",
+        display: "block",
+        zIndex: "1000",
+        background: "rgba(0,0,0,0.5)"
+      }
+    },
+    content: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      position: "absolute",
+      top: "0",
+      left: "0",
+      height: "100%",
+      width: "100%"
+    },
+    icon: {
+      width: "128px",
+      marginBottom: "48px"
     }
   };
 })(Login);

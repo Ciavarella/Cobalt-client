@@ -5,12 +5,8 @@ import Footer from "../Components/Footer";
 
 import NotFound from "../Views/NotFound";
 import SocketClient from "../Views/Client";
-<<<<<<< HEAD
 import Dashboard from "../Views/Dashboard/Dashboard";
-import LoginForm from "../Components/LoginForm";
-=======
 import Login from "../Views/Login";
->>>>>>> Changed path on /login to use loginview
 import withPublicRoot from "../Containers/PublicRoot";
 import LandingPage from "../Views/LandingPage";
 
