@@ -14,7 +14,7 @@ import CopyTextfield from "../../Elements/CopyTextfield";
 const End = ({ styles }) => (
   <FlexContainer align="start">
     <Heading appearance="primary" size="2">
-      Have a greate session!
+      Have a great session!
     </Heading>
     <Paragraph size="normal">
       What do you want to call your session? Try to be descriptive!
