@@ -16,7 +16,8 @@ import {
   faPowerOff,
   faBriefcase,
   faBuilding,
-  faBoxes
+  faBoxes,
+  faQuestion
 } from "@fortawesome/fontawesome-free-solid";
 
 const Icon = ({
@@ -71,7 +72,7 @@ const Icon = ({
       faIcon = faBoxes;
       break;
     default:
-      "";
+      faIcon = faQuestion;
   }
 
   return (
