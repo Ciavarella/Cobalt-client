@@ -39,6 +39,7 @@ class Wizard extends React.Component {
   handleSubmit(e) {
     /** Handle the finished settings */
     console.log(e.target);
+    console.log(this.props.children);
   }
 
   dummyFunction(e) {
@@ -101,15 +102,19 @@ class Wizard extends React.Component {
             <Button
               id="submitButton"
               onClick={
-                this.state.currentPage === 2
-                  ? this.dummyFunction
+                this.state.currentPage === this.props.children.length - 1
+                  ? this.handleSubmit
                   : this.nextPage
               }
               appearance="secondary"
             >
               {this.state.currentPage === 2
-                ? "FINISH - " + (this.state.currentPage + 1) + " / 3"
-                : "NEXT - " + (this.state.currentPage + 1) + " / 3"}
+                ? `FINISH - ${this.state.currentPage + 1} / ${
+                    this.props.children.length
+                  }`
+                : `NEXT - ${this.state.currentPage + 1} / ${
+                    this.props.children.length
+                  }`}
             </Button>
           </Modal>
         </form>
