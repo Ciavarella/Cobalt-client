@@ -78,12 +78,12 @@ const Preferences = ({ styles }) => (
         style={{ width: "450px", paddingRight: "18px" }}
       >
         <FlexContainer direction="row">
-          <Checkbox />
+          <Checkbox name="comments" />
           <Paragraph>Allow comments</Paragraph>
         </FlexContainer>
 
         <FlexContainer direction="row">
-          <Checkbox />
+          <Checkbox name="setting" />
           <Paragraph>Some other setting</Paragraph>
         </FlexContainer>
       </FlexContainer>

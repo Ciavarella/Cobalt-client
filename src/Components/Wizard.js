@@ -37,17 +37,11 @@ class Wizard extends React.Component {
   }
 
   handleSubmit(e) {
-    /** Handle the finished settings */
-    console.log(e.target);
-    console.log(this.props.children);
-  }
-
-  dummyFunction(e) {
-    /** This is only used to prevent the button for breaking during storybook */
     e.preventDefault();
+    const data = new FormData(e.target);
+    const values = data.getAll();
+    this.props.handleSubmit(data);
   }
-
-  /** TODO: Set up redux with each input from each step so we can handle all the settings at once */
 
   render() {
     return (
@@ -87,7 +81,7 @@ class Wizard extends React.Component {
             />
           </a>
         </FlexContainer>
-        <form onSubmit={this.handeSubmit}>
+        <form onSubmit={this.handleSubmit}>
           <Modal>
             {this.props.children.map((child, i) => (
               <li
@@ -100,10 +94,9 @@ class Wizard extends React.Component {
               </li>
             ))}
             <Button
-              id="submitButton"
               onClick={
                 this.state.currentPage === this.props.children.length - 1
-                  ? this.handleSubmit
+                  ? ""
                   : this.nextPage
               }
               appearance="secondary"

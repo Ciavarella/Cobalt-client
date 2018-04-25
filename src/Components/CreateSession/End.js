@@ -17,7 +17,7 @@ const End = ({ styles }) => (
       Have a great session!
     </Heading>
     <Paragraph size="normal">
-      What do you want to call your session? Try to be descriptive!
+      Here is your unique session url. Share it with your audience.
     </Paragraph>
     <CopyTextfield url="http://feedback.io/DUMMY" style={{ width: "100%" }} />
   </FlexContainer>
