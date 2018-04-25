@@ -7,7 +7,7 @@ import FlexContainer from "../Containers/FlexContainer";
 import Button from "../Elements/Button";
 import Heading from "../Elements/Heading";
 import Paragraph from "../Elements/Paragraph";
-import InputWithIcon from "../Elements/InputWithIcon";
+import Input from "../Elements/Input";
 
 const LoginForm = ({
   styles,
@@ -33,7 +33,7 @@ const LoginForm = ({
               <label style={{ marginBottom: "5px" }} htmlFor="email">
                 Email
               </label>
-              <InputWithIcon
+              <Input
                 name="email"
                 icon="fas fa-check"
                 iconPosition="right"
@@ -59,7 +59,7 @@ const LoginForm = ({
               >
                 Password
               </label>
-              <InputWithIcon
+              <Input
                 name="password"
                 icon="fas fa-check"
                 iconPosition="right"

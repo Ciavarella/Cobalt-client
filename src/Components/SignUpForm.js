@@ -7,7 +7,7 @@ import FlexContainer from "../Containers/FlexContainer";
 import Button from "../Elements/Button";
 import Heading from "../Elements/Heading";
 import Paragraph from "../Elements/Paragraph";
-import InputWithIcon from "../Elements/InputWithIcon";
+import Input from "../Elements/Input";
 
 const SignUpForm = ({
   styles,
@@ -30,7 +30,7 @@ const SignUpForm = ({
           <FlexContainer>
             <FlexContainer align="start" style={{ width: "400px" }}>
               <label htmlFor="name">Name</label>
-              <InputWithIcon
+              <Input
                 name="name"
                 icon="fas fa-check"
                 iconPosition="right"
@@ -51,7 +51,7 @@ const SignUpForm = ({
                   )}
               </FlexContainer>
               <label htmlFor="email">Email</label>
-              <InputWithIcon
+              <Input
                 name="email"
                 icon="fas fa-check"
                 iconPosition="right"
@@ -72,7 +72,7 @@ const SignUpForm = ({
                   )}
               </FlexContainer>
               <label htmlFor="password">Password</label>
-              <InputWithIcon
+              <Input
                 name="password"
                 icon="fas fa-check"
                 iconPosition="right"
