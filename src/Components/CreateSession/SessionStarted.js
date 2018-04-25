@@ -11,7 +11,7 @@ import InputWithIcon from "../../Elements/InputWithIcon";
 import Icon from "../../Elements/Icon";
 import CopyTextfield from "../../Elements/CopyTextfield";
 
-const End = ({ styles }) => (
+const SessionStarted = ({ styles, sessionId = null }) => (
   <FlexContainer align="start">
     <Heading appearance="primary" size="2">
       Have a great session!
@@ -19,12 +19,15 @@ const End = ({ styles }) => (
     <Paragraph size="normal">
       Here is your unique session url. Share it with your audience.
     </Paragraph>
-    <CopyTextfield url="http://feedback.io/DUMMY" style={{ width: "100%" }} />
+    <CopyTextfield
+      url={`http://feedback.io/${sessionId}`}
+      style={{ width: "100%" }}
+    />
   </FlexContainer>
 );
 
 export default withStyles(({}) => {
   return {
-    end: {}
+    sessionStarted: {}
   };
-})(End);
+})(SessionStarted);

@@ -10,8 +10,8 @@ import Input from "../Elements/Input";
 import InputWithIcon from "../Elements/InputWithIcon";
 import Icon from "../Elements/Icon";
 
-class Wizard extends React.Component {
-  constructor({ styles, handleSubmit = null, ...props }) {
+class SessionWizard extends React.Component {
+  constructor({ styles, ...props }) {
     super(props);
     this.state = {
       currentPage: 0
@@ -38,15 +38,12 @@ class Wizard extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-
     const data = new FormData(e.target);
+    const values = data.getAll();
     this.props.handleSubmit(data);
-
-    // this.props.handleSubmit ? this.props.handleSubmit(data) : console.log(data);
   }
 
   render() {
-    console.log(this.props.sessionId);
     return (
       <div {...css(this.props.styles.wizard)} {...this.props}>
         <FlexContainer
@@ -58,7 +55,7 @@ class Wizard extends React.Component {
             href=""
             onClick={this.previousPage}
             style={{
-              zIndex: "9999"
+              zIndex: "99999"
             }}
           >
             <Icon
@@ -72,7 +69,7 @@ class Wizard extends React.Component {
           <a
             href="#"
             style={{
-              zIndex: "9999"
+              zIndex: "99999"
             }}
           >
             <Icon
@@ -85,7 +82,7 @@ class Wizard extends React.Component {
           </a>
         </FlexContainer>
         <form onSubmit={this.handleSubmit}>
-          <Modal withOverlay>
+          <Modal>
             {this.props.children.map((child, i) => (
               <li
                 key={i}
@@ -104,10 +101,8 @@ class Wizard extends React.Component {
               }
               appearance="secondary"
             >
-              {this.state.currentPage === this.props.children.length - 1
-                ? `SUBMIT - ${this.state.currentPage + 1} / ${
-                    this.props.children.length
-                  }`
+              {this.state.currentPage === 2
+                ? "CLOSE"
                 : `NEXT - ${this.state.currentPage + 1} / ${
                     this.props.children.length
                   }`}
@@ -130,4 +125,4 @@ export default withStyles(({ colors }) => {
       }
     }
   };
-})(Wizard);
+})(SessionWizard);

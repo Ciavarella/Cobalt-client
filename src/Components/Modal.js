@@ -28,7 +28,7 @@ export default withStyles(({ colors, rounded, shadow }) => {
       position: "fixed",
       top: "0",
       left: "0",
-      zIndex: "99",
+      zIndex: "999",
       display: "flex",
       justifyContent: "center",
       alignItems: "center"
