@@ -35,12 +35,23 @@ const LoginForm = ({
               </label>
               <Input
                 name="email"
+                appearance={
+                  !touched.email && !errors.email
+                    ? "primary"
+                    : touched.email && !errors.email
+                      ? "success"
+                      : touched.email && errors.email
+                        ? "danger"
+                        : "primary"
+                }
                 icon={
                   !touched.email && !errors.email
-                    ? "far fa-envelope"
+                    ? "fas fa-envelope"
                     : touched.email && !errors.email
                       ? "fas fa-check"
-                      : "fas fa-times"
+                      : touched.email && errors.email
+                        ? "fas fa-times"
+                        : "fas fa-envelope"
                 }
                 iconPosition="right"
                 iconBackground={
@@ -62,7 +73,9 @@ const LoginForm = ({
               <FlexContainer style={{ minHeight: "20px" }}>
                 {errors.email &&
                   touched.email && (
-                    <Paragraph size="sub">{errors.email}</Paragraph>
+                    <Paragraph appearance="danger" size="sub">
+                      {errors.email}
+                    </Paragraph>
                   )}
               </FlexContainer>
               <label
@@ -73,10 +86,33 @@ const LoginForm = ({
               </label>
               <Input
                 name="password"
-                icon="fas fa-check"
+                appearance={
+                  !touched.password && !errors.password
+                    ? "primary"
+                    : touched.password && !errors.password
+                      ? "success"
+                      : touched.password && errors.password
+                        ? "danger"
+                        : "primary"
+                }
+                icon={
+                  !touched.password && !errors.password
+                    ? "fas fa-unlock"
+                    : touched.password && !errors.password
+                      ? "fas fa-check"
+                      : touched.password && errors.password
+                        ? "fas fa-times"
+                        : "fas fa-unlock"
+                }
                 iconPosition="right"
                 iconBackground={
-                  touched.password && errors.password ? "danger" : "primary"
+                  !touched.password && !errors.password
+                    ? "primary"
+                    : touched.password && !errors.password
+                      ? "success"
+                      : touched.password && errors.password
+                        ? "danger"
+                        : "primary"
                 }
                 iconFillColor="white"
                 type="password"
@@ -88,7 +124,9 @@ const LoginForm = ({
               <FlexContainer style={{ minHeight: "20px" }}>
                 {errors.password &&
                   touched.password && (
-                    <Paragraph size="sub">{errors.password}</Paragraph>
+                    <Paragraph appearance="danger" size="sub">
+                      {errors.password}
+                    </Paragraph>
                   )}
               </FlexContainer>
             </FlexContainer>
