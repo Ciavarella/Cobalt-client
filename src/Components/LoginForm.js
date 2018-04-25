@@ -35,10 +35,22 @@ const LoginForm = ({
               </label>
               <Input
                 name="email"
-                icon="fas fa-check"
+                icon={
+                  !touched.email && !errors.email
+                    ? "far fa-envelope"
+                    : touched.email && !errors.email
+                      ? "fas fa-check"
+                      : "fas fa-times"
+                }
                 iconPosition="right"
                 iconBackground={
-                  touched.email && errors.email ? "danger" : "primary"
+                  !touched.email && !errors.email
+                    ? "primary"
+                    : touched.email && !errors.email
+                      ? "success"
+                      : touched.email && errors.email
+                        ? "danger"
+                        : "primary"
                 }
                 iconFillColor="white"
                 type="text"

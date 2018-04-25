@@ -78,6 +78,7 @@ export default withStyles(({ themes, colors }) => {
     danger: { borderColor: themes.danger.borderColor },
     iconBackgroundprimary: { backgroundColor: colors.primary },
     iconBackgroundsecondary: { backgroundColor: colors.secondary },
+    iconBackgroundsuccess: { backgroundColor: colors.success },
     iconBackgrounddanger: { backgroundColor: colors.danger },
     iconBackgrounddawn: { backgroundColor: colors.dawn },
     iconBackgroundnightsky: { backgroundColor: colors.nightsky },
