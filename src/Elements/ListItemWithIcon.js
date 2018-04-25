@@ -6,12 +6,12 @@ import ListItem from "./ListItem";
 const ListItemWithIcon = ({
   icon = null,
   iconPosition = "left",
-  iconAppearance = "default",
+  iconFillColor = "white",
   styles,
   ...props
 }) => (
   <ListItem {...css(styles[iconPosition], styles.listItemWithIcon)} {...props}>
-    <Icon appearance={iconAppearance}>{icon}</Icon>
+    <Icon icon={icon} fillColor={iconFillColor} />
     {props.children}
   </ListItem>
 );

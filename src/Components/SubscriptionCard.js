@@ -95,11 +95,10 @@ class SubscriptionCard extends React.Component {
               <FlexContainer align="center">
                 <Icon
                   appearance="primary"
+                  icon={card.icon}
                   size="large"
                   style={{ margin: "30px", fontSize: "5rem" }}
-                >
-                  <i className={card.icon} />
-                </Icon>
+                />
                 <Heading
                   size="3"
                   appearance="primary"
@@ -117,13 +116,8 @@ class SubscriptionCard extends React.Component {
                         marginBottom: "10px"
                       }}
                       icon={
-                        sellingPoint.allowed ? (
-                          <i className="fas fa-check" />
-                        ) : (
-                          <i className="fas fa-times" />
-                        )
+                        sellingPoint.allowed ? "fas fa-check" : "fas fa-times"
                       }
-                      iconAppearance="primary"
                       iconPosition="right"
                     >
                       {sellingPoint.title}
