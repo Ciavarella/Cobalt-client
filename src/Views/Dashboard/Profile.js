@@ -1,16 +1,11 @@
 import React from "react";
 import { css, withStyles } from "../../withStyles";
-import FlexContainer from "../../Containers/FlexContainer";
-import Icon from "../../Elements/Icon";
-import Heading from "../../Elements/Heading";
+import Profile from "../../Components/Profile";
 
-const Profile = ({ styles, ...props }) => {
+const ProfileView = ({ styles, ...props }) => {
   return (
     <div {...css(styles.Profile)}>
-      <FlexContainer justify="center" align="center">
-        <Icon icon="fas fa-user" fillColor="dawn" />
-        <Heading size="2">Profile</Heading>
-      </FlexContainer>
+      <Profile />
     </div>
   );
 };
@@ -18,10 +13,10 @@ const Profile = ({ styles, ...props }) => {
 export default withStyles(({ colors }) => {
   return {
     Profile: {
-      height: "100%",
       display: "flex",
-      alignItems: "center",
-      justifyContent: "center"
+      flexWrap: "wrap",
+      margin: "24px",
+      height: "100%"
     }
   };
-})(Profile);
+})(ProfileView);
