@@ -23,7 +23,7 @@ const requireAuth = ComposedComponent => {
         return <ComposedComponent {...this.props} />;
       }
       console.log("You are not authenticated");
-      return <Redirect to="/signin" />;
+      return <Redirect to="/login" />;
     }
   }
 
