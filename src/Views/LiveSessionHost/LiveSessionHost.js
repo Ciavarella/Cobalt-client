@@ -178,58 +178,9 @@ export default withStyles(({ themes, text, colors }) => {
         transition: "all 0.6s ease"
       }
     },
-    green: {
-      borderRadius: "50%",
-      minWidth: "150px",
-      minHeight: "150px",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      border: `12px solid ${colors.successHighlight}`,
-      color: "white",
-      fontSize: "5.8rem",
-      width: "100%",
-      height: "100%",
-      transition: "transform 0.2s ease",
-      backgroundColor: colors.success
-    },
-    red: {
-      minWidth: "150px",
-      minHeight: "150px",
-      borderRadius: "50%",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      transition: "transform 0.2s ease",
-      border: `12px solid ${colors.dangerHighlight}`,
-      color: "white",
-      fontSize: "5.8rem",
-      width: "100%",
-      height: "100%",
-      backgroundColor: colors.danger
-    },
     timer: {
       fontSize: "4.8rem",
       color: "white"
     }
   };
 })(LiveSessionHost);
-
-/* Ball diagram */
-// <FlexContainer>
-//           {this.state.threshold * this.state.audience > this.state.sum ? (
-//             <span
-//               {...css(styles.red)}
-//               style={{ transform: `scale(${this.state.scale})` }}
-//             >
-//               {this.state.sum}
-//             </span>
-//           ) : (
-//             <span
-//               {...css(styles.green)}
-//               style={{ transform: `scale(${this.state.scale})` }}
-//             >
-//               {this.state.sum}
-//             </span>
-//           )}
-//         </FlexContainer>
