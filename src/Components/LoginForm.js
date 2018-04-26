@@ -30,7 +30,10 @@ const LoginForm = ({
         <form onSubmit={handleSubmit}>
           <FlexContainer>
             <FlexContainer align="start" style={{ width: "400px" }}>
-              <label style={{ marginBottom: "5px" }} htmlFor="email">
+              <label
+                style={{ marginBottom: "5px", color: "white" }}
+                htmlFor="email"
+              >
                 Email
               </label>
               <Input
@@ -80,7 +83,11 @@ const LoginForm = ({
               </FlexContainer>
               <label
                 htmlFor="password"
-                style={{ marginTop: "10px", marginBottom: "5px" }}
+                style={{
+                  marginTop: "10px",
+                  marginBottom: "5px",
+                  color: "white"
+                }}
               >
                 Password
               </label>
