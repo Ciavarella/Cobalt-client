@@ -36,6 +36,7 @@ export default withStyles(({ themes, colors }) => {
       borderRadius: "2px",
       width: "100%",
       minWidth: "120px",
+      borderColor: colors.aluminum,
       ":focus": {
         borderColor: colors.secondary
       }
@@ -71,13 +72,34 @@ export default withStyles(({ themes, colors }) => {
       }
     },
 
-    default: { borderColor: colors.aluminum },
-    primary: { borderColor: themes.primary.borderColor },
-    secondary: { borderColor: themes.secondary.borderColor },
-    success: { borderColor: themes.success.borderColor },
-    danger: { borderColor: themes.danger.borderColor },
+    default: {
+      ":focus": {
+        borderColor: colors.default
+      }
+    },
+    primary: {
+      ":focus": {
+        borderColor: colors.primary
+      }
+    },
+    secondary: {
+      ":focus": {
+        borderColor: colors.secondary
+      }
+    },
+    success: {
+      ":focus": {
+        borderColor: colors.success
+      }
+    },
+    danger: {
+      ":focus": {
+        borderColor: colors.danger
+      }
+    },
     iconBackgroundprimary: { backgroundColor: colors.primary },
     iconBackgroundsecondary: { backgroundColor: colors.secondary },
+    iconBackgroundsuccess: { backgroundColor: colors.success },
     iconBackgrounddanger: { backgroundColor: colors.danger },
     iconBackgrounddawn: { backgroundColor: colors.dawn },
     iconBackgroundnightsky: { backgroundColor: colors.nightsky },

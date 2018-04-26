@@ -39,35 +39,20 @@ storiesOf("List", module)
   ))
   .add("List with icon (left)", () => (
     <List style={{ width: "10%" }}>
-      <ListItemWithIcon icon={<i className="fab fa-angellist" />}>
-        List item
-      </ListItemWithIcon>
-      <ListItemWithIcon icon={<i className="fab fa-angellist" />}>
-        List item 2
-      </ListItemWithIcon>
-      <ListItemWithIcon icon={<i className="fab fa-angellist" />}>
-        List item 3
-      </ListItemWithIcon>
+      <ListItemWithIcon icon="fas fa-envelope">List item</ListItemWithIcon>
+      <ListItemWithIcon icon="fas fa-envelope">List item 2</ListItemWithIcon>
+      <ListItemWithIcon icon="fas fa-envelope">List item 3</ListItemWithIcon>
     </List>
   ))
   .add("List with icon (right)", () => (
     <List>
-      <ListItemWithIcon
-        icon={<i className="fab fa-angellist" />}
-        iconPosition="right"
-      >
+      <ListItemWithIcon icon="fas fa-envelope" iconPosition="right">
         List item
       </ListItemWithIcon>
-      <ListItemWithIcon
-        icon={<i className="fab fa-angellist" />}
-        iconPosition="right"
-      >
+      <ListItemWithIcon icon="fas fa-envelope" iconPosition="right">
         List item 2
       </ListItemWithIcon>
-      <ListItemWithIcon
-        icon={<i className="fab fa-angellist" />}
-        iconPosition="right"
-      >
+      <ListItemWithIcon icon="fas fa-envelope" iconPosition="right">
         List item 3
       </ListItemWithIcon>
     </List>

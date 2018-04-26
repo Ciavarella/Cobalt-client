@@ -32,10 +32,33 @@ const SignUpForm = ({
               <label htmlFor="name">Name</label>
               <Input
                 name="name"
-                icon="fas fa-check"
+                appearance={
+                  !touched.name && !errors.name
+                    ? "primary"
+                    : touched.name && !errors.name
+                      ? "success"
+                      : touched.name && errors.name
+                        ? "danger"
+                        : "primary"
+                }
+                icon={
+                  !touched.name && !errors.name
+                    ? "fas fa-user"
+                    : touched.name && !errors.name
+                      ? "fas fa-check"
+                      : touched.name && errors.name
+                        ? "fas fa-times"
+                        : "fas fa-user"
+                }
                 iconPosition="right"
                 iconBackground={
-                  touched.name && errors.name ? "danger" : "primary"
+                  !touched.name && !errors.name
+                    ? "primary"
+                    : touched.name && !errors.name
+                      ? "success"
+                      : touched.name && errors.name
+                        ? "danger"
+                        : "primary"
                 }
                 iconFillColor="white"
                 type="text"
@@ -47,16 +70,41 @@ const SignUpForm = ({
               <FlexContainer style={{ minHeight: "20px" }}>
                 {errors.name &&
                   touched.name && (
-                    <Paragraph size="sub">{errors.name}</Paragraph>
+                    <Paragraph appearance="danger" size="sub">
+                      {errors.name}
+                    </Paragraph>
                   )}
               </FlexContainer>
               <label htmlFor="email">Email</label>
               <Input
                 name="email"
-                icon="fas fa-check"
+                appearance={
+                  !touched.email && !errors.email
+                    ? "primary"
+                    : touched.email && !errors.email
+                      ? "success"
+                      : touched.email && errors.email
+                        ? "danger"
+                        : "primary"
+                }
+                icon={
+                  !touched.email && !errors.email
+                    ? "fas fa-envelope"
+                    : touched.email && !errors.email
+                      ? "fas fa-check"
+                      : touched.email && errors.email
+                        ? "fas fa-times"
+                        : "fas fa-envelope"
+                }
                 iconPosition="right"
                 iconBackground={
-                  touched.email && errors.email ? "danger" : "primary"
+                  !touched.email && !errors.email
+                    ? "primary"
+                    : touched.email && !errors.email
+                      ? "success"
+                      : touched.email && errors.email
+                        ? "danger"
+                        : "primary"
                 }
                 iconFillColor="white"
                 type="text"
@@ -68,16 +116,41 @@ const SignUpForm = ({
               <FlexContainer style={{ minHeight: "20px" }}>
                 {errors.email &&
                   touched.email && (
-                    <Paragraph size="sub">{errors.email}</Paragraph>
+                    <Paragraph appearance="danger" size="sub">
+                      {errors.email}
+                    </Paragraph>
                   )}
               </FlexContainer>
               <label htmlFor="password">Password</label>
               <Input
                 name="password"
-                icon="fas fa-check"
+                appearance={
+                  !touched.password && !errors.password
+                    ? "primary"
+                    : touched.password && !errors.password
+                      ? "success"
+                      : touched.password && errors.password
+                        ? "danger"
+                        : "primary"
+                }
+                icon={
+                  !touched.password && !errors.password
+                    ? "fas fa-unlock"
+                    : touched.password && !errors.password
+                      ? "fas fa-check"
+                      : touched.password && errors.password
+                        ? "fas fa-times"
+                        : "fas fa-unlock"
+                }
                 iconPosition="right"
                 iconBackground={
-                  touched.password && errors.password ? "danger" : "primary"
+                  !touched.password && !errors.password
+                    ? "primary"
+                    : touched.password && !errors.password
+                      ? "success"
+                      : touched.password && errors.password
+                        ? "danger"
+                        : "primary"
                 }
                 iconFillColor="white"
                 type="password"
@@ -89,7 +162,9 @@ const SignUpForm = ({
               <FlexContainer style={{ minHeight: "20px" }}>
                 {errors.password &&
                   touched.password && (
-                    <Paragraph size="sub">{errors.password}</Paragraph>
+                    <Paragraph appearance="danger" size="sub">
+                      {errors.password}
+                    </Paragraph>
                   )}
               </FlexContainer>
             </FlexContainer>
