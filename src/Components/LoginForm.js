@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import { css, withStyles } from "../withStyles";
 import { withFormik } from "formik";
 import Yup from "yup";
@@ -9,7 +10,7 @@ import Heading from "../Elements/Heading";
 import Paragraph from "../Elements/Paragraph";
 import Input from "../Elements/Input";
 
-const LoginForm = ({
+let LoginForm = ({
   styles,
   handleChange, //Formiks handleChange
   handleSubmit, //Formiks handleSubmit that we use down below, can be used to show loading indicator and to check if email exists etc.
@@ -18,6 +19,7 @@ const LoginForm = ({
   touched, //this gets set by handleBlur and is used to not show the error message until the user is finished writing and is moving on to another field
   handleBlur,
   isSubmitting,
+  loginRequest,
   ...props
   // gets set by handleSubmit and returns a bool, can be used to disable buttons while submitting
 }) => {
@@ -163,17 +165,18 @@ const formikForm = withFormik({
       .min(6, "Password must be 6 characters or longer")
       .required("Password is required")
   }),
-  handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
+  handleSubmit(values, { props, resetForm, setErrors, setSubmitting }) {
     //TODO: send a request to db and check if the email and password is correct
-    setTimeout(() => {
-      if (values.email === "test@test.com") {
-        setErrors({ email: "That email is invalid" });
-      } else {
-        console.log(values);
-        resetForm();
-      }
-      setSubmitting(false);
-    }, 2000);
+    props.loginRequest(values);
+    // setTimeout(() => {
+    //   if (values.email === "test@test.com") {
+    //     setErrors({ email: "That email is invalid" });
+    //   } else {
+    //     console.log(values);
+    //     resetForm();
+    //   }
+    //   setSubmitting(false);
+    // }, 2000);
   }
 })(LoginForm);
 

@@ -6,17 +6,17 @@ import thunk from "redux-thunk";
 
 import App from "./Containers/App";
 
+import feedbackApp from "../src/redux";
+
 /* Redux Store & Thunk */
-const reducers = [];
+const reducers = feedbackApp;
 const middleware = [thunk];
 
-/* Uncomment when first reducer has been created 
 const store = createStore(reducers, applyMiddleware(...middleware));
-*/
 
 const Root = () => {
   return (
-    <Provider store={{}}>
+    <Provider store={store}>
       <Router>
         <Route path="/" component={App} />
       </Router>
