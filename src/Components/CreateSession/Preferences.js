@@ -7,7 +7,6 @@ import Heading from "../../Elements/Heading";
 import Paragraph from "../../Elements/Paragraph";
 import Button from "../../Elements/Button";
 import Input from "../../Elements/Input";
-import InputWithIcon from "../../Elements/InputWithIcon";
 import Icon from "../../Elements/Icon";
 import Checkbox from "../../Elements/Checkbox";
 
@@ -29,7 +28,7 @@ const Preferences = ({ styles }) => (
       >
         <FlexContainer align="start">
           <Paragraph size="sub">Max attendees</Paragraph>
-          <InputWithIcon
+          <Input
             name="attendees"
             icon="fas fa-users"
             iconFillColor="white"
@@ -39,7 +38,7 @@ const Preferences = ({ styles }) => (
 
         <FlexContainer align="start">
           <Paragraph size="sub">Warning threshold</Paragraph>
-          <InputWithIcon
+          <Input
             name="threshold"
             icon="fas fa-exclamation-triangle"
             iconFillColor="white"
@@ -95,14 +94,13 @@ export default withStyles(({}) => {
   return {
     preferences: {
       ":nth-child(1n) div div input": {
-        margin: "0px",
-        borderRadius: "0px 4px 4px 0px"
+        margin: "0px"
       },
       ":nth-child(1n) div div svg": {
         verticalAlign: "0px"
       },
       ":nth-child(1n) div div span": {
-        padding: "12.5px"
+        padding: "13.5px"
       }
     }
   };

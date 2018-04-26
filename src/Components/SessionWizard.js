@@ -7,7 +7,6 @@ import Heading from "../Elements/Heading";
 import Paragraph from "../Elements/Paragraph";
 import Button from "../Elements/Button";
 import Input from "../Elements/Input";
-import InputWithIcon from "../Elements/InputWithIcon";
 import Icon from "../Elements/Icon";
 
 class SessionWizard extends React.Component {
