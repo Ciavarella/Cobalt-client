@@ -10,6 +10,7 @@ import Paragraph from "../../Elements/Paragraph";
 import Input from "../../Elements/Input";
 import Warning from "./Warning";
 import Engagement from "./Engagement";
+import Timer from "./Timer";
 
 /* TODO: Figure out better name */
 class LiveSessionHost extends React.Component {
@@ -29,7 +30,7 @@ class LiveSessionHost extends React.Component {
   }
 
   componentDidMount() {
-    this.dummyPercentages();
+    this.simulateDecline();
     let timerId = setInterval(this.displayTime, 1000);
   }
 
@@ -63,6 +64,19 @@ class LiveSessionHost extends React.Component {
     }, 1000);
   }
 
+  simulateDecline() {
+    let num1, num2;
+    num1 = 86;
+    const intervalId = setInterval(() => {
+      num1 <= 8 ? (num1 = 86) : num1--;
+      num2 = 100 - num1;
+      this.setState({
+        green: num1,
+        red: num2
+      });
+    }, 1000);
+  }
+
   render() {
     const { styles } = this.props;
     return (
@@ -74,9 +88,7 @@ class LiveSessionHost extends React.Component {
             direction="row"
             fullWidth="1"
           >
-            <div {...css(styles.timer)}>
-              <span>{this.state.time}</span>
-            </div>
+            <Timer {...this.state} />
             <Button appearance="secondary">Stop session</Button>
           </FlexContainer>
           <FlexContainer fullWidth="1" align="end" justify="end">
@@ -127,10 +139,6 @@ export default withStyles(({ themes, text, colors }) => {
       ":nth-child(1n) span": {
         zIndex: "999"
       }
-    },
-    timer: {
-      fontSize: "4.8rem",
-      color: "white"
     }
   };
 })(LiveSessionHost);
