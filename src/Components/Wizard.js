@@ -8,6 +8,7 @@ import Paragraph from "../Elements/Paragraph";
 import Button from "../Elements/Button";
 import Input from "../Elements/Input";
 import Icon from "../Elements/Icon";
+import Loader from "../Elements/Loader";
 
 class Wizard extends React.Component {
   constructor({ styles, handleSubmit = null, ...props }) {
@@ -104,16 +105,11 @@ class Wizard extends React.Component {
               appearance="secondary"
               style={{
                 width: "150px",
-                height: "50px",
-                position: "relative"
+                height: "55px"
               }}
             >
               {this.props.isLoading ? (
-                <Icon
-                  icon="fas fa-spinner"
-                  size="large"
-                  {...css(this.props.styles.spinner)}
-                />
+                <Loader size="large" {...css(this.props.styles.spinner)} />
               ) : this.state.currentPage === this.props.children.length - 1 ? (
                 `SUBMIT - ${this.state.currentPage + 1} / ${
                   this.props.children.length
@@ -139,16 +135,6 @@ export default withStyles(({ colors }) => {
         ":hover": {
           backgroundColor: colors.nightsky
         }
-      }
-    },
-    spinner: {
-      fontSize: "30px",
-      position: "absolute",
-      top: "calc(50% - 15px)",
-      left: "calc(50% - 15px)",
-
-      ":nth-child(1) svg": {
-        animation: "spin 1.5s ease infinite"
       }
     }
   };
