@@ -21,7 +21,8 @@ export default withStyles(({ colors }) => {
       width: "100%",
       backgroundColor: colors.danger,
       color: "white",
-      fontSize: "48px"
+      fontSize: "48px",
+      animation: "swipe 0.5s ease"
     }
   };
 })(Warning);
