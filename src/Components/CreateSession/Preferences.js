@@ -74,7 +74,7 @@ const Preferences = ({ styles }) => (
       <FlexContainer
         direction="row"
         justify="between"
-        style={{ width: "450px", paddingRight: "18px" }}
+        style={{ marginBottom: "20px", width: "450px", paddingRight: "18px" }}
       >
         <FlexContainer direction="row">
           <Checkbox name="comments" />

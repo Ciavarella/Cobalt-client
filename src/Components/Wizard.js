@@ -49,43 +49,31 @@ class Wizard extends React.Component {
     console.log(this.props.sessionId);
     return (
       <div {...css(this.props.styles.wizard)} {...this.props}>
-        <FlexContainer
-          direction="row"
-          justify="between"
-          style={{ padding: "40px" }}
-        >
-          <a
-            href=""
-            onClick={this.previousPage}
-            style={{
-              zIndex: "9999"
-            }}
-          >
-            <Icon
-              icon="fas fa-arrow-left"
-              fillColor="white"
-              style={{
-                border: "2px solid"
-              }}
-            />
-          </a>
-          <a
-            href="#"
-            style={{
-              zIndex: "9999"
-            }}
-          >
-            <Icon
-              icon="fas fa-times"
-              fillColor="white"
-              style={{
-                border: "2px solid"
-              }}
-            />
-          </a>
-        </FlexContainer>
         <form onSubmit={this.handleSubmit}>
           <Modal withOverlay>
+            <FlexContainer
+              align="end"
+              style={{
+                width: "100%",
+                position: "absolute",
+                top: "20px",
+                right: "20px"
+              }}
+            >
+              <Icon
+                icon="fas fa-times"
+                fillColor="white"
+                style={{
+                  borderRadius: "4px",
+                  width: "25px",
+                  height: "25px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center"
+                }}
+                {...css(this.props.styles.closeModal)}
+              />
+            </FlexContainer>
             {this.props.children.map((child, i) => (
               <li
                 key={i}
@@ -96,30 +84,49 @@ class Wizard extends React.Component {
                 {child}
               </li>
             ))}
-            <Button
-              onClick={
-                this.state.currentPage === this.props.children.length - 1
-                  ? ""
-                  : this.nextPage
-              }
-              appearance="secondary"
-              style={{
-                width: "150px",
-                height: "55px"
-              }}
+            <FlexContainer
+              direction="row"
+              justify={this.state.currentPage === 0 ? "end" : "between"}
+              style={{ width: "100%" }}
             >
-              {this.props.isLoading ? (
-                <Loader size="large" {...css(this.props.styles.spinner)} />
-              ) : this.state.currentPage === this.props.children.length - 1 ? (
-                `SUBMIT - ${this.state.currentPage + 1} / ${
-                  this.props.children.length
-                }`
+              {this.state.currentPage > 0 ? (
+                <Button
+                  onClick={this.previousPage}
+                  appearance="secondary"
+                  style={{
+                    marginBottom: "0px"
+                  }}
+                >
+                  BACK
+                </Button>
               ) : (
-                `NEXT - ${this.state.currentPage + 1} / ${
-                  this.props.children.length
-                }`
+                ""
               )}
-            </Button>
+              <Button
+                onClick={
+                  this.state.currentPage === this.props.children.length - 1
+                    ? ""
+                    : this.nextPage
+                }
+                appearance="secondary"
+                style={{
+                  marginBottom: "0px"
+                }}
+              >
+                {this.props.isLoading ? (
+                  <Loader size="small" {...css(this.props.styles.spinner)} />
+                ) : this.state.currentPage ===
+                this.props.children.length - 1 ? (
+                  `SUBMIT - ${this.state.currentPage + 1} / ${
+                    this.props.children.length
+                  }`
+                ) : (
+                  `NEXT - ${this.state.currentPage + 1} / ${
+                    this.props.children.length
+                  }`
+                )}
+              </Button>
+            </FlexContainer>
           </Modal>
         </form>
       </div>
@@ -127,7 +134,7 @@ class Wizard extends React.Component {
   }
 }
 
-export default withStyles(({ colors }) => {
+export default withStyles(({ colors, themes }) => {
   return {
     wizard: {
       ":nth-child(1) a > span": {
@@ -136,6 +143,7 @@ export default withStyles(({ colors }) => {
           backgroundColor: colors.nightsky
         }
       }
-    }
+    },
+    closeModal: themes.danger
   };
 })(Wizard);
