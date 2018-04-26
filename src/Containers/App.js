@@ -17,7 +17,7 @@ class App extends React.Component {
       <div className="App">
         <Switch>
           <Route exact path="/" component={withPublicRoot(LandingPage)} />
-          <Route exact path="/login" component={withPublicRoot(LoginForm)} />
+          <Route exact path="/login" component={withPublicRoot(Login)} />
           <Route
             exact
             path="/createsession"
