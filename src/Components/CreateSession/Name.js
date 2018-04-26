@@ -28,6 +28,6 @@ const Name = ({ styles }) => (
 
 export default withStyles(({}) => {
   return {
-    sessionWizard: {}
+    name: {}
   };
 })(Name);

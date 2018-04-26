@@ -8,8 +8,6 @@ import SessionStarted from "../../Components/CreateSession/SessionStarted";
 
 import Wizard from "../../Components/Wizard";
 
-import SessionWizard from "../../Components/SessionWizard";
-
 storiesOf("Wizard", module)
   .add("Basic usage", () => (
     <Wizard
@@ -28,29 +26,3 @@ storiesOf("Wizard", module)
       <SessionStarted />
     </Wizard>
   ));
-
-/*
-  class CreateSession extends React.Component {
-
-    handleSubmit(data) {
-      this.props.dipatch(createSession(data))
-    }
-
-    render() {
-      const { isFetching, sessionId } = this.props;
-
-      <Wizard 
-        onSubmit={<Redirect to="/something" />}
-      />
-        <One />
-        <Two />
-        <Three />
-      </Wizard>
-    }
-  }
-
-  const mapStateToProps = ({ session }) => ({
-    isFetching: session.isFetching,
-    sessionId: session.sessionId
-  })
-  */
