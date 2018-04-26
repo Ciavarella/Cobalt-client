@@ -85,34 +85,40 @@ class Wizard extends React.Component {
           </a>
         </FlexContainer>
         <form onSubmit={this.handleSubmit}>
-          <Modal withOverlay>
-            {this.props.children.map((child, i) => (
-              <li
-                key={i}
-                style={{
-                  display: i === this.state.currentPage ? "flex" : "none"
-                }}
+          {this.props.isLoading ? (
+            <Modal withOverlay>
+              <Paragraph>Loading...</Paragraph>
+            </Modal>
+          ) : (
+            <Modal withOverlay>
+              {this.props.children.map((child, i) => (
+                <li
+                  key={i}
+                  style={{
+                    display: i === this.state.currentPage ? "flex" : "none"
+                  }}
+                >
+                  {child}
+                </li>
+              ))}
+              <Button
+                onClick={
+                  this.state.currentPage === this.props.children.length - 1
+                    ? ""
+                    : this.nextPage
+                }
+                appearance="secondary"
               >
-                {child}
-              </li>
-            ))}
-            <Button
-              onClick={
-                this.state.currentPage === this.props.children.length - 1
-                  ? ""
-                  : this.nextPage
-              }
-              appearance="secondary"
-            >
-              {this.state.currentPage === this.props.children.length - 1
-                ? `SUBMIT - ${this.state.currentPage + 1} / ${
-                    this.props.children.length
-                  }`
-                : `NEXT - ${this.state.currentPage + 1} / ${
-                    this.props.children.length
-                  }`}
-            </Button>
-          </Modal>
+                {this.state.currentPage === this.props.children.length - 1
+                  ? `SUBMIT - ${this.state.currentPage + 1} / ${
+                      this.props.children.length
+                    }`
+                  : `NEXT - ${this.state.currentPage + 1} / ${
+                      this.props.children.length
+                    }`}
+              </Button>
+            </Modal>
+          )}
         </form>
       </div>
     );

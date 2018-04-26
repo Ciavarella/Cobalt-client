@@ -39,23 +39,21 @@ class CreateSession extends React.Component {
 
   render() {
     return this.state.sessionId ? (
-      <Modal>
+      <Modal withOverlay>
         <SessionStarted sessionId={this.state.sessionId} />
         <Button appearance="secondary">END</Button>
       </Modal>
     ) : (
-      <Wizard handleSubmit={this.handleSubmit}>
+      <Wizard
+        handleSubmit={this.handleSubmit}
+        isLoading={this.state.isFetching}
+      >
         <Name />
         <Preferences />
       </Wizard>
     );
   }
 }
-
-// const mapStateToProps = ({ session }) => ({
-//   isFetching: session.isFetching,
-//   sessionId: session.sessionId
-// });
 
 export default withStyles(({ colors }) => {
   return {
