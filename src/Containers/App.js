@@ -2,6 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
+import requireAuth from "../Components/RequireAuth";
 
 import NotFound from "../Views/NotFound";
 import SocketClient from "../Views/Client";
