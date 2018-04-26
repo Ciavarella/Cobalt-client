@@ -40,7 +40,7 @@ export default withStyles(({ themes }) => {
     textfield: {
       ":nth-child(1n) button": {
         marginRight: "0",
-        height: "41px",
+        height: "43px",
         borderRadius: "4px 0px 0px 4px"
       },
       ":nth-child(1n) input": {
