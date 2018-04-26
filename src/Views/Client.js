@@ -23,18 +23,24 @@ const withSocket = WrappedComponent => {
 
     componentDidMount() {
       this.socket.on("connect", () => {
-        this.socket.emit("session", this.sessionId);
+        this.socket.emit("joinSession", this.sessionId);
       });
 
       this.listenForEvents();
     }
 
     listenForEvents() {
-      this.socket.on("message", data => {
-        console.log(data);
+      this.socket.on("sessionUpdated", data => {
         this.setState({
           data: data
         });
+      });
+
+      this.socket.emit("attendeePayload", {
+        session: this.sessionId,
+        payload: {
+          engagement: "Some Payload"
+        }
       });
     }
 
@@ -48,7 +54,7 @@ const Client = ({ data }) => {
   return (
     <React.Fragment>
       <h1>Client View</h1>
-      <p>{JSON.stringify(data)}</p>
+      <pre>{JSON.stringify(data, null, 2)}</pre>
     </React.Fragment>
   );
 };
