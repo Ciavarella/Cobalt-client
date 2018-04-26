@@ -1,17 +1,26 @@
 import React from "react";
+
+import { connect } from "react-redux";
 import { css, withStyles } from "../withStyles";
 
 import LoginForm from "../Components/LoginForm";
+import { requestAuth } from "../redux/auth/actions";
 
-const Login = ({ styles, ...props }) => {
+let Login = ({ styles, dispatch, ...props }) => {
+  const loginRequest = data => {
+    dispatch(requestAuth(data));
+  };
+
   return (
     <div {...css(styles.content)}>
-      <LoginForm />
-
+      <LoginForm loginRequest={loginRequest} />
       <div {...css(styles.background)} />
     </div>
   );
 };
+
+/* redux connet */
+Login = connect()(Login);
 
 export default withStyles(({ colors, gradients }) => {
   return {

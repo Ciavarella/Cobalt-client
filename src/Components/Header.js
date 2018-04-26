@@ -34,7 +34,7 @@ const Header = ({ styles, ...props }) => (
         </List>
       </FlexContainer>
       <FlexContainer direction="row">
-        <Link to="dashboard">
+        <Link to="login">
           <Button appearance="secondary">Log in</Button>
         </Link>
         <Link to="signup">
