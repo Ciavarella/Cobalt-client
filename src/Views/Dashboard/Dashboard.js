@@ -17,17 +17,31 @@ import Settings from "./Settings";
 import openBoxIcon from "../../assets/open-box.svg";
 
 const Dashboard = ({ styles, ...props }) => {
+  let path = props.location.pathname.slice(11);
   return (
     <div {...css(styles.dashboard)}>
       <Navigation {...props} />
       <div {...css(styles.main)}>
         <div {...css(styles.header)}>
-          <FlexContainer direction="row" align="center" justify="end">
-            <Button appearance="secondary">New session</Button>
-            <Avatar
-              size="medium"
-              image="https://avatars1.githubusercontent.com/u/24225542?s=460&v=4"
-            />
+          <FlexContainer direction="row" align="center" justify="between">
+            <Heading size="2" style={{ margin: "0" }}>
+              {path == "profile"
+                ? "Profile Settings"
+                : path == "new"
+                  ? "New Session"
+                  : path == "upgrade"
+                    ? "Upgrade Plan"
+                    : path == "settings"
+                      ? "Settings"
+                      : "Dashboard"}
+            </Heading>
+            <FlexContainer direction="row" align="center" justify="end">
+              <Button appearance="secondary">New session</Button>
+              <Avatar
+                size="medium"
+                image="https://avatars1.githubusercontent.com/u/24225542?s=460&v=4"
+              />
+            </FlexContainer>
           </FlexContainer>
         </div>
         <Switch location={props.location}>
