@@ -87,13 +87,13 @@ class LiveSessionHost extends React.Component {
             {...css(styles.graphRed)}
             style={{ width: `${this.state.red}%` }}
           >
-            <span>{this.state.red}%</span>
+            <span>{this.state.red > 10 ? `${this.state.red}%` : null}</span>
           </div>
           <div
             {...css(styles.graphGreen)}
             style={{ width: `${this.state.green}%` }}
           >
-            <span>{this.state.green}%</span>
+            <span>{this.state.green > 10 ? `${this.state.green}%` : null}</span>
           </div>
         </div>
       </div>
