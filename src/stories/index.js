@@ -19,6 +19,7 @@ import Checkbox from "./Elements/Checkbox";
 import Notification from "./Elements/Notification";
 import List from "./Elements/List";
 import CopyTextfield from "./Elements/CopyTextfield";
+import Loader from "./Elements/Loader";
 
 /* Views */
 import NotFound from "./Views/NotFound";
