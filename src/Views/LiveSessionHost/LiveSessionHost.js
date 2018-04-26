@@ -1,5 +1,6 @@
 import React from "react";
 import { css, withStyles } from "../../withStyles";
+import moment from "moment";
 
 import FlexContainer from "../../Containers/FlexContainer";
 import CopyTextfield from "../../Elements/CopyTextfield";
@@ -17,26 +18,34 @@ class LiveSessionHost extends React.Component {
       audience: 60,
       threshold: 0.5,
       red: "24%",
-      green: "76%"
+      green: "76%",
+      time: "00:00"
     };
+
+    this.displayTime = this.displayTime.bind(this);
+    this.counter = 0;
   }
 
   componentDidMount() {
     this.dummyPercentages();
+    let timerId = setInterval(this.displayTime, 1000);
   }
 
-  dummyData() {
-    /* SIMULATE A STEADY STREAM OF DATA */
-    let sum = this.state.sum;
-    const intervalId = setInterval(() => {
-      sum >= this.state.audience
-        ? (sum += Math.round(Math.random() * 1) - 1)
-        : (sum += Math.round(Math.random() * 1) - 1);
-      this.setState({
-        sum: sum
-      });
-      this.calculateScale(sum);
-    }, 300);
+  displayTime() {
+    let time =
+      this.counter >= 3600
+        ? moment()
+            .hour(0)
+            .minute(0)
+            .second(this.counter++)
+            .format("h:mm:ss")
+        : moment()
+            .minute(0)
+            .second(this.counter++)
+            .format("mm:ss");
+    this.setState({
+      time: time
+    });
   }
 
   dummyPercentages() {
@@ -49,10 +58,8 @@ class LiveSessionHost extends React.Component {
         green: num1,
         red: num2
       });
-    }, 1500);
+    }, 1000);
   }
-
-  calculatePer;
 
   render() {
     const { styles } = this.props;
@@ -66,7 +73,7 @@ class LiveSessionHost extends React.Component {
             fullWidth="1"
           >
             <div {...css(styles.timer)}>
-              <span>16:51</span>
+              <span>{this.state.time}</span>
             </div>
             <Button appearance="secondary">Stop session</Button>
           </FlexContainer>
@@ -203,7 +210,7 @@ export default withStyles(({ themes, text, colors }) => {
     },
     timer: {
       fontSize: "4.8rem",
-      color: colors.carbon
+      color: "white"
     }
   };
 })(LiveSessionHost);

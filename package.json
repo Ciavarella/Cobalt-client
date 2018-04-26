@@ -19,6 +19,7 @@
     "@fortawesome/react-fontawesome": "^0.0.18",
     "aphrodite": "^2.1.1",
     "formik": "^0.11.11",
+    "moment": "^2.22.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
