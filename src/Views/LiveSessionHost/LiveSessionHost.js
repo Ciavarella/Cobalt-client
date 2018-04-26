@@ -71,7 +71,7 @@ class LiveSessionHost extends React.Component {
             <Button appearance="secondary">Stop session</Button>
           </FlexContainer>
           <FlexContainer fullWidth="1" align="end" justify="end">
-            <Heading size="4">284 Attendees</Heading>
+            <Heading size="4">{this.state.audience} attendees</Heading>
             <CopyTextfield url="http://feed.io/xby6Jnb" />
           </FlexContainer>
         </div>
@@ -120,6 +120,7 @@ export default withStyles(({ themes, text, colors }) => {
       height: "100%",
       position: "absolute",
       display: "flex",
+      overflow: "hidden",
       flexDirection: "row",
       ":nth-child(1n) span": {
         zIndex: "999"
