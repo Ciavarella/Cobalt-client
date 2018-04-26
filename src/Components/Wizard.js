@@ -84,40 +84,47 @@ class Wizard extends React.Component {
           </a>
         </FlexContainer>
         <form onSubmit={this.handleSubmit}>
-          {this.props.isLoading ? (
-            <Modal withOverlay>
-              <Paragraph>Loading...</Paragraph>
-            </Modal>
-          ) : (
-            <Modal withOverlay>
-              {this.props.children.map((child, i) => (
-                <li
-                  key={i}
-                  style={{
-                    display: i === this.state.currentPage ? "flex" : "none"
-                  }}
-                >
-                  {child}
-                </li>
-              ))}
-              <Button
-                onClick={
-                  this.state.currentPage === this.props.children.length - 1
-                    ? ""
-                    : this.nextPage
-                }
-                appearance="secondary"
+          <Modal withOverlay>
+            {this.props.children.map((child, i) => (
+              <li
+                key={i}
+                style={{
+                  display: i === this.state.currentPage ? "flex" : "none"
+                }}
               >
-                {this.state.currentPage === this.props.children.length - 1
-                  ? `SUBMIT - ${this.state.currentPage + 1} / ${
-                      this.props.children.length
-                    }`
-                  : `NEXT - ${this.state.currentPage + 1} / ${
-                      this.props.children.length
-                    }`}
-              </Button>
-            </Modal>
-          )}
+                {child}
+              </li>
+            ))}
+            <Button
+              onClick={
+                this.state.currentPage === this.props.children.length - 1
+                  ? ""
+                  : this.nextPage
+              }
+              appearance="secondary"
+              style={{
+                width: "150px",
+                height: "50px",
+                position: "relative"
+              }}
+            >
+              {this.props.isLoading ? (
+                <Icon
+                  icon="fas fa-spinner"
+                  size="large"
+                  {...css(this.props.styles.spinner)}
+                />
+              ) : this.state.currentPage === this.props.children.length - 1 ? (
+                `SUBMIT - ${this.state.currentPage + 1} / ${
+                  this.props.children.length
+                }`
+              ) : (
+                `NEXT - ${this.state.currentPage + 1} / ${
+                  this.props.children.length
+                }`
+              )}
+            </Button>
+          </Modal>
         </form>
       </div>
     );
@@ -132,6 +139,16 @@ export default withStyles(({ colors }) => {
         ":hover": {
           backgroundColor: colors.nightsky
         }
+      }
+    },
+    spinner: {
+      fontSize: "30px",
+      position: "absolute",
+      top: "calc(50% - 15px)",
+      left: "calc(50% - 15px)",
+
+      ":nth-child(1) svg": {
+        animation: "spin 1.5s ease infinite"
       }
     }
   };
