@@ -26,13 +26,13 @@ class LiveSessionHost extends React.Component {
       /* ------ */
       attendees: 0,
       settings: null,
-      threshold: 90,
+      threshold: 50,
       red: "50",
       green: "50",
       time: "00:00",
       data: {},
       presentation: {
-        isPaused: false,
+        isPaused: true,
         isStopped: false,
         currentSection: "Redux"
       }
@@ -61,11 +61,17 @@ class LiveSessionHost extends React.Component {
       });
       this.listenForEvents();
       return;
+      let timerId = setInterval(this.displayTime, 1000);
     }
 
     console.log("Debugging...");
-    let timerId = setInterval(this.displayTime, 1000);
     this.simulateDecline();
+  }
+
+  getPercentageFromAvg(avg) {
+    let perc = Math.round((avg + 5) / 10 * 100);
+
+    return perc;
   }
 
   listenForEvents() {
@@ -75,7 +81,8 @@ class LiveSessionHost extends React.Component {
         red: data.engagement.negative,
         green: data.engagement.positive,
         attendees: data.attendees,
-        settings: data.settings
+        settings: data.settings,
+        average: data.engagement.average
       });
     });
   }
@@ -175,12 +182,14 @@ class LiveSessionHost extends React.Component {
             <Button appearance="danger" onClick={this.stopSession}>
               Stop session
             </Button>
+            <Heading size="2" appearance="white">
+              {this.state.attendees} attendees
+            </Heading>
             <Button appearance="secondary" onClick={this.pauseSession}>
               {this.state.presentation.isPaused ? "Continue" : "Pause"}
             </Button>
           </FlexContainer>
           <FlexContainer fullWidth="1" align="end" justify="end">
-            <Heading size="4">{this.state.attendees} attendees</Heading>
             <CopyTextfield url="http://feed.io/xby6Jnb" />
           </FlexContainer>
         </div>
