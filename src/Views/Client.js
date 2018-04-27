@@ -1,5 +1,8 @@
 import React from "react";
 
+import Button from "../Elements/Button";
+import FlexContainer from "../Containers/FlexContainer";
+
 import io from "socket.io-client";
 
 const withSocket = WrappedComponent => {
@@ -44,17 +47,35 @@ const withSocket = WrappedComponent => {
       });
     }
 
+    handleVote = value => event =>
+      this.socket.emit("attendeePayload", {
+        session: this.sessionId,
+        payload: {
+          engagement: value
+        }
+      });
+
     render() {
-      return <WrappedComponent data={this.state.data} {...this.props} />;
+      return (
+        <WrappedComponent
+          handleVote={this.handleVote}
+          data={this.state.data}
+          {...this.props}
+        />
+      );
     }
   };
 };
 
-const Client = ({ data }) => {
+const Client = ({ data, handleVote }) => {
   return (
     <React.Fragment>
       <h1>Client View</h1>
       <pre>{JSON.stringify(data, null, 2)}</pre>
+      <FlexContainer justify="center" align="center">
+        <Button onClick={handleVote(10)}>Faster</Button>
+        <Button onClick={handleVote(1)}>Slower</Button>
+      </FlexContainer>
     </React.Fragment>
   );
 };
