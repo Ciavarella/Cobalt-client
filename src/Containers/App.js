@@ -9,6 +9,7 @@ import Dashboard from "../Views/Dashboard/Dashboard";
 import Login from "../Views/Login";
 import withPublicRoot from "../Containers/PublicRoot";
 import LandingPage from "../Views/LandingPage";
+import CreateSession from "../Views/CreateSession";
 
 class App extends React.Component {
   render() {
@@ -17,6 +18,11 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={withPublicRoot(LandingPage)} />
           <Route exact path="/login" component={withPublicRoot(Login)} />
+          <Route
+            exact
+            path="/createsession"
+            component={withPublicRoot(CreateSession)}
+          />
           <Route path="/session/:sessionId" component={SocketClient} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="*" component={NotFound} />

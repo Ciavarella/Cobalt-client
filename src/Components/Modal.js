@@ -19,7 +19,8 @@ export default withStyles(({ colors, rounded, shadow }) => {
     modal: {
       backgroundColor: colors.carbon,
       padding: "40px",
-      zIndex: "100"
+      zIndex: "100",
+      position: "relative"
     },
     overlay: {
       width: "100%",
@@ -27,7 +28,7 @@ export default withStyles(({ colors, rounded, shadow }) => {
       position: "fixed",
       top: "0",
       left: "0",
-      zIndex: "99",
+      zIndex: "999",
       display: "flex",
       justifyContent: "center",
       alignItems: "center"
