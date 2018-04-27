@@ -11,10 +11,11 @@ class Notifications extends Component {
     super(props);
     this.styles = styles;
     this.state = {
-      notifications: mockNotifications
+      notifications: mockNotifications,
+      removedNotifications: []
     };
     let id = 0;
-    let adder = setInterval(() => {
+    this.adder = setInterval(() => {
       id++;
       let newNotification = {
         _id: id,
@@ -24,17 +25,32 @@ class Notifications extends Component {
       this.updateMock();
     }, 4000);
 
+    this.removeNotification = setInterval(() => {
+      this.setState({
+        ...this.state,
+        removedNotifications: [
+          ...this.state.removedNotifications,
+          mockNotifications[0]
+        ]
+      });
+      mockNotifications.shift();
+      this.updateMock();
+    }, 10000);
+
     this.handleClick = this.handleClick.bind(this);
   }
 
   updateMock() {
     this.setState({
-      notification: mockNotifications
+      ...this.state,
+      notifications: mockNotifications
     });
   }
 
   clear(e) {
-    clearInterval(adder);
+    clearInterval(this.adder);
+    clearInterval(this.removeNotification);
+    console.log(this.state);
   }
 
   handleClick(e) {
