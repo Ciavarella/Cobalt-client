@@ -4,7 +4,7 @@ import { css, withStyles } from "../withStyles";
 import Notification from "../Elements/Notification";
 import FlexContainer from "../Containers/FlexContainer";
 
-const mockNotifications = [];
+let mockNotifications = [];
 
 class Notifications extends Component {
   constructor({ styles, ...props }) {
@@ -14,6 +14,7 @@ class Notifications extends Component {
       notifications: mockNotifications,
       removedNotifications: []
     };
+    /**Just to simulate notifications coming in */
     let id = 0;
     this.adder = setInterval(() => {
       id++;
@@ -23,9 +24,10 @@ class Notifications extends Component {
         notificationType: id % 2 == 0 ? "success" : "danger"
       };
       mockNotifications.push(newNotification);
-      this.updateMock();
-    }, 5000);
+      this.updateState();
+    }, 2000);
 
+    /**Removes notifications after some time and saves the removed ones on a different array */
     this.removeNotification = setInterval(() => {
       this.setState({
         ...this.state,
@@ -35,13 +37,13 @@ class Notifications extends Component {
         ]
       });
       mockNotifications.shift();
-      this.updateMock();
-    }, 10000);
+      this.updateState();
+    }, 5000);
 
     this.handleClick = this.handleClick.bind(this);
   }
 
-  updateMock() {
+  updateState() {
     this.setState({
       ...this.state,
       notifications: mockNotifications
@@ -60,7 +62,7 @@ class Notifications extends Component {
         mockNotifications.splice(i, 1);
       }
     });
-    this.updateMock();
+    this.updateState();
   }
 
   render() {
@@ -78,6 +80,7 @@ class Notifications extends Component {
             </Notification>
           );
         })}
+        {/* Just to be able to clear the interval*/}
         <button style={{ color: "black" }} onClick={this.clear.bind(this)}>
           Stop
         </button>
