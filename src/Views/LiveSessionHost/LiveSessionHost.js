@@ -5,6 +5,7 @@ import moment from "moment";
 import FlexContainer from "../../Containers/FlexContainer";
 import CopyTextfield from "../../Elements/CopyTextfield";
 import Button from "../../Elements/Button";
+import Notification from "../../Elements/Notification";
 import Heading from "../../Elements/Heading";
 import Paragraph from "../../Elements/Paragraph";
 import Input from "../../Elements/Input";
@@ -12,29 +13,124 @@ import Warning from "./Warning";
 import Engagement from "./Engagement";
 import Timer from "./Timer";
 
+/* Socket */
+import io from "socket.io-client";
+
 /* TODO: Figure out better name */
 class LiveSessionHost extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sum: 60,
-      audience: 60,
-      threshold: 35,
+      /* SIMULATE VALUES FOR DEBUGGING */
+      debug: false,
+      /* ------ */
+      attendees: 0,
+      settings: null,
+      threshold: 90,
       red: "50",
       green: "50",
-      time: "00:00"
+      time: "00:00",
+      data: {},
+      presentation: {
+        isPaused: false,
+        isStopped: false,
+        currentSection: "Redux"
+      }
     };
 
+    const {
+      match: {
+        params: { sessionId }
+      }
+    } = this.props;
+
+    this.sessionId = sessionId;
+    this.handleClick = this.handleClick.bind(this);
+    this.updateSession = this.updateSession.bind(this);
+    this.pauseSession = this.pauseSession.bind(this);
+    this.stopSession = this.stopSession.bind(this);
     this.displayTime = this.displayTime.bind(this);
     this.counter = 0;
+    this.socket = io(`http://10.126.4.146:7770`);
   }
 
   componentDidMount() {
-    this.simulateDecline();
+    if (this.state.debug === false) {
+      this.socket.on("connect", () => {
+        this.socket.emit("joinSession", this.sessionId);
+      });
+      this.listenForEvents();
+      return;
+    }
+
+    console.log("Debugging...");
     let timerId = setInterval(this.displayTime, 1000);
+    this.simulateDecline();
+  }
+
+  listenForEvents() {
+    this.socket.on("updateHost", data => {
+      console.log(data);
+      this.setState({
+        red: data.engagement.negative,
+        green: data.engagement.positive,
+        attendees: data.attendees,
+        settings: data.settings
+      });
+    });
+  }
+
+  handleClick() {
+    this.setState(
+      {
+        presentation: {
+          ...this.state.presentation,
+          isStopped: true
+        }
+      },
+      () => {
+        this.socket.emit("presenterPayload", {
+          session: this.sessionId,
+          payload: this.state.presentation
+        });
+      }
+    );
+  }
+
+  updateSession() {
+    this.socket.emit("presenterPayload", {
+      session: this.sessionId,
+      payload: this.state.presentation
+    });
+  }
+
+  stopSession() {
+    this.setState(
+      {
+        presentation: {
+          ...this.state.presentation,
+          isStopped: true
+        }
+      },
+      this.updateSession
+    );
+  }
+
+  pauseSession() {
+    this.setState(
+      {
+        presentation: {
+          ...this.state.presentation,
+          isPaused: !this.state.presentation.isPaused
+        }
+      },
+      this.updateSession
+    );
   }
 
   displayTime() {
+    if (this.state.presentation.isPaused) return;
+
     let time =
       this.counter >= 3600
         ? moment()
@@ -49,19 +145,6 @@ class LiveSessionHost extends React.Component {
     this.setState({
       time: time
     });
-  }
-
-  dummyPercentages() {
-    let num1, num2;
-    num1 = Math.round(Math.random() * 99);
-    const intervalId = setInterval(() => {
-      num1 = Math.round(Math.random() * 99);
-      num2 = 100 - num1;
-      this.setState({
-        green: num1,
-        red: num2
-      });
-    }, 1000);
   }
 
   simulateDecline() {
@@ -89,10 +172,15 @@ class LiveSessionHost extends React.Component {
             fullWidth="1"
           >
             <Timer {...this.state} />
-            <Button appearance="secondary">Stop session</Button>
+            <Button appearance="danger" onClick={this.stopSession}>
+              Stop session
+            </Button>
+            <Button appearance="secondary" onClick={this.pauseSession}>
+              {this.state.presentation.isPaused ? "Continue" : "Pause"}
+            </Button>
           </FlexContainer>
           <FlexContainer fullWidth="1" align="end" justify="end">
-            <Heading size="4">{this.state.audience} attendees</Heading>
+            <Heading size="4">{this.state.attendees} attendees</Heading>
             <CopyTextfield url="http://feed.io/xby6Jnb" />
           </FlexContainer>
         </div>
