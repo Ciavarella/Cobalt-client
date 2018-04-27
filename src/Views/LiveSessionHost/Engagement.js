@@ -2,7 +2,6 @@ import React from "react";
 import { css, withStyles } from "../../withStyles";
 
 const Engagement = ({ styles, ...props }) => {
-  console.log(props);
   return (
     <React.Fragment>
       <div {...css(styles.graphRed)} style={{ width: `${props.red}%` }}>
