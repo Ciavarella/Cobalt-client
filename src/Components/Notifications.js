@@ -19,11 +19,12 @@ class Notifications extends Component {
       id++;
       let newNotification = {
         _id: id,
-        text: `Some text here ${id}`
+        text: `Some text here ${id}`,
+        notificationType: id % 2 == 0 ? "success" : "danger"
       };
       mockNotifications.push(newNotification);
       this.updateMock();
-    }, 4000);
+    }, 5000);
 
     this.removeNotification = setInterval(() => {
       this.setState({
@@ -68,6 +69,7 @@ class Notifications extends Component {
         {this.state.notifications.map(notification => {
           return (
             <Notification
+              appearance={notification.notificationType}
               id={notification._id}
               key={notification._id}
               handleClick={this.handleClick}
