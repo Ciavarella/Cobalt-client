@@ -20,24 +20,25 @@ class VoteSlider extends React.Component {
     const voteCircleColor = this.props.styles.voteCircleColor._definition;
     const voteCircleFontColor = this.props.styles.voteCircleFontColor
       ._definition;
-    console.log(voteCircleFontColor);
 
     const HEIGHT = canvas.height;
     const WIDTH = canvas.width;
     let GRAVITY = 1;
     let isDraggable = false;
     let onCoolDown = false;
-    const cooldownTime = 15;
+    const cooldownTime = 10;
     let cooldownTimer = cooldownTime;
+    let loader = 0;
 
-    canvas.addEventListener("mousedown", function() {
+    const onMouseDown = () => {
       if (!onCoolDown) {
         isDraggable = true;
         circleAnimation.reset();
         arcPosition.last.y = arcPosition.y;
       }
-    });
-    canvas.addEventListener("mouseup", function() {
+    };
+
+    const onMouseUp = () => {
       if (!onCoolDown) {
         isDraggable = false;
 
@@ -53,17 +54,28 @@ class VoteSlider extends React.Component {
           circleAnimation.setReset(true);
         }
       }
-    });
-    canvas.addEventListener("mousemove", function(event) {
+    };
+
+    const onMouseMove = yPosition => {
       if (!onCoolDown) {
         if (isDraggable) {
-          const mousePos = event.clientY;
+          const mousePos = yPosition;
           if (mousePos > 35 && mousePos < HEIGHT - 35) {
             arcPosition.y = mousePos;
           }
         }
       }
-    });
+    };
+
+    canvas.addEventListener("mousedown", onMouseDown);
+    canvas.addEventListener("mouseup", onMouseUp);
+    canvas.addEventListener("mousemove", ({ clientY }) => onMouseMove(clientY));
+
+    canvas.addEventListener("touchstart", onMouseDown);
+    canvas.addEventListener("touchend", onMouseUp);
+    canvas.addEventListener("touchmove", ({ touches }) =>
+      onMouseMove(touches[0].clientY)
+    );
 
     const CircleAnimation = () => {
       let t = 0,
@@ -139,6 +151,26 @@ class VoteSlider extends React.Component {
         ctx.fillStyle = voteCircleFontColor;
         ctx.fillText(cooldownTimer, arcPosition.x, arcPosition.y);
         ctx.fill();
+
+        if (loader >= 0 && loader <= 2) {
+          loader += 2 / cooldownTime / 60;
+
+          if (loader > 2) {
+            loader = 0;
+          }
+        }
+
+        ctx.beginPath();
+        ctx.arc(
+          arcPosition.x,
+          arcPosition.y,
+          50 - 2.5,
+          1.5 * Math.PI,
+          (loader + 1.5) * Math.PI
+        );
+        ctx.strokeStyle = "#FFF";
+        ctx.lineWidth = 5;
+        ctx.stroke();
       }
 
       if (circleAnimation.getReset()) moveToMiddle();
@@ -207,12 +239,12 @@ class VoteSlider extends React.Component {
       <FlexContainer
         align="center"
         justify="center"
-        style={{ height: "100%", width: "100%" }}
+        style={{ height: "100vh", width: "100vw" }}
       >
         <canvas
           id="myCanvas"
-          width="300"
-          height="700"
+          height="640"
+          width="400"
           {...css(
             this.props.styles.voteSlider,
             this.props.styles.background,
@@ -233,7 +265,7 @@ export default withStyles(({ themes, colors, rounded }) => {
       background: `linear-gradient(${colors.success}, ${colors.danger})`
     },
     rounded: rounded,
-    voteCircleColor: colors.carbon,
+    voteCircleColor: colors.nightsky,
     voteCircleFontColor: colors.aluminum
   };
 })(VoteSlider);
