@@ -25,7 +25,7 @@ class App extends React.Component {
             component={withPublicRoot(CreateSession)}
           />
           <Route path="/session/:sessionId" component={SocketClient} />
-          <Route path="/host" component={LiveSessionHost} />
+          <Route path="/host/:sessionId" component={LiveSessionHost} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="*" component={NotFound} />
         </Switch>
