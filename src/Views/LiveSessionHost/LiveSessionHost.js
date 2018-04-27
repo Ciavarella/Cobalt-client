@@ -74,7 +74,7 @@ class LiveSessionHost extends React.Component {
         green: num1,
         red: num2
       });
-    }, 1000);
+    }, 300);
   }
 
   render() {
