@@ -19,6 +19,7 @@ import Checkbox from "./Elements/Checkbox";
 import Notification from "./Elements/Notification";
 import List from "./Elements/List";
 import CopyTextfield from "./Elements/CopyTextfield";
+import Loader from "./Elements/Loader";
 
 /* Views */
 import NotFound from "./Views/NotFound";
@@ -35,6 +36,7 @@ import SignUpForm from "./Components/SignUpForm";
 import JoinSession from "./Components/JoinSession";
 import SessionItem from "./Components/SessionItem";
 import SessionItemCard from "./Components/SessionItemCard";
+import Wizard from "./Components/Wizard";
 
 /* Containers */
 import FlexContainer from "./Containers/FlexContainer";

@@ -8,8 +8,6 @@ const Heading = ({ size, appearance = "default", styles, ...props }) => {
 
 export default withStyles(({ themes }) => {
   return {
-    heading: {},
-
     /* Color */
     default: {
       color: themes.default.color

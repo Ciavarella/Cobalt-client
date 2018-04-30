@@ -80,7 +80,7 @@ export default withStyles(({ themes, text, colors }) => {
     inputPrefix: {
       backgroundColor: colors.secondary,
       color: "white",
-      height: "40px",
+      height: "43px",
       display: "flex",
       alignItems: "center",
       padding: "16px",

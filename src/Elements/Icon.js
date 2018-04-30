@@ -17,7 +17,9 @@ import {
   faBriefcase,
   faBuilding,
   faBoxes,
-  faQuestion
+  faQuestion,
+  faExclamationTriangle,
+  faSpinner
 } from "@fortawesome/fontawesome-free-solid";
 
 const Icon = ({
@@ -70,6 +72,12 @@ const Icon = ({
       break;
     case "fas fa-boxes":
       faIcon = faBoxes;
+      break;
+    case "fas fa-exclamation-triangle":
+      faIcon = faExclamationTriangle;
+      break;
+    case "fas fa-spinner":
+      faIcon = faSpinner;
       break;
     default:
       faIcon = faQuestion;

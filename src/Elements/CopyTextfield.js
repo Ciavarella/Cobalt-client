@@ -21,7 +21,7 @@ const CopyTextfield = ({ url = "Url should go here", styles, ...props }) => {
   return (
     <div {...css(styles.textfield)} {...props}>
       <FlexContainer direction="row">
-        <Button appearance="primary" onClick={copyToClipboard}>
+        <Button appearance="secondary" onClick={copyToClipboard}>
           Copy
         </Button>
         <Input
@@ -40,7 +40,7 @@ export default withStyles(({ themes }) => {
     textfield: {
       ":nth-child(1n) button": {
         marginRight: "0",
-        height: "41px",
+        height: "43px",
         borderRadius: "4px 0px 0px 4px"
       },
       ":nth-child(1n) input": {

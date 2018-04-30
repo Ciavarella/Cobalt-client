@@ -1,5 +1,8 @@
 import React from "react";
 
+import Button from "../Elements/Button";
+import FlexContainer from "../Containers/FlexContainer";
+
 import io from "socket.io-client";
 
 const withSocket = WrappedComponent => {
@@ -18,7 +21,7 @@ const withSocket = WrappedComponent => {
       } = this.props;
 
       this.sessionId = sessionId;
-      this.socket = io(`${process.env.REACT_APP_API_BASE_URL}`);
+      this.socket = io(`http://10.126.4.146:7770`);
     }
 
     componentDidMount() {
@@ -30,31 +33,48 @@ const withSocket = WrappedComponent => {
     }
 
     listenForEvents() {
-      this.socket.on("sessionUpdated", data => {
+      this.socket.on("updateClient", data => {
         this.setState({
           data: data
         });
       });
 
-      this.socket.emit("attendeePayload", {
-        session: this.sessionId,
-        payload: {
-          engagement: "Some Payload"
-        }
+      this.socket.on("welcomeMessage", data => {
+        this.setState({
+          presentation: data
+        });
       });
     }
 
+    handleVote = value => event =>
+      this.socket.emit("attendeePayload", {
+        session: this.sessionId,
+        payload: {
+          engagement: value
+        }
+      });
+
     render() {
-      return <WrappedComponent data={this.state.data} {...this.props} />;
+      return (
+        <WrappedComponent
+          handleVote={this.handleVote}
+          data={this.state}
+          {...this.props}
+        />
+      );
     }
   };
 };
 
-const Client = ({ data }) => {
+const Client = ({ data, handleVote }) => {
   return (
     <React.Fragment>
       <h1>Client View</h1>
       <pre>{JSON.stringify(data, null, 2)}</pre>
+      <FlexContainer justify="center" align="center">
+        <Button onClick={handleVote(1)}>Faster</Button>
+        <Button onClick={handleVote(-1)}>Slower</Button>
+      </FlexContainer>
     </React.Fragment>
   );
 };

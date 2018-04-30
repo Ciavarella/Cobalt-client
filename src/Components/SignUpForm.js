@@ -221,7 +221,8 @@ export default withStyles(({ themes, text, colors }) => {
   return {
     signUpForm: {
       ":nth-child(1n) form input": {
-        margin: "0"
+        margin: "0",
+        borderRadius: "4px 0px 0px 4px"
       },
       ":nth-child(1n) label": {
         marginTop: "20px",

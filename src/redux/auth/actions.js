@@ -19,12 +19,32 @@ export const requestAuth = credentials => dispatch => {
 
   fetch(`${process.env.REACT_APP_API_BASE_URL}/api/auth`, {
     method: "POST",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(credentials)
   })
-    .then(response => response.json())
+    .then(handleResponse)
     .then(data => dispatch(requestAuthSuccess(data)))
     .catch(err => dispatch(requestAuthFail(err)));
+};
+
+export const verifyAuth = () => dispatch => {
+  dispatch(requestAuthStart());
+
+  fetch(`${process.env.REACT_APP_API_BASE_URL}/api/auth`, {
+    credentials: "include"
+  })
+    .then(handleResponse)
+    .then(data => dispatch(requestAuthSuccess(data)))
+    .catch(err => dispatch(requestAuthFail(err)));
+};
+
+/*  Should move this to a utils file */
+const handleResponse = response => {
+  if (!response.ok) {
+    throw new Error(response.statusText);
+  }
+  return response.json();
 };

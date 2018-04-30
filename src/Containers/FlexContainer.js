@@ -7,6 +7,7 @@ const FlexContainer = ({
   direction = "column",
   align = "center",
   justify = "start",
+  fullWidth = null,
   flex = null,
   ...props
 }) => {
@@ -21,7 +22,8 @@ const FlexContainer = ({
         styles[direction],
         styles[alignItems],
         styles[justifyContent],
-        styles[flexSize]
+        styles[flexSize],
+        styles[fullWidth]
       )}
       {...props}
     />
@@ -75,6 +77,9 @@ export default withStyles(() => {
     },
     flex4: {
       flex: "4"
+    },
+    "1": {
+      width: "100%"
     }
   };
 })(FlexContainer);
