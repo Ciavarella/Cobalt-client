@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { css, withStyles } from "../withStyles";
+import { CSSTransitionGroup } from "react-transition-group";
 
 import Notification from "../Elements/Notification";
 import FlexContainer from "../Containers/FlexContainer";
@@ -38,7 +39,7 @@ class Notifications extends Component {
       });
       mockNotifications.shift();
       this.updateState();
-    }, 5000);
+    }, 4000);
 
     this.handleClick = this.handleClick.bind(this);
   }
@@ -68,22 +69,28 @@ class Notifications extends Component {
   render() {
     return (
       <div {...css(this.styles.notifications)}>
-        {this.state.notifications.map(notification => {
-          return (
-            <Notification
-              appearance={notification.notificationType}
-              id={notification._id}
-              key={notification._id}
-              handleClick={this.handleClick}
-            >
-              {notification.text}
-            </Notification>
-          );
-        })}
-        {/* Just to be able to clear the interval*/}
-        <button style={{ color: "black" }} onClick={this.clear.bind(this)}>
-          Stop
-        </button>
+        <CSSTransitionGroup
+          transitionName="notification"
+          transitionEnterTimeout={5000}
+          transitionLeaveTimeout={3000}
+        >
+          {this.state.notifications.map(notification => {
+            return (
+              <Notification
+                appearance={notification.notificationType}
+                id={notification._id}
+                key={notification._id}
+                handleClick={this.handleClick}
+              >
+                {notification.text}
+              </Notification>
+            );
+          })}
+          {/* Just to be able to clear the interval*/}
+          <button style={{ color: "black" }} onClick={this.clear.bind(this)}>
+            Stop
+          </button>
+        </CSSTransitionGroup>
       </div>
     );
   }
