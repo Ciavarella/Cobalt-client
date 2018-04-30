@@ -4,6 +4,8 @@ import {
   REQUEST_AUTH_FAIL
 } from "./constants";
 
+import { handleResponse } from "../utils/utils";
+
 export const requestAuthStart = () => ({ type: REQUEST_AUTH_START });
 export const requestAuthSuccess = data => ({
   type: REQUEST_AUTH_SUCCESS,
@@ -39,12 +41,4 @@ export const verifyAuth = () => dispatch => {
     .then(handleResponse)
     .then(data => dispatch(requestAuthSuccess(data)))
     .catch(err => dispatch(requestAuthFail(err)));
-};
-
-/*  Should move this to a utils file */
-const handleResponse = response => {
-  if (!response.ok) {
-    throw new Error(response.statusText);
-  }
-  return response.json();
 };
