@@ -11,6 +11,7 @@ import Input from "../../Elements/Input";
 import Warning from "./Warning";
 import Engagement from "./Engagement";
 import Timer from "./Timer";
+import Lobby from "./Lobby";
 
 /* Socket */
 import io from "socket.io-client";
@@ -31,6 +32,7 @@ class LiveSessionHost extends React.Component {
       time: "00:00",
       data: {},
       presentation: {
+        hasStarted: false,
         isPaused: false,
         isStopped: false,
         currentSection: "Redux"
@@ -144,6 +146,10 @@ class LiveSessionHost extends React.Component {
 
   render() {
     const { styles } = this.props;
+
+    if (!this.state.presentation.hasStarted) {
+      return <Lobby {...this.state} />;
+    }
     return (
       <div {...css(styles.LiveSessionHost)}>
         <div {...css(styles.interface)}>
