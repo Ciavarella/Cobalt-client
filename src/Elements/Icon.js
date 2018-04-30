@@ -93,7 +93,10 @@ const Icon = ({
 export default withStyles(({ colors, text }) => {
   return {
     icon: {
-      padding: "13px"
+      padding: "13.5px",
+      ":nth-child(1) svg": {
+        verticalAlign: "0px"
+      }
     },
     /** TODO: change from fontawesome to svg? */
 
