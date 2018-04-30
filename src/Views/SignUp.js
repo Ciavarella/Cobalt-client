@@ -1,18 +1,28 @@
 import React from "react";
 import { css, withStyles } from "../withStyles";
+import { connect } from "react-redux";
 
 import SignUpForm from "../Components/SignUpForm";
 import FlexContainer from "../Containers/FlexContainer";
 
-const SignUp = ({ styles, ...props }) => {
+import { requestSignup } from "../redux/signup/actions";
+
+let SignUp = ({ styles, dispatch, ...props }) => {
+  const signupRequest = data => {
+    dispatch(requestSignup(data));
+  };
+
   return (
     <div {...css(styles.signUp)}>
       <FlexContainer align="center" justify="center" style={{ width: "100%" }}>
-        <SignUpForm />
+        <SignUpForm signupRequest={signupRequest} />
       </FlexContainer>
     </div>
   );
 };
+
+/* Redux Connect */
+SignUp = connect()(SignUp);
 
 export default withStyles(({ colors, gradients }) => {
   return {
