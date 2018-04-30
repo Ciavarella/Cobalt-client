@@ -9,7 +9,7 @@ import Heading from "../Elements/Heading";
 import Paragraph from "../Elements/Paragraph";
 import Input from "../Elements/Input";
 
-const SignUpForm = ({
+let SignUpForm = ({
   styles,
   handleSubmit,
   handleChange,
@@ -18,6 +18,7 @@ const SignUpForm = ({
   touched,
   handleBlur,
   isSubmitting,
+  signupRequest,
   ...props
 }) => {
   return (
@@ -203,17 +204,10 @@ const formikForm = withFormik({
       .min(6, "Password must be 6 characters or longer")
       .required("Password is required")
   }),
-  handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
+  handleSubmit(values, { props, resetForm, setErrors, setSubmitting }) {
     //TODO: send a request to db and check if the email already exists
-    setTimeout(() => {
-      if (values.email === "test@test.com") {
-        setErrors({ email: "That email is already registered" });
-      } else {
-        console.log(values);
-        resetForm();
-      }
-      setSubmitting(false);
-    }, 2000);
+
+    props.signupRequest(values);
   }
 })(SignUpForm);
 
