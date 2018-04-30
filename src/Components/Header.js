@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import FlexContainer from "../Containers/FlexContainer";
 import Button from "../Elements/Button";
+import ButtonLink from "../Elements/ButtonLink";
 import List from "../Elements/List";
 import ListItem from "../Elements/ListItem";
 import Heading from "../Elements/Heading";
@@ -34,12 +35,18 @@ const Header = ({ styles, ...props }) => (
         </List>
       </FlexContainer>
       <FlexContainer direction="row">
-        <Link to="login">
+        {/*<Link to="login">
           <Button appearance="secondary">Log in</Button>
-        </Link>
-        <Link to="signup">
+</Link>*/}
+        <ButtonLink to="login" appearance="secondary" size="xs">
+          LOG IN
+        </ButtonLink>
+        {/*<Link to="signup">
           <Button appearance="primary">Sign up</Button>
-        </Link>
+</Link>*/}
+        <ButtonLink to="signup" appearance="primary" size="xs">
+          SIGN UP
+        </ButtonLink>
       </FlexContainer>
     </FlexContainer>
   </header>
