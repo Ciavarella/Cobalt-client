@@ -130,8 +130,6 @@ const Profile = ({
               </FlexContainer>
             </Card>
 
-            {/** SPACING!!!! **/}
-
             <Card
               style={{
                 height: "380px",
