@@ -5,7 +5,7 @@ import { CSSTransitionGroup } from "react-transition-group";
 import Notification from "../Elements/Notification";
 import FlexContainer from "../Containers/FlexContainer";
 
-let mockNotifications = [];
+let mockNotifications = []; // Will be removed
 
 class Notifications extends Component {
   constructor({ styles, ...props }) {
@@ -51,7 +51,7 @@ class Notifications extends Component {
     });
   }
 
-  clear(e) {
+  componentWillUnmount() {
     clearInterval(this.adder);
     clearInterval(this.removeNotification);
     console.log(this.state);
@@ -86,10 +86,6 @@ class Notifications extends Component {
               </Notification>
             );
           })}
-          {/* Just to be able to clear the interval*/}
-          <button style={{ color: "black" }} onClick={this.clear.bind(this)}>
-            Stop
-          </button>
         </CSSTransitionGroup>
       </div>
     );
