@@ -55,7 +55,7 @@ export default withStyles(({ colors }) => {
   return {
     lobby: {
       display: "flex",
-      padding: "20px",
+      padding: "0px 20px",
       flexDirection: "column",
       justifyContent: "start",
       alignItems: "center",
