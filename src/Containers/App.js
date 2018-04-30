@@ -5,6 +5,8 @@ import Footer from "../Components/Footer";
 
 import NotFound from "../Views/NotFound";
 import SocketClient from "../Views/Client";
+import LiveSessionHost from "../Views/LiveSessionHost/LiveSessionHost";
+import Lobby from "../Views/LiveSessionHost/Lobby";
 import Dashboard from "../Views/Dashboard/Dashboard";
 import Login from "../Views/Login";
 import withPublicRoot from "../Containers/PublicRoot";
@@ -26,6 +28,8 @@ class App extends React.Component {
           />
           <Route exact path="/signup" component={withPublicRoot(SignUp)} />
           <Route path="/session/:sessionId" component={SocketClient} />
+          <Route path="/host/:sessionId" component={LiveSessionHost} />
+          <Route path="/lobby" component={Lobby} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="*" component={NotFound} />
         </Switch>

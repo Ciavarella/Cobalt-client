@@ -95,6 +95,8 @@ input {
 
 button {
   color: #fff;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
 }
 
 button:last-child,
@@ -106,5 +108,14 @@ input:last-child {
   100% {
     -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
+  }
+}
+
+@keyframes swipe {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0%);
   }
 }
