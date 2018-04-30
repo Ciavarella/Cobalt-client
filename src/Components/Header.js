@@ -38,13 +38,13 @@ const Header = ({ styles, ...props }) => (
         {/*<Link to="login">
           <Button appearance="secondary">Log in</Button>
 </Link>*/}
-        <ButtonLink to="login" appearance="secondary" size="xs">
+        <ButtonLink to="login" appearance="secondary">
           LOG IN
         </ButtonLink>
         {/*<Link to="signup">
           <Button appearance="primary">Sign up</Button>
 </Link>*/}
-        <ButtonLink to="signup" appearance="primary" size="xs">
+        <ButtonLink to="signup" appearance="primary">
           SIGN UP
         </ButtonLink>
       </FlexContainer>
