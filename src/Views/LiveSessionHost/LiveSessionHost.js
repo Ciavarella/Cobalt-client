@@ -1,6 +1,5 @@
 import React from "react";
 import { css, withStyles } from "../../withStyles";
-import moment from "moment";
 
 import FlexContainer from "../../Containers/FlexContainer";
 import CopyTextfield from "../../Elements/CopyTextfield";
@@ -49,7 +48,6 @@ class LiveSessionHost extends React.Component {
     this.updateSession = this.updateSession.bind(this);
     this.pauseSession = this.pauseSession.bind(this);
     this.stopSession = this.stopSession.bind(this);
-    this.displayTime = this.displayTime.bind(this);
     this.counter = 0;
     this.socket = io(`http://10.126.4.146:7770`);
   }
@@ -62,15 +60,12 @@ class LiveSessionHost extends React.Component {
       this.listenForEvents();
       return;
     }
-
-    console.log("Debugging...");
-    let timerId = setInterval(this.displayTime, 1000);
+    console.log("Debugging mode is enabled. Data is simulated.");
     this.simulateDecline();
   }
 
   getPercentageFromAvg(avg) {
-    let perc = Math.round((avg + 5) / 10 * 100);
-    return perc;
+    return Math.round((avg + 5) / 10 * 100);
   }
 
   listenForEvents() {
@@ -134,25 +129,6 @@ class LiveSessionHost extends React.Component {
     );
   }
 
-  displayTime() {
-    if (this.state.presentation.isPaused) return;
-
-    let time =
-      this.counter >= 3600
-        ? moment()
-            .hour(0)
-            .minute(0)
-            .second(this.counter++)
-            .format("h:mm:ss")
-        : moment()
-            .minute(0)
-            .second(this.counter++)
-            .format("mm:ss");
-    this.setState({
-      time: time
-    });
-  }
-
   simulateDecline() {
     let num1, num2;
     num1 = 86;
@@ -163,7 +139,7 @@ class LiveSessionHost extends React.Component {
         green: num1,
         red: num2
       });
-    }, 300);
+    }, 800);
   }
 
   render() {
