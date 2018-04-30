@@ -22,7 +22,7 @@ class LiveSessionHost extends React.Component {
     super(props);
     this.state = {
       /* SIMULATE VALUES FOR DEBUGGING */
-      debug: false,
+      debug: true,
       /* ------ */
       attendees: 0,
       settings: null,
@@ -32,7 +32,7 @@ class LiveSessionHost extends React.Component {
       time: "00:00",
       data: {},
       presentation: {
-        isPaused: true,
+        isPaused: false,
         isStopped: false,
         currentSection: "Redux"
       }
@@ -61,16 +61,15 @@ class LiveSessionHost extends React.Component {
       });
       this.listenForEvents();
       return;
-      let timerId = setInterval(this.displayTime, 1000);
     }
 
     console.log("Debugging...");
+    let timerId = setInterval(this.displayTime, 1000);
     this.simulateDecline();
   }
 
   getPercentageFromAvg(avg) {
     let perc = Math.round((avg + 5) / 10 * 100);
-
     return perc;
   }
 
@@ -179,17 +178,21 @@ class LiveSessionHost extends React.Component {
             fullWidth="1"
           >
             <Timer {...this.state} />
-            <Button appearance="danger" onClick={this.stopSession}>
-              Stop session
-            </Button>
+            <FlexContainer direction="row">
+              <Button appearance="secondary" onClick={this.pauseSession}>
+                {this.state.presentation.isPaused
+                  ? "Continue session"
+                  : "Pause session"}
+              </Button>
+              <Button appearance="danger" onClick={this.stopSession}>
+                Stop session
+              </Button>
+            </FlexContainer>
+          </FlexContainer>
+          <FlexContainer fullWidth="1" align="end" justify="end">
             <Heading size="2" appearance="white">
               {this.state.attendees} attendees
             </Heading>
-            <Button appearance="secondary" onClick={this.pauseSession}>
-              {this.state.presentation.isPaused ? "Continue" : "Pause"}
-            </Button>
-          </FlexContainer>
-          <FlexContainer fullWidth="1" align="end" justify="end">
             <CopyTextfield url="http://feed.io/xby6Jnb" />
           </FlexContainer>
         </div>
