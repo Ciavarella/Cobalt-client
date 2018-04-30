@@ -8,13 +8,26 @@ class VoteSlider extends React.Component {
   constructor({ styles, ...props }) {
     super(props);
     this.state = {
-      cooldownTime: 0
+      cooldownTime: 0,
+      currentVote: "",
+      canvas: {
+        height: "",
+        width: ""
+      }
     };
   }
 
   componentDidMount() {
     const canvas = document.getElementById("myCanvas");
     const ctx = canvas.getContext("2d");
+
+    this.setState({
+      ...this.state,
+      canvas: {
+        height: canvas.height,
+        width: canvas.width
+      }
+    });
 
     // Styling
     const voteCircleColor = this.props.styles.voteCircleColor._definition;
@@ -26,15 +39,16 @@ class VoteSlider extends React.Component {
     let GRAVITY = 1;
     let isDraggable = false;
     let onCoolDown = false;
-    const cooldownTime = 10;
+    const cooldownTime = 0;
     let cooldownTimer = cooldownTime;
     let loader = 0;
 
-    const onMouseDown = () => {
+    const onMouseDown = yPosition => {
       if (!onCoolDown) {
         isDraggable = true;
         circleAnimation.reset();
         arcPosition.last.y = arcPosition.y;
+        arcPosition.y = yPosition;
       }
     };
 
@@ -67,11 +81,13 @@ class VoteSlider extends React.Component {
       }
     };
 
-    canvas.addEventListener("mousedown", onMouseDown);
+    canvas.addEventListener("mousedown", ({ clientY }) => onMouseDown(clientY));
     canvas.addEventListener("mouseup", onMouseUp);
     canvas.addEventListener("mousemove", ({ clientY }) => onMouseMove(clientY));
 
-    canvas.addEventListener("touchstart", onMouseDown);
+    canvas.addEventListener("touchstart", ({ touches }) =>
+      onMouseDown(touches[0].clientY)
+    );
     canvas.addEventListener("touchend", onMouseUp);
     canvas.addEventListener("touchmove", ({ touches }) =>
       onMouseMove(touches[0].clientY)
@@ -185,19 +201,49 @@ class VoteSlider extends React.Component {
     };
 
     const voteUp = () => {
-      // THIS IS WHERE WE SEND THE UP VOTE
+      arcPosition.y > HEIGHT / 11 * 1 && arcPosition.y < HEIGHT / 11 * 2
+        ? this.setState({ currentVote: "+5" })
+        : "";
 
-      console.log("Up vote success");
+      arcPosition.y > HEIGHT / 11 * 2 && arcPosition.y < HEIGHT / 11 * 3
+        ? this.setState({ currentVote: "+4" })
+        : "";
+
+      arcPosition.y > HEIGHT / 11 * 3 && arcPosition.y < HEIGHT / 11 * 4
+        ? this.setState({ currentVote: "+3" })
+        : "";
+
+      arcPosition.y > HEIGHT / 11 * 4 && arcPosition.y < HEIGHT / 11 * 5
+        ? this.setState({ currentVote: "+2" })
+        : "";
+      arcPosition.y > HEIGHT / 11 * 5 && arcPosition.y < HEIGHT / 11 * 6
+        ? this.setState({ currentVote: "+1" })
+        : "";
+
       initiateCooldown();
-      console.log(onCoolDown);
     };
 
     const voteDown = () => {
-      //THIS IS WHERE WE SEND THE DOWN VOTE
+      arcPosition.y < HEIGHT / 11 * 11 && arcPosition.y > HEIGHT / 11 * 10
+        ? this.setState({ currentVote: "-5" })
+        : "";
 
-      console.log("Down vote success");
+      arcPosition.y < HEIGHT / 11 * 10 && arcPosition.y > HEIGHT / 11 * 9
+        ? this.setState({ currentVote: "-4" })
+        : "";
+
+      arcPosition.y < HEIGHT / 11 * 9 && arcPosition.y > HEIGHT / 11 * 8
+        ? this.setState({ currentVote: "-3" })
+        : "";
+
+      arcPosition.y < HEIGHT / 11 * 8 && arcPosition.y > HEIGHT / 11 * 7
+        ? this.setState({ currentVote: "-2" })
+        : "";
+      arcPosition.y < HEIGHT / 11 * 7 && arcPosition.y > HEIGHT / 11 * 6
+        ? this.setState({ currentVote: "-1" })
+        : "";
+
       initiateCooldown();
-      console.log(onCoolDown);
     };
 
     const initiateCooldown = () => {
@@ -221,14 +267,9 @@ class VoteSlider extends React.Component {
       let timeLeft;
       timeLeft = cooldownTimer--;
 
-      this.setState(
-        {
-          cooldownTime: timeLeft
-        },
-        () => {
-          console.log(this.state.cooldownTime);
-        }
-      );
+      this.setState({
+        cooldownTime: timeLeft
+      });
 
       return timeLeft;
     };
@@ -239,8 +280,49 @@ class VoteSlider extends React.Component {
       <FlexContainer
         align="center"
         justify="center"
+        direction="row"
         style={{ height: "100vh", width: "100vw" }}
       >
+        <FlexContainer
+          align="center"
+          justify="between"
+          style={{
+            height: `${this.state.canvas.height * 0.9}px`,
+            width: "25px"
+          }}
+        >
+          <Paragraph size={this.state.currentVote === "+5" ? "leading" : "sub"}>
+            +5
+          </Paragraph>
+          <Paragraph size={this.state.currentVote === "+4" ? "leading" : "sub"}>
+            +4
+          </Paragraph>
+          <Paragraph size={this.state.currentVote === "+3" ? "leading" : "sub"}>
+            +3
+          </Paragraph>
+          <Paragraph size={this.state.currentVote === "+2" ? "leading" : "sub"}>
+            +2
+          </Paragraph>
+          <Paragraph size={this.state.currentVote === "+1" ? "leading" : "sub"}>
+            +1
+          </Paragraph>
+          <Paragraph size={this.state.currentVote === "-1" ? "leading" : "sub"}>
+            -1
+          </Paragraph>
+          <Paragraph size={this.state.currentVote === "-2" ? "leading" : "sub"}>
+            -2
+          </Paragraph>
+          <Paragraph size={this.state.currentVote === "-3" ? "leading" : "sub"}>
+            -3
+          </Paragraph>
+          <Paragraph size={this.state.currentVote === "-4" ? "leading" : "sub"}>
+            -4
+          </Paragraph>
+          <Paragraph size={this.state.currentVote === "-5" ? "leading" : "sub"}>
+            -5
+          </Paragraph>
+        </FlexContainer>
+
         <canvas
           id="myCanvas"
           height="640"
