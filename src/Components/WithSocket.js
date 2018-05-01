@@ -8,7 +8,14 @@ const withSocket = WrappedComponent => {
     constructor(props) {
       super(props);
 
+      const {
+        match: {
+          params: { sessionId }
+        }
+      } = this.props;
+
       this.state = {
+        sessionId: sessionId,
         data: {
           attendees: 814,
           settings: null,
@@ -24,12 +31,6 @@ const withSocket = WrappedComponent => {
           }
         }
       };
-
-      const {
-        match: {
-          params: { sessionId }
-        }
-      } = this.props;
 
       this.sessionId = sessionId;
       this.socket = io(process.env.REACT_APP_API_BASE_URL);
