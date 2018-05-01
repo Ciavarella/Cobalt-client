@@ -16,25 +16,29 @@ import CreateSession from "../Views/CreateSession";
 import SignUp from "../Views/SignUp";
 
 class App extends React.Component {
+  constructor() {
+    this.LandingPage = withPublicRoot(LandingPage);
+    this.Login = withPublicRoot(Login);
+    this.SignUp = withPublicRoot(SignUp);
+    this.CreateSession = withPublicRoot(CreateSession);
+    this.CreateSession = withPublicRoot(CreateSession);
+    this.LiveSessionHost = requireAuth(LiveSessionHost);
+    this.Dashboard = requireAuth(Dashboard);
+    this.Lobby = requireAuth(Lobby);
+  }
+
   render() {
     return (
       <div className="App">
         <Switch>
-          <Route exact path="/" component={withPublicRoot(LandingPage)} />
-          <Route exact path="/login" component={withPublicRoot(Login)} />
-          <Route
-            exact
-            path="/createsession"
-            component={withPublicRoot(CreateSession)}
-          />
-          <Route exact path="/signup" component={withPublicRoot(SignUp)} />
+          <Route exact path="/" component={this.LandingPage} />
+          <Route exact path="/login" component={this.Login} />
+          <Route exact path="/createsession" component={this.CreateSession} />
+          <Route exact path="/signup" component={this.SignUp} />
           <Route path="/session/:sessionId" component={SocketClient} />
-          <Route
-            path="/host/:sessionId"
-            component={requireAuth(LiveSessionHost)}
-          />
-          <Route path="/lobby" component={requireAuth(Lobby)} />
-          <Route path="/dashboard" component={requireAuth(Dashboard)} />
+          <Route path="/host/:sessionId" component={this.LiveSessionHost} />
+          <Route path="/lobby" component={this.Lobby} />
+          <Route path="/dashboard" component={this.Dashboard} />
           <Route path="*" component={NotFound} />
         </Switch>
       </div>
