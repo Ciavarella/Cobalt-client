@@ -1,7 +1,8 @@
 import {
   REQUEST_SESSION_START,
   REQUEST_SESSION_SUCCESS,
-  REQUEST_SESSION_FAIL
+  REQUEST_SESSION_FAIL,
+  SESSION_CREATED
 } from "./constants";
 
 export const requestSessionStart = () => ({ type: REQUEST_SESSION_START });
@@ -13,6 +14,8 @@ export const requestSessionFail = err => ({
   type: REQUEST_SESSION_FAIL,
   payload: err
 });
+
+export const sessionCreated = () => ({ type: SESSION_CREATED });
 
 export const requestNewSession = data => dispatch => {
   dispatch(requestSessionStart());

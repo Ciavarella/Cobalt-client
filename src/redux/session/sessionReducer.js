@@ -1,12 +1,14 @@
 import {
   REQUEST_SESSION_START,
   REQUEST_SESSION_SUCCESS,
-  REQUEST_SESSION_FAIL
+  REQUEST_SESSION_FAIL,
+  SESSION_CREATED
 } from "./constants";
 
 const initialState = {
   session: {},
   isFetching: false,
+  newSessionCreated: false,
   message: null
 };
 
@@ -18,6 +20,7 @@ const sessionReducer = (state = initialState, action) => {
       return {
         ...state,
         session: action.payload.session,
+        newSessionCreated: true,
         isFetching: false,
         message: action.payload.message
       };
@@ -27,6 +30,11 @@ const sessionReducer = (state = initialState, action) => {
         session: {},
         isFetching: false,
         message: action.payload.message
+      };
+    case SESSION_CREATED:
+      return {
+        ...state,
+        newSessionCreated: false
       };
     default:
       return state;
