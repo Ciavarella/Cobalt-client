@@ -7,11 +7,9 @@ import { connect } from "react-redux";
 let withPublicRoot = ComposedComponent => {
   class PublicRoot extends React.Component {
     render() {
-      const isAuthenticated = this.props.isAuthenticated;
-
       return (
         <React.Fragment>
-          <Header isAuthenticated={isAuthenticated} />
+          <Header {...this.props} />
           <main className="App-content">
             <ComposedComponent />
           </main>
