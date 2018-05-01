@@ -9,7 +9,20 @@ const withSocket = WrappedComponent => {
       super(props);
 
       this.state = {
-        data: {}
+        data: {
+          attendees: 814,
+          settings: null,
+          threshold: 30,
+          red: "34",
+          green: "66",
+          time: "00:00",
+          presentation: {
+            hasStarted: false,
+            isPaused: false,
+            isStopped: false,
+            currentSection: "Redux"
+          }
+        }
       };
 
       const {
@@ -20,6 +33,9 @@ const withSocket = WrappedComponent => {
 
       this.sessionId = sessionId;
       this.socket = io(process.env.REACT_APP_API_BASE_URL);
+      this.startSession = this.startSession.bind(this);
+      this.stopSession = this.stopSession.bind(this);
+      this.pauseSession = this.pauseSession.bind(this);
     }
 
     componentDidMount() {
@@ -41,16 +57,34 @@ const withSocket = WrappedComponent => {
     updateSession() {
       this.socket.emit("presenterPayload", {
         session: this.sessionId,
-        payload: this.state.presentation
+        payload: this.state.data.presentation
       });
+    }
+
+    startSession() {
+      this.setState(
+        {
+          data: {
+            ...this.state.data,
+            presentation: {
+              ...this.state.data.presentation,
+              hasStarted: true
+            }
+          }
+        },
+        this.updateSession
+      );
     }
 
     stopSession() {
       this.setState(
         {
-          presentation: {
-            ...this.state.presentation,
-            isStopped: true
+          data: {
+            ...this.state.data,
+            presentation: {
+              ...this.state.data.presentation,
+              isStopped: true
+            }
           }
         },
         this.updateSession
@@ -60,13 +94,20 @@ const withSocket = WrappedComponent => {
     pauseSession() {
       this.setState(
         {
-          presentation: {
-            ...this.state.presentation,
-            isPaused: !this.state.presentation.isPaused
+          data: {
+            ...this.state.data,
+            presentation: {
+              ...this.state.data.presentation,
+              isPaused: !this.state.data.presentation.isPaused
+            }
           }
         },
         this.updateSession
       );
+    }
+
+    getPercentageFromAvg(avg) {
+      return Math.round((avg + 5) / 10 * 100);
     }
 
     render() {
@@ -75,7 +116,8 @@ const withSocket = WrappedComponent => {
           pauseSession={this.pauseSession}
           stopSession={this.stopSession}
           updateSession={this.updateSession}
-          data={this.state}
+          getPercentageFromAvg={this.getPercentageFromAvg}
+          {...this.state}
           {...this.props}
         />
       );
@@ -84,4 +126,3 @@ const withSocket = WrappedComponent => {
 };
 
 export default withSocket;
-
