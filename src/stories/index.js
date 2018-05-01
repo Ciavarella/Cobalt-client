@@ -9,6 +9,7 @@ import "../index.css";
 
 /* Elements */
 import Button from "./Elements/Button";
+import ButtonLink from "./Elements/ButtonLink";
 import Input from "./Elements/Input";
 import Heading from "./Elements/Heading";
 import Avatar from "./Elements/Avatar";
