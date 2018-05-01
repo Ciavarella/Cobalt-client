@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 import { css, withStyles } from "../withStyles";
 import { withFormik } from "formik";
@@ -143,7 +144,7 @@ let LoginForm = ({
           </FlexContainer>
         </form>
         <Paragraph appearance="white">
-          Don't have an account? <a href="#">Sign up here!</a>
+          Don't have an account? <Link to="/signup">Sign up here!</Link>
         </Paragraph>
       </FlexContainer>
     </div>
