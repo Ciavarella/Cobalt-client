@@ -9,7 +9,7 @@ import List from "../Elements/List";
 import ListItem from "../Elements/ListItem";
 import Heading from "../Elements/Heading";
 
-const Header = ({ styles, ...props }) => (
+const Header = ({ styles, isAuthenticated = false, ...props }) => (
   <header {...css(styles.header)} {...props}>
     <FlexContainer direction="row" justify="between">
       <FlexContainer direction="row" justify="start" flex="1">
@@ -34,14 +34,22 @@ const Header = ({ styles, ...props }) => (
           </ListItem>
         </List>
       </FlexContainer>
-      <FlexContainer direction="row">
-        <ButtonLink to="login" appearance="secondary">
-          LOG IN
-        </ButtonLink>
-        <ButtonLink to="signup" appearance="primary">
-          SIGN UP
-        </ButtonLink>
-      </FlexContainer>
+      {isAuthenticated != true ? (
+        <FlexContainer direction="row">
+          <ButtonLink to="login" appearance="secondary">
+            LOG IN
+          </ButtonLink>
+          <ButtonLink to="signup" appearance="primary">
+            SIGN UP
+          </ButtonLink>
+        </FlexContainer>
+      ) : (
+        <FlexContainer direction="row">
+          <ButtonLink to="dashboard" appearance="secondary">
+            Dashboard
+          </ButtonLink>
+        </FlexContainer>
+      )}
     </FlexContainer>
   </header>
 );
