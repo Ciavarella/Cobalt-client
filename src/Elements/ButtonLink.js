@@ -24,7 +24,9 @@ export default withStyles(({ themes, text }) => {
       border: "none",
       borderRadius: "4px",
       margin: "12px 12px 12px 0px",
-      fontWeight: "bold"
+      fontWeight: "bold",
+      textTransform: "uppercase",
+      color: "white"
     },
 
     /* Color */
