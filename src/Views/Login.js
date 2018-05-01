@@ -1,5 +1,7 @@
 import React from "react";
 
+import { Redirect } from "react-router-dom";
+
 import { connect } from "react-redux";
 import { css, withStyles } from "../withStyles";
 
@@ -11,6 +13,9 @@ let Login = ({ styles, dispatch, ...props }) => {
     dispatch(requestAuth(data));
   };
 
+  if (props.isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
   return (
     <div {...css(styles.content)}>
       <LoginForm loginRequest={loginRequest} />
@@ -19,8 +24,12 @@ let Login = ({ styles, dispatch, ...props }) => {
   );
 };
 
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
 /* redux connet */
-Login = connect()(Login);
+Login = connect(mapStateToProps)(Login);
 
 export default withStyles(({ colors, gradients }) => {
   return {
