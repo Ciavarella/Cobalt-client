@@ -113,8 +113,9 @@ const withSocket = WrappedComponent => {
     render() {
       return (
         <WrappedComponent
-          pauseSession={this.pauseSession}
+          startSession={this.startSession}
           stopSession={this.stopSession}
+          pauseSession={this.pauseSession}
           updateSession={this.updateSession}
           getPercentageFromAvg={this.getPercentageFromAvg}
           {...this.state}
