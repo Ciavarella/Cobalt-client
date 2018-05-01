@@ -7,7 +7,7 @@ const requireAuth = ComposedComponent => {
   class Authentication extends Component {
     componentWillUpdate(nextProps) {
       if (!nextProps.isAuthenticated) {
-        return this.props.history.push("/signin");
+        return this.props.history.push("/login");
       }
     }
 

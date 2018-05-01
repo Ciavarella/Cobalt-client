@@ -29,9 +29,12 @@ class App extends React.Component {
           />
           <Route exact path="/signup" component={withPublicRoot(SignUp)} />
           <Route path="/session/:sessionId" component={SocketClient} />
-          <Route path="/host/:sessionId" component={LiveSessionHost} />
-          <Route path="/lobby" component={Lobby} />
-          <Route path="/dashboard" component={Dashboard} />
+          <Route
+            path="/host/:sessionId"
+            component={requireAuth(LiveSessionHost)}
+          />
+          <Route path="/lobby" component={requireAuth(Lobby)} />
+          <Route path="/dashboard" component={requireAuth(Dashboard)} />
           <Route path="*" component={NotFound} />
         </Switch>
       </div>
