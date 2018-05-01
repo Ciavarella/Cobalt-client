@@ -1,13 +1,21 @@
 import React from "react";
 import { css, withStyles } from "../withStyles";
+import { connect } from "react-redux";
 
 import Wizard from "../Components/Wizard";
 import Preferences from "../Components/CreateSession/Preferences";
 import Name from "../Components/CreateSession/Name";
 import Modal from "../Components/Modal";
 import Button from "../Elements/Button";
+import { requestNewSession } from "../redux/session/actions";
 
 import SessionStarted from "../Components/CreateSession/SessionStarted";
+
+const mapDispatchToProps = dispatch => {
+  return {
+    requestNewSession: data => dispatch(requestNewSession(data))
+  };
+};
 
 class CreateSession extends React.Component {
   constructor({ styles, handleSubmit = null, ...props }) {
@@ -20,21 +28,7 @@ class CreateSession extends React.Component {
   }
 
   handleSubmit(data) {
-    this.setState({
-      isFetching: true
-    });
-
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/session`, {
-      method: "POST",
-      body: data
-    })
-      .then(res => res.json())
-      .then(session => {
-        this.setState({
-          isFetching: false,
-          sessionId: session.session
-        });
-      });
+    this.props.requestNewSession(data);
   }
 
   render() {
@@ -54,6 +48,8 @@ class CreateSession extends React.Component {
     );
   }
 }
+
+CreateSession = connect(null, mapDispatchToProps)(CreateSession);
 
 export default withStyles(({ colors }) => {
   return {
