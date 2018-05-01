@@ -12,12 +12,17 @@ import Warning from "./Warning";
 import Engagement from "./Engagement";
 import Timer from "./Timer";
 import Lobby from "./Lobby";
+import EndSession from "./EndSession";
 
 /* TODO: Figure out better name */
 const LiveSessionHost = ({ styles, ...props }) => {
   console.log(props);
-  if (props.data.presentation.hasStarted) {
+  if (!props.data.presentation.hasStarted) {
     return <Lobby {...props} />;
+  }
+
+  if (props.data.presentation.isStopped) {
+    return <EndSession {...props} />;
   }
 
   return (
