@@ -9,7 +9,7 @@ import List from "../Elements/List";
 import ListItem from "../Elements/ListItem";
 import Heading from "../Elements/Heading";
 
-const Header = ({ styles, isAuthenticated = false, ...props }) => (
+const Header = ({ styles, ...props }) => (
   <header {...css(styles.header)} {...props}>
     <FlexContainer direction="row" justify="between">
       <FlexContainer direction="row" justify="start" flex="1">
@@ -34,7 +34,7 @@ const Header = ({ styles, isAuthenticated = false, ...props }) => (
           </ListItem>
         </List>
       </FlexContainer>
-      {isAuthenticated != true ? (
+      {props.isAuthenticated != true ? (
         <FlexContainer direction="row">
           <ButtonLink to="login" appearance="secondary">
             LOG IN
