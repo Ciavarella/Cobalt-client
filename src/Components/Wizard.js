@@ -46,7 +46,6 @@ class Wizard extends React.Component {
   }
 
   render() {
-    console.log(this.props.sessionId);
     return (
       <div {...css(this.props.styles.wizard)} {...this.props}>
         <form onSubmit={this.handleSubmit}>
