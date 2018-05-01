@@ -17,6 +17,7 @@ import SignUp from "../Views/SignUp";
 
 class App extends React.Component {
   constructor() {
+    super();
     this.LandingPage = withPublicRoot(LandingPage);
     this.Login = withPublicRoot(Login);
     this.SignUp = withPublicRoot(SignUp);
