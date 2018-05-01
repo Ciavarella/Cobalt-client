@@ -50,7 +50,7 @@ const LiveSessionHost = ({ styles, ...props }) => {
           <Heading size="2" appearance="white">
             {props.data.attendees} attendees
           </Heading>
-          <CopyTextfield url="http://feed.io/xby6Jnb" />
+          <CopyTextfield url={props.sessionId} />
         </FlexContainer>
       </div>
       <div {...css(styles.graphWrap)}>

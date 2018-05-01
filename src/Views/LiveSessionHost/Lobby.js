@@ -24,7 +24,7 @@ const Lobby = ({ styles, ...props }) => {
         <Heading size="3">{props.data.attendees} attendees in lobby</Heading>
       </FlexContainer>
       <FlexContainer fullWidth="1" align="end" justify="end">
-        <CopyTextfield url="http://feed.io/xby6Jnb" />
+        <CopyTextfield url={props.sessionId} />
       </FlexContainer>
     </div>
   );
