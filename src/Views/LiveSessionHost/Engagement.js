@@ -4,11 +4,14 @@ import { css, withStyles } from "../../withStyles";
 const Engagement = ({ styles, ...props }) => {
   return (
     <React.Fragment>
-      <div {...css(styles.graphRed)} style={{ width: `${props.red}%` }}>
-        <span>{props.red > 10 ? `${props.red}%` : null}</span>
+      <div {...css(styles.graphRed)} style={{ width: `${props.data.red}%` }}>
+        <span>{props.data.red > 10 ? `${props.data.red}%` : null}</span>
       </div>
-      <div {...css(styles.graphGreen)} style={{ width: `${props.green}%` }}>
-        <span>{props.green > 10 ? `${props.green}%` : null}</span>
+      <div
+        {...css(styles.graphGreen)}
+        style={{ width: `${props.data.green}%` }}
+      >
+        <span>{props.data.green > 10 ? `${props.data.green}%` : null}</span>
       </div>
     </React.Fragment>
   );

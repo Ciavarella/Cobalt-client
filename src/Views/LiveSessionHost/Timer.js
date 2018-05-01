@@ -18,7 +18,7 @@ class Timer extends React.Component {
   }
 
   displayTime() {
-    if (this.props.presentation.isPaused) return;
+    if (this.props.data.presentation.isPaused) return;
     let time =
       this.counter >= 3600
         ? moment()
