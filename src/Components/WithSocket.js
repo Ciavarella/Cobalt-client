@@ -65,7 +65,7 @@ const withSocket = WrappedComponent => {
     updateSession() {
       this.socket.emit("presenterPayload", {
         session: this.sessionId,
-        payload: this.state.data.presentation
+        payload: this.state.data
       });
     }
 
@@ -74,8 +74,8 @@ const withSocket = WrappedComponent => {
         {
           data: {
             ...this.state.data,
-            presentation: {
-              ...this.state.data.presentation,
+            status: {
+              ...this.state.data.status,
               hasStarted: true
             }
           }
@@ -89,8 +89,8 @@ const withSocket = WrappedComponent => {
         {
           data: {
             ...this.state.data,
-            presentation: {
-              ...this.state.data.presentation,
+            status: {
+              ...this.state.data.status,
               isStopped: true
             }
           }
@@ -104,9 +104,9 @@ const withSocket = WrappedComponent => {
         {
           data: {
             ...this.state.data,
-            presentation: {
-              ...this.state.data.presentation,
-              isPaused: !this.state.data.presentation.isPaused
+            status: {
+              ...this.state.data.status,
+              isPaused: !this.state.data.status.isPaused
             }
           }
         },
