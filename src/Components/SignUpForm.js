@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { css, withStyles } from "../withStyles";
+import { Link, Redirect } from "react-router-dom";
 import { withFormik } from "formik";
 import Yup from "yup";
 
@@ -173,7 +174,7 @@ let SignUpForm = ({
           </FlexContainer>
         </form>
         <Paragraph appearance="white">
-          Already have an account? <a href="#">Log in here!</a>
+          Already have an account? <Link to="/login">Log in here!</Link>
         </Paragraph>
       </FlexContainer>
     </div>
@@ -206,7 +207,10 @@ const formikForm = withFormik({
   }),
   handleSubmit(values, { props, resetForm, setErrors, setSubmitting }) {
     //TODO: send a request to db and check if the email already exists
+<<<<<<< HEAD
 
+=======
+>>>>>>> Replace a-tag with react link and signuprequest
     props.signupRequest(values);
   }
 })(SignUpForm);
