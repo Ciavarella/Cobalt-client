@@ -6,7 +6,7 @@ import Wizard from "../Components/Wizard";
 import Preferences from "../Components/CreateSession/Preferences";
 import Name from "../Components/CreateSession/Name";
 import Modal from "../Components/Modal";
-import Button from "../Elements/Button";
+import ButtonLink from "../Elements/ButtonLink";
 import { requestNewSession, sessionCreated } from "../redux/session/actions";
 
 import SessionStarted from "../Components/CreateSession/SessionStarted";
@@ -35,7 +35,13 @@ class CreateSession extends React.Component {
   }
 
   handleSubmit(data) {
-    this.props.requestNewSession(data);
+    let newObj = {};
+
+    for (const [key, value] of data.entries()) {
+      newObj[key] = value;
+    }
+
+    this.props.requestNewSession(newObj);
   }
 
   componentWillUnmount() {
@@ -48,7 +54,7 @@ class CreateSession extends React.Component {
     return newSessionCreated ? (
       <Modal withOverlay>
         <SessionStarted sessionId={session} />
-        <Button appearance="secondary">END</Button>
+        <ButtonLink appearance="secondary">GO TO PRESENTATION LOBBY</ButtonLink>
       </Modal>
     ) : (
       <Wizard handleSubmit={this.handleSubmit} isLoading={isFetching}>

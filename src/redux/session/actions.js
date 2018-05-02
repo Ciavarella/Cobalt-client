@@ -20,13 +20,37 @@ export const sessionCreated = () => ({ type: SESSION_CREATED });
 export const requestNewSession = data => dispatch => {
   dispatch(requestSessionStart());
 
+  const {
+    maxAttendees,
+    threshold,
+    descriptionPositive,
+    descriptionNegative,
+    comments,
+    isAverage,
+    name,
+    message
+  } = data;
+
   fetch(`${process.env.REACT_APP_API_BASE_URL}/api/session`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
     credentials: "include",
-    body: JSON.stringify(data)
+    body: JSON.stringify({
+      name,
+      description: message,
+      settings: {
+        isAverage: isAverage === "on" ? true : false,
+        comments: comments === "on" ? true : false,
+        maxAttendees,
+        threshold,
+        engagementDesc: {
+          up: descriptionPositive,
+          down: descriptionNegative
+        }
+      }
+    })
   })
     .then(handleResponse)
     .then(data => dispatch(requestSessionSuccess(data)))
