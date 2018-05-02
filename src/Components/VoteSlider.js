@@ -9,7 +9,7 @@ class VoteSlider extends React.Component {
     super(props);
     this.state = {
       cooldownTime: 0,
-      currentVote: "",
+      currentVote: 0,
       canvas: {
         height: "",
         width: ""
@@ -36,19 +36,37 @@ class VoteSlider extends React.Component {
 
     const HEIGHT = canvas.height;
     const WIDTH = canvas.width;
+    const windowHeight = window.innerHeight;
+
+    const heightDifference = () => {
+      let heightToDivide = windowHeight - HEIGHT;
+      return heightToDivide / 2;
+    };
+    const voteCircleSize = 50;
     let GRAVITY = 1;
     let isDraggable = false;
     let onCoolDown = false;
-    const cooldownTime = 0;
+    const cooldownTime = 2;
     let cooldownTimer = cooldownTime;
     let loader = 0;
+    let shouldReset;
+    const changeCurrentVote = () => {
+      console.log("running");
+      setCurrentVote();
+    };
 
     const onMouseDown = yPosition => {
       if (!onCoolDown) {
+        setCurrentVote();
         isDraggable = true;
         circleAnimation.reset();
         arcPosition.last.y = arcPosition.y;
-        arcPosition.y = yPosition;
+        if (
+          yPosition > heightDifference() &&
+          yPosition < HEIGHT + heightDifference()
+        ) {
+          arcPosition.y = yPosition - heightDifference();
+        }
       }
     };
 
@@ -57,25 +75,39 @@ class VoteSlider extends React.Component {
         isDraggable = false;
 
         if (arcPosition.y > HEIGHT / 2) {
-          voteDown();
+          setTimeout(() => {
+            voteDown();
+          }, 50);
         }
 
         if (arcPosition.y < HEIGHT / 2) {
-          voteUp();
+          setTimeout(() => {
+            voteUp();
+          }, 50);
         }
 
         if (arcPosition.y !== arcPosition.last.y) {
           circleAnimation.setReset(true);
         }
+        const testInterval = setInterval(() => {
+          changeCurrentVote();
+          if (circleAnimation.getReset() == false) {
+            clearInterval(testInterval);
+          }
+        }, 100);
       }
     };
 
     const onMouseMove = yPosition => {
       if (!onCoolDown) {
+        setCurrentVote();
         if (isDraggable) {
           const mousePos = yPosition;
-          if (mousePos > 35 && mousePos < HEIGHT - 35) {
-            arcPosition.y = mousePos;
+          if (
+            mousePos > heightDifference() + voteCircleSize &&
+            mousePos < HEIGHT + heightDifference() - voteCircleSize
+          ) {
+            arcPosition.y = mousePos - heightDifference();
           }
         }
       }
@@ -139,9 +171,14 @@ class VoteSlider extends React.Component {
       }
     };
     function moveToMiddle() {
-      parseInt(arcPosition.y) !== HEIGHT / 2
-        ? circleAnimation.animate()
-        : circleAnimation.reset();
+      // parseInt(arcPosition.y) !== HEIGHT / 2
+      //   ? circleAnimation.animate()
+      //   : circleAnimation.reset();
+
+      parseInt(arcPosition.y) < HEIGHT / 2 + 2 &&
+      parseInt(arcPosition.y) > HEIGHT / 2 - 2
+        ? circleAnimation.reset()
+        : circleAnimation.animate();
     }
 
     function lerp(p1, p2, t) {
@@ -156,8 +193,9 @@ class VoteSlider extends React.Component {
       requestAnimationFrame(draw);
       ctx.clearRect(0, 0, WIDTH, HEIGHT);
 
+      // Draws vote circle
       ctx.beginPath();
-      ctx.arc(arcPosition.x, arcPosition.y, 50, 0, 2 * Math.PI);
+      ctx.arc(arcPosition.x, arcPosition.y, voteCircleSize, 0, 2 * Math.PI);
       ctx.fillStyle = voteCircleColor;
       ctx.fill();
 
@@ -204,49 +242,71 @@ class VoteSlider extends React.Component {
       }
     };
 
+    const setCurrentVote = () => {
+      if (arcPosition.y < HEIGHT / 11 * 2) {
+        this.setState({ currentVote: "+5" });
+      } else if (
+        arcPosition.y > HEIGHT / 11 * 2 &&
+        arcPosition.y < HEIGHT / 11 * 3
+      ) {
+        this.setState({ currentVote: "+4" });
+      } else if (
+        arcPosition.y > HEIGHT / 11 * 3 &&
+        arcPosition.y < HEIGHT / 11 * 4
+      ) {
+        this.setState({ currentVote: "+3" });
+      } else if (
+        arcPosition.y > HEIGHT / 11 * 4 &&
+        arcPosition.y < HEIGHT / 11 * 5
+      ) {
+        this.setState({ currentVote: "+2" });
+      } else if (
+        arcPosition.y > HEIGHT / 11 * 5 &&
+        arcPosition.y < HEIGHT / 11 * 6
+      ) {
+        this.setState({ currentVote: "+1" });
+      } else if (arcPosition.y > HEIGHT / 11 * 10) {
+        this.setState({ currentVote: "-5" });
+      } else if (
+        arcPosition.y < HEIGHT / 11 * 10 &&
+        arcPosition.y > HEIGHT / 11 * 9
+      ) {
+        this.setState({ currentVote: "-4" });
+      } else if (
+        arcPosition.y < HEIGHT / 11 * 9 &&
+        arcPosition.y > HEIGHT / 11 * 8
+      ) {
+        this.setState({ currentVote: "-3" });
+      } else if (
+        arcPosition.y < HEIGHT / 11 * 8 &&
+        arcPosition.y > HEIGHT / 11 * 7
+      ) {
+        this.setState({ currentVote: "-2" });
+      } else if (
+        arcPosition.y < HEIGHT / 11 * 7 &&
+        arcPosition.y > HEIGHT / 11 * 6
+      ) {
+        this.setState({ currentVote: "-1" });
+      }
+      if (
+        Math.round(arcPosition.y) < HEIGHT / 2 + 5 &&
+        Math.round(arcPosition.y) > HEIGHT / 2 - 5
+      ) {
+        this.setState({ currentVote: "0" });
+      }
+    };
+
     const voteUp = () => {
-      arcPosition.y > HEIGHT / 11 * 1 && arcPosition.y < HEIGHT / 11 * 2
-        ? this.setState({ currentVote: "+5" })
-        : "";
+      // Dispatch up vote
 
-      arcPosition.y > HEIGHT / 11 * 2 && arcPosition.y < HEIGHT / 11 * 3
-        ? this.setState({ currentVote: "+4" })
-        : "";
-
-      arcPosition.y > HEIGHT / 11 * 3 && arcPosition.y < HEIGHT / 11 * 4
-        ? this.setState({ currentVote: "+3" })
-        : "";
-
-      arcPosition.y > HEIGHT / 11 * 4 && arcPosition.y < HEIGHT / 11 * 5
-        ? this.setState({ currentVote: "+2" })
-        : "";
-      arcPosition.y > HEIGHT / 11 * 5 && arcPosition.y < HEIGHT / 11 * 6
-        ? this.setState({ currentVote: "+1" })
-        : "";
-
+      console.log(this.state.currentVote);
       initiateCooldown();
     };
 
     const voteDown = () => {
-      arcPosition.y < HEIGHT / 11 * 11 && arcPosition.y > HEIGHT / 11 * 10
-        ? this.setState({ currentVote: "-5" })
-        : "";
+      // Dispatch down vote
 
-      arcPosition.y < HEIGHT / 11 * 10 && arcPosition.y > HEIGHT / 11 * 9
-        ? this.setState({ currentVote: "-4" })
-        : "";
-
-      arcPosition.y < HEIGHT / 11 * 9 && arcPosition.y > HEIGHT / 11 * 8
-        ? this.setState({ currentVote: "-3" })
-        : "";
-
-      arcPosition.y < HEIGHT / 11 * 8 && arcPosition.y > HEIGHT / 11 * 7
-        ? this.setState({ currentVote: "-2" })
-        : "";
-      arcPosition.y < HEIGHT / 11 * 7 && arcPosition.y > HEIGHT / 11 * 6
-        ? this.setState({ currentVote: "-1" })
-        : "";
-
+      console.log(this.state.currentVote);
       initiateCooldown();
     };
 
@@ -329,7 +389,7 @@ class VoteSlider extends React.Component {
 
         <canvas
           id="myCanvas"
-          height="640"
+          height="900"
           width="400"
           {...css(
             this.props.styles.voteSlider,
