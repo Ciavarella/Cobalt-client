@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 
 import SignUpForm from "../Components/SignUpForm";
 import FlexContainer from "../Containers/FlexContainer";
-
 import { requestSignup } from "../redux/signup/actions";
 
 let SignUp = ({ styles, dispatch, ...props }) => {
@@ -13,8 +12,8 @@ let SignUp = ({ styles, dispatch, ...props }) => {
     dispatch(requestSignup(data));
   };
 
-  if (props.isAuthenticated) {
-    return <Redirect to="/dashboard" />;
+  if (props.success) {
+    return <Redirect to="/login" />;
   }
 
   return (
@@ -27,7 +26,7 @@ let SignUp = ({ styles, dispatch, ...props }) => {
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  success: state.signup.message
 });
 
 /* Redux Connect */
