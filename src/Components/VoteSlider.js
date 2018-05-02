@@ -29,7 +29,7 @@ class VoteSlider extends React.Component {
       }
     });
 
-    // Styling
+    // Canvas styling
     const voteCircleColor = this.props.styles.voteCircleColor._definition;
     const voteCircleFontColor = this.props.styles.voteCircleFontColor
       ._definition;
@@ -81,10 +81,12 @@ class VoteSlider extends React.Component {
       }
     };
 
+    // Eventlisteners for desktop
     canvas.addEventListener("mousedown", ({ clientY }) => onMouseDown(clientY));
     canvas.addEventListener("mouseup", onMouseUp);
     canvas.addEventListener("mousemove", ({ clientY }) => onMouseMove(clientY));
 
+    // Eventlisteners for mobile
     canvas.addEventListener("touchstart", ({ touches }) =>
       onMouseDown(touches[0].clientY)
     );
@@ -160,6 +162,7 @@ class VoteSlider extends React.Component {
       ctx.fill();
 
       if (onCoolDown) {
+        // Draws number in the middle of the vote circle
         ctx.beginPath();
         ctx.textBaseline = "middle";
         ctx.textAlign = "center";
@@ -176,6 +179,7 @@ class VoteSlider extends React.Component {
           }
         }
 
+        // Draws loader on outer edge of the vote circle
         ctx.beginPath();
         ctx.arc(
           arcPosition.x,
