@@ -50,31 +50,20 @@ const Preferences = ({ styles }) => (
 
       <FlexContainer
         direction="row"
+        align="start"
         justify="between"
         style={{ width: "450px", marginBottom: "20px" }}
       >
         <FlexContainer justify="around" align="start">
-          <Paragraph size="sub">Engagement description</Paragraph>
-          <label
-            htmlFor="descriptionPositive"
-            style={{ color: "#FFF", marginBottom: "5px" }}
-          >
-            Positive
-          </label>
+          <Paragraph size="sub">Engagement descriptions</Paragraph>
           <Input
             name="descriptionPositive"
-            placeholder="Ex. Are you able to follow..?"
+            placeholder="Are you able to follow..?"
             style={{ marginLeft: "0px", marginTop: "0px", width: "200px" }}
           />
-          <label
-            htmlFor="descriptionNegative"
-            style={{ color: "#FFF", marginBottom: "5px", marginTop: "5px" }}
-          >
-            Negative
-          </label>
           <Input
             name="descriptionNegative"
-            placeholder="Ex. Are you not able to follow..?"
+            placeholder="Are you not able to follow..?"
             style={{ marginLeft: "0px", marginTop: "5px", width: "200px" }}
           />
         </FlexContainer>
@@ -96,12 +85,12 @@ const Preferences = ({ styles }) => (
       >
         <FlexContainer direction="row">
           <Checkbox name="comments" />
-          <Paragraph>Allow comments</Paragraph>
+          <Paragraph size="sub">Allow comments</Paragraph>
         </FlexContainer>
 
         <FlexContainer direction="row">
           <Checkbox name="isAverage" />
-          <Paragraph>Show average as percentage</Paragraph>
+          <Paragraph size="sub">Show average as percentage</Paragraph>
         </FlexContainer>
       </FlexContainer>
     </FlexContainer>
