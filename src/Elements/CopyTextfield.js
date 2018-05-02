@@ -12,8 +12,8 @@ const CopyTextfield = ({ url = "Url should go here", styles, ...props }) => {
   const copyToClipboard = event => {
     event.preventDefault();
 
-    textInput = ReactDOM.findDOMNode(textInput);
-    textInput.select();
+    textInput = ReactDOM.findDOMNode(textInput).children;
+    textInput[0].select();
 
     document.execCommand("copy");
   };
