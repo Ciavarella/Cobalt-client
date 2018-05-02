@@ -25,7 +25,8 @@ export default withStyles(({ colors }) => {
       backgroundColor: colors.danger,
       color: "white",
       fontSize: "48px",
-      animation: "swipe 0.5s ease"
+      animation: "fade 0.5s ease",
+      willChange: "transform"
     },
     value: {
       fontSize: "120px",

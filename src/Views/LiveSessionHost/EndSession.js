@@ -39,7 +39,8 @@ export default withStyles(({ colors }) => {
       alignItems: "center",
       height: "100vh",
       backgroundColor: colors.sand,
-      animation: "swipe 0.5s ease"
+      animation: "fade 0.5s ease",
+      willChange: "transform, opacity"
     },
     icon: {
       width: "128px",
