@@ -25,16 +25,15 @@ const Profile = ({
   return (
     <div {...css(styles, styles.profile)}>
       <FlexContainer
-        direction="row"
         justify="center"
+        align="center"
         style={{ width: "100%", flexWrap: "wrap" }}
       >
         <Card
           style={{
-            margin: "24px",
-            marginLeft: "0",
-            height: "380px",
-            width: "680px"
+            height: "240px",
+            width: "480px",
+            marginTop: "12px"
           }}
         >
           <FlexContainer justify="center" style={{ height: "100%" }}>
@@ -62,16 +61,17 @@ const Profile = ({
         </Card>
         <form onSubmit={handleSubmit}>
           <FlexContainer
-            direction="row"
-            justify="center"
-            style={{ width: "100%", flexWrap: "wrap" }}
+            style={{
+              width: "100%",
+              flexWrap: "wrap",
+              justifyContent: "space-evenly"
+            }}
           >
             <Card
               style={{
-                height: "380px",
-                width: "680px",
-                margin: "24px",
-                marginLeft: "0"
+                height: "240px",
+                width: "480px",
+                marginTop: "12px"
               }}
             >
               <FlexContainer
@@ -132,10 +132,9 @@ const Profile = ({
 
             <Card
               style={{
-                height: "380px",
-                width: "680px",
-                margin: "24px",
-                marginLeft: "0"
+                height: "240px",
+                width: "480px",
+                marginTop: "12px"
               }}
             >
               <FlexContainer

@@ -15,7 +15,6 @@ export default withStyles(({ colors }) => {
     Profile: {
       display: "flex",
       flexWrap: "wrap",
-      margin: "24px",
       height: "100%"
     }
   };
