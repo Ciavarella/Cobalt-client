@@ -51,7 +51,6 @@ class VoteSlider extends React.Component {
     let loader = 0;
     let shouldReset;
     const changeCurrentVote = () => {
-      console.log("running");
       setCurrentVote();
     };
 
@@ -171,10 +170,6 @@ class VoteSlider extends React.Component {
       }
     };
     function moveToMiddle() {
-      // parseInt(arcPosition.y) !== HEIGHT / 2
-      //   ? circleAnimation.animate()
-      //   : circleAnimation.reset();
-
       parseInt(arcPosition.y) < HEIGHT / 2 + 2 &&
       parseInt(arcPosition.y) > HEIGHT / 2 - 2
         ? circleAnimation.reset()
