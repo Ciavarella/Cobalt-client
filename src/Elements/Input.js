@@ -7,6 +7,7 @@ const Input = ({
   iconFillColor = "white",
   iconPosition = "left",
   iconBackground = null,
+  inputRef,
   appearance = "default",
   styles,
   ...props
@@ -22,7 +23,11 @@ const Input = ({
       ) : (
         ""
       )}
-      <input {...css(styles.input, styles[appearance])} {...props} />
+      <input
+        ref={inputRef}
+        {...css(styles.input, styles[appearance])}
+        {...props}
+      />
     </div>
   );
 };
