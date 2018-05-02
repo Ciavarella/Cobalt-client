@@ -47,7 +47,7 @@ const withSocket = WrappedComponent => {
       });
     }
 
-    handleVote = value => event =>
+    handleVote = value =>
       this.socket.emit("attendeePayload", {
         session: this.sessionId,
         payload: {
