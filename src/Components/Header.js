@@ -34,14 +34,22 @@ const Header = ({ styles, ...props }) => (
           </ListItem>
         </List>
       </FlexContainer>
-      <FlexContainer direction="row">
-        <ButtonLink to="login" appearance="secondary">
-          LOG IN
-        </ButtonLink>
-        <ButtonLink to="signup" appearance="primary">
-          SIGN UP
-        </ButtonLink>
-      </FlexContainer>
+      {props.isAuthenticated != true ? (
+        <FlexContainer direction="row">
+          <ButtonLink to="login" appearance="secondary">
+            LOG IN
+          </ButtonLink>
+          <ButtonLink to="signup" appearance="primary">
+            SIGN UP
+          </ButtonLink>
+        </FlexContainer>
+      ) : (
+        <FlexContainer direction="row">
+          <ButtonLink to="dashboard" appearance="secondary">
+            Dashboard
+          </ButtonLink>
+        </FlexContainer>
+      )}
     </FlexContainer>
   </header>
 );
