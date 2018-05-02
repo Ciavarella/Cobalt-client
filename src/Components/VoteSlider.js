@@ -293,14 +293,15 @@ class VoteSlider extends React.Component {
 
     const voteUp = () => {
       // Dispatch up vote
-      this.props.handleVote(this.state.currentVote);
+      console.log(this.props.handleVote);
+      this.props.handleVote(this.state.currentVote * 1);
       console.log(this.state.currentVote);
       // initiateCooldown();
     };
 
     const voteDown = () => {
       // Dispatch down vote
-      this.props.handleVote(this.state.currentVote);
+      this.props.handleVote(this.state.currentVote * 1);
       console.log(this.state.currentVote);
       // initiateCooldown();
     };
