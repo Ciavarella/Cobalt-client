@@ -54,7 +54,9 @@ class CreateSession extends React.Component {
     return newSessionCreated ? (
       <Modal withOverlay>
         <SessionStarted sessionId={session} />
-        <ButtonLink appearance="secondary">GO TO PRESENTATION LOBBY</ButtonLink>
+        <ButtonLink to={"/session/" + session} appearance="secondary">
+          GO TO PRESENTATION LOBBY
+        </ButtonLink>
       </Modal>
     ) : (
       <Wizard handleSubmit={this.handleSubmit} isLoading={isFetching}>
