@@ -15,6 +15,8 @@ import CreateSession from "../Views/CreateSession";
 import SignUp from "../Views/SignUp";
 import Notifications from "../Components/Notifications";
 import { removeOldNotification } from "../redux/notifications/actions";
+import Client from "../Views/Client";
+
 /* HOC */
 import withSocket from "../Components/WithSocket";
 import requireAuth from "../Components/RequireAuth";
@@ -61,6 +63,7 @@ class App extends React.Component {
           <Route exact path="/createsession" component={CreateSession} />
           <Route exact path="/signup" component={this.SignUp} />
           <Route path="/session/:sessionId" component={SocketClient} />
+          <Route path="/client" component={Client} />
           <Route path="/host/:sessionId" component={this.LiveSessionHost} />
           <Route path="/lobby" component={this.Lobby} />
           <Route path="/dashboard" component={this.Dashboard} />
