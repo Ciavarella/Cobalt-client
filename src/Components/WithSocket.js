@@ -17,23 +17,30 @@ const withSocket = WrappedComponent => {
       this.state = {
         sessionId: sessionId,
         data: {
+          time: 0,
           attendees: 814,
-          settings: null,
-          threshold: 30,
-          red: "34",
-          green: "66",
-          time: "00:00",
-          presentation: {
+          description: {
+            title: "Default title",
+            description: "Default description"
+          },
+          engagement: {
+            average: 0,
+            negative: 50,
+            positive: 50
+          },
+          status: {
+            isAverage: false,
             hasStarted: false,
             isPaused: false,
             isStopped: false,
-            currentSection: "Redux"
+            maxAttendees: 50,
+            threshold: 50
           }
         }
       };
 
       this.sessionId = sessionId;
-      this.socket = io(process.env.REACT_APP_API_BASE_URL);
+      this.socket = io(`http://10.126.4.146:7770`);
       this.startSession = this.startSession.bind(this);
       this.stopSession = this.stopSession.bind(this);
       this.pauseSession = this.pauseSession.bind(this);
