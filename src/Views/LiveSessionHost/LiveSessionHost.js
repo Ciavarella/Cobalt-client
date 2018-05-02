@@ -16,12 +16,13 @@ import EndSession from "./EndSession";
 
 /* TODO: Figure out better name */
 const LiveSessionHost = ({ styles, ...props }) => {
-  console.log(props);
-  if (!props.data.presentation.hasStarted) {
+  console.log("LiveSessionHost Props: ", props);
+  console.log(props.data.status.hasStarted);
+  if (props.data.status.hasStarted === false) {
     return <Lobby {...props} />;
   }
 
-  if (props.data.presentation.isStopped) {
+  if (props.data.status.isStopped) {
     return <EndSession {...props} />;
   }
 
@@ -36,8 +37,11 @@ const LiveSessionHost = ({ styles, ...props }) => {
         >
           <Timer {...props} />
           <FlexContainer direction="row">
+            <Button appearance="secondary" onClick={props.switchData}>
+              Switch to {props.data.status.isAverage ? "Percent" : "Average"}
+            </Button>
             <Button appearance="secondary" onClick={props.pauseSession}>
-              {props.data.presentation.isPaused
+              {props.data.status.isPaused
                 ? "Continue session"
                 : "Pause session"}
             </Button>
@@ -54,7 +58,7 @@ const LiveSessionHost = ({ styles, ...props }) => {
         </FlexContainer>
       </div>
       <div {...css(styles.graphWrap)}>
-        {props.data.red > props.data.threshold ? (
+        {props.data.engagement.negative > props.data.status.threshold ? (
           <Warning {...props} />
         ) : (
           <Engagement {...props} />
