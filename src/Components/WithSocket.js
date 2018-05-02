@@ -44,6 +44,8 @@ const withSocket = WrappedComponent => {
       this.startSession = this.startSession.bind(this);
       this.stopSession = this.stopSession.bind(this);
       this.pauseSession = this.pauseSession.bind(this);
+      this.requestSave = this.requestSave.bind(this);
+      this.switchData = this.switchData.bind(this);
     }
 
     componentDidMount() {
@@ -56,6 +58,7 @@ const withSocket = WrappedComponent => {
 
     listenForEvents() {
       this.socket.on("updateHost", data => {
+        console.log("Data from Socket: ", data);
         this.setState({
           data: data
         });
@@ -118,6 +121,30 @@ const withSocket = WrappedComponent => {
       return Math.round((avg + 5) / 10 * 100);
     }
 
+    requestSave(time) {
+      this.socket.emit("presenterRequestsSave", {
+        sessionId: this.state.sessionId,
+        timeStamp: time,
+        value: this.state.data.engagement
+      });
+      console.log("timestamp: ", time);
+    }
+
+    switchData() {
+      this.setState(
+        {
+          data: {
+            ...this.state.data,
+            status: {
+              ...this.state.data.status,
+              isAverage: !this.state.data.status.isAverage
+            }
+          }
+        },
+        this.updateSession
+      );
+    }
+
     render() {
       return (
         <WrappedComponent
@@ -126,6 +153,8 @@ const withSocket = WrappedComponent => {
           pauseSession={this.pauseSession}
           updateSession={this.updateSession}
           getPercentageFromAvg={this.getPercentageFromAvg}
+          switchData={this.switchData}
+          requestSave={this.requestSave}
           {...this.state}
           {...this.props}
         />
