@@ -207,10 +207,6 @@ const formikForm = withFormik({
   }),
   handleSubmit(values, { props, resetForm, setErrors, setSubmitting }) {
     //TODO: send a request to db and check if the email already exists
-<<<<<<< HEAD
-
-=======
->>>>>>> Replace a-tag with react link and signuprequest
     props.signupRequest(values);
   }
 })(SignUpForm);
