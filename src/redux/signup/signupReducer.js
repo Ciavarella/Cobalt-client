@@ -19,7 +19,7 @@ const signupReducer = (state = initialState, action) => {
         ...state,
         user: action.payload.user,
         isFetching: false,
-        message: action.payload.message
+        message: action.payload.success
       };
     case REQUEST_SIGNUP_FAIL:
       return {
