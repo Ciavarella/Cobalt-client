@@ -2,6 +2,7 @@ import React from "react";
 
 import Button from "../Elements/Button";
 import FlexContainer from "../Containers/FlexContainer";
+import VoteSlider from "../Components/VoteSlider";
 
 import io from "socket.io-client";
 
@@ -69,11 +70,10 @@ const withSocket = WrappedComponent => {
 const Client = ({ data, handleVote }) => {
   return (
     <React.Fragment>
-      <h1>Client View</h1>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-      <FlexContainer justify="center" align="center">
-        <Button onClick={handleVote(1)}>Faster</Button>
-        <Button onClick={handleVote(-1)}>Slower</Button>
+      <FlexContainer direction="row" justify="center" align="center">
+        <h1>Client View</h1>
+        <pre>{JSON.stringify(data, null, 2)}</pre>
+        <VoteSlider handleVote={handleVote} />
       </FlexContainer>
     </React.Fragment>
   );

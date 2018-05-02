@@ -46,7 +46,7 @@ class VoteSlider extends React.Component {
     let GRAVITY = 1;
     let isDraggable = false;
     let onCoolDown = false;
-    const cooldownTime = 2;
+    const cooldownTime = 5;
     let cooldownTimer = cooldownTime;
     let loader = 0;
     let shouldReset;
@@ -76,13 +76,13 @@ class VoteSlider extends React.Component {
         if (arcPosition.y > HEIGHT / 2) {
           setTimeout(() => {
             voteDown();
-          }, 50);
+          }, 100);
         }
 
         if (arcPosition.y < HEIGHT / 2) {
           setTimeout(() => {
             voteUp();
-          }, 50);
+          }, 100);
         }
 
         if (arcPosition.y !== arcPosition.last.y) {
@@ -239,27 +239,27 @@ class VoteSlider extends React.Component {
 
     const setCurrentVote = () => {
       if (arcPosition.y < HEIGHT / 11 * 2) {
-        this.setState({ currentVote: "+5" });
+        this.setState({ currentVote: "5" });
       } else if (
         arcPosition.y > HEIGHT / 11 * 2 &&
         arcPosition.y < HEIGHT / 11 * 3
       ) {
-        this.setState({ currentVote: "+4" });
+        this.setState({ currentVote: "4" });
       } else if (
         arcPosition.y > HEIGHT / 11 * 3 &&
         arcPosition.y < HEIGHT / 11 * 4
       ) {
-        this.setState({ currentVote: "+3" });
+        this.setState({ currentVote: "3" });
       } else if (
         arcPosition.y > HEIGHT / 11 * 4 &&
         arcPosition.y < HEIGHT / 11 * 5
       ) {
-        this.setState({ currentVote: "+2" });
+        this.setState({ currentVote: "2" });
       } else if (
         arcPosition.y > HEIGHT / 11 * 5 &&
         arcPosition.y < HEIGHT / 11 * 6
       ) {
-        this.setState({ currentVote: "+1" });
+        this.setState({ currentVote: "1" });
       } else if (arcPosition.y > HEIGHT / 11 * 10) {
         this.setState({ currentVote: "-5" });
       } else if (
@@ -293,16 +293,16 @@ class VoteSlider extends React.Component {
 
     const voteUp = () => {
       // Dispatch up vote
-
+      this.props.handleVote(this.state.currentVote);
       console.log(this.state.currentVote);
-      initiateCooldown();
+      // initiateCooldown();
     };
 
     const voteDown = () => {
       // Dispatch down vote
-
+      this.props.handleVote(this.state.currentVote);
       console.log(this.state.currentVote);
-      initiateCooldown();
+      // initiateCooldown();
     };
 
     const initiateCooldown = () => {
@@ -350,19 +350,19 @@ class VoteSlider extends React.Component {
             width: "25px"
           }}
         >
-          <Paragraph size={this.state.currentVote === "+5" ? "leading" : "sub"}>
+          <Paragraph size={this.state.currentVote === "5" ? "leading" : "sub"}>
             +5
           </Paragraph>
-          <Paragraph size={this.state.currentVote === "+4" ? "leading" : "sub"}>
+          <Paragraph size={this.state.currentVote === "4" ? "leading" : "sub"}>
             +4
           </Paragraph>
-          <Paragraph size={this.state.currentVote === "+3" ? "leading" : "sub"}>
+          <Paragraph size={this.state.currentVote === "3" ? "leading" : "sub"}>
             +3
           </Paragraph>
-          <Paragraph size={this.state.currentVote === "+2" ? "leading" : "sub"}>
+          <Paragraph size={this.state.currentVote === "2" ? "leading" : "sub"}>
             +2
           </Paragraph>
-          <Paragraph size={this.state.currentVote === "+1" ? "leading" : "sub"}>
+          <Paragraph size={this.state.currentVote === "1" ? "leading" : "sub"}>
             +1
           </Paragraph>
           <Paragraph size={this.state.currentVote === "-1" ? "leading" : "sub"}>
@@ -384,8 +384,8 @@ class VoteSlider extends React.Component {
 
         <canvas
           id="myCanvas"
-          height="900"
-          width="400"
+          height="800"
+          width="300"
           {...css(
             this.props.styles.voteSlider,
             this.props.styles.background,

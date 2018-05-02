@@ -14,6 +14,7 @@ import withPublicRoot from "../Containers/PublicRoot";
 import LandingPage from "../Views/LandingPage";
 import CreateSession from "../Views/CreateSession";
 import SignUp from "../Views/SignUp";
+import Client from "../Views/Client";
 
 class App extends React.Component {
   constructor() {
@@ -36,6 +37,7 @@ class App extends React.Component {
           <Route exact path="/createsession" component={this.CreateSession} />
           <Route exact path="/signup" component={this.SignUp} />
           <Route path="/session/:sessionId" component={SocketClient} />
+          <Route path="/client" component={Client} />
           <Route path="/host/:sessionId" component={this.LiveSessionHost} />
           <Route path="/lobby" component={this.Lobby} />
           <Route path="/dashboard" component={this.Dashboard} />
