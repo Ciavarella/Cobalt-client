@@ -12,183 +12,61 @@ import Warning from "./Warning";
 import Engagement from "./Engagement";
 import Timer from "./Timer";
 import Lobby from "./Lobby";
+import Paused from "./Paused";
+import EndSession from "./EndSession";
 
-/* Socket */
-import io from "socket.io-client";
-
-/* TODO: Figure out better name */
-class LiveSessionHost extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      /* SIMULATE VALUES FOR DEBUGGING */
-      debug: true,
-      /* ------ */
-      attendees: 0,
-      settings: null,
-      threshold: 50,
-      red: "50",
-      green: "50",
-      time: "00:00",
-      data: {},
-      presentation: {
-        hasStarted: false,
-        isPaused: false,
-        isStopped: false,
-        currentSection: "Redux"
-      }
-    };
-
-    const {
-      match: {
-        params: { sessionId }
-      }
-    } = this.props;
-
-    this.sessionId = sessionId;
-    this.handleClick = this.handleClick.bind(this);
-    this.updateSession = this.updateSession.bind(this);
-    this.pauseSession = this.pauseSession.bind(this);
-    this.stopSession = this.stopSession.bind(this);
-    this.counter = 0;
-    this.socket = io(`http://10.126.4.146:7770`);
+const LiveSessionHost = ({ styles, ...props }) => {
+  if (props.data.status.hasEnded) {
+    return <EndSession {...props} />;
   }
 
-  componentDidMount() {
-    if (this.state.debug === false) {
-      this.socket.on("connect", () => {
-        this.socket.emit("joinSession", this.sessionId);
-      });
-      this.listenForEvents();
-      return;
-    }
-    console.log("Debugging mode is enabled. Data is simulated.");
-    this.simulateDecline();
+  if (props.data.status.hasStarted === false) {
+    return <Lobby {...props} />;
   }
 
-  getPercentageFromAvg(avg) {
-    return Math.round((avg + 5) / 10 * 100);
-  }
-
-  listenForEvents() {
-    this.socket.on("updateHost", data => {
-      console.log(data);
-      this.setState({
-        red: data.engagement.negative,
-        green: data.engagement.positive,
-        attendees: data.attendees,
-        settings: data.settings,
-        average: data.engagement.average
-      });
-    });
-  }
-
-  handleClick() {
-    this.setState(
-      {
-        presentation: {
-          ...this.state.presentation,
-          isStopped: true
-        }
-      },
-      () => {
-        this.socket.emit("presenterPayload", {
-          session: this.sessionId,
-          payload: this.state.presentation
-        });
-      }
-    );
-  }
-
-  updateSession() {
-    this.socket.emit("presenterPayload", {
-      session: this.sessionId,
-      payload: this.state.presentation
-    });
-  }
-
-  stopSession() {
-    this.setState(
-      {
-        presentation: {
-          ...this.state.presentation,
-          isStopped: true
-        }
-      },
-      this.updateSession
-    );
-  }
-
-  pauseSession() {
-    this.setState(
-      {
-        presentation: {
-          ...this.state.presentation,
-          isPaused: !this.state.presentation.isPaused
-        }
-      },
-      this.updateSession
-    );
-  }
-
-  simulateDecline() {
-    let num1, num2;
-    num1 = 86;
-    const intervalId = setInterval(() => {
-      num1 <= 8 ? (num1 = 86) : num1--;
-      num2 = 100 - num1;
-      this.setState({
-        green: num1,
-        red: num2
-      });
-    }, 800);
-  }
-
-  render() {
-    const { styles } = this.props;
-
-    if (!this.state.presentation.hasStarted) {
-      return <Lobby {...this.state} />;
-    }
-    return (
-      <div {...css(styles.LiveSessionHost)}>
-        <div {...css(styles.interface)}>
-          <FlexContainer
-            justify="between"
-            align="center"
-            direction="row"
-            fullWidth="1"
-          >
-            <Timer {...this.state} />
-            <FlexContainer direction="row">
-              <Button appearance="secondary" onClick={this.pauseSession}>
-                {this.state.presentation.isPaused
-                  ? "Continue session"
-                  : "Pause session"}
-              </Button>
-              <Button appearance="danger" onClick={this.stopSession}>
-                Stop session
-              </Button>
-            </FlexContainer>
+  return (
+    <div {...css(styles.LiveSessionHost)}>
+      <div {...css(styles.interface)}>
+        <FlexContainer
+          justify="between"
+          align="center"
+          direction="row"
+          fullWidth="1"
+        >
+          <Timer {...props} />
+          <FlexContainer direction="row">
+            <Button appearance="secondary" onClick={props.switchData}>
+              Switch to {props.data.status.isAverage ? "Percent" : "Average"}
+            </Button>
+            <Button appearance="secondary" onClick={props.pauseSession}>
+              {props.data.status.isPaused
+                ? "Continue session"
+                : "Pause session"}
+            </Button>
+            <Button appearance="danger" onClick={props.stopSession}>
+              Stop session
+            </Button>
           </FlexContainer>
-          <FlexContainer fullWidth="1" align="end" justify="end">
-            <Heading size="2" appearance="white">
-              {this.state.attendees} attendees
-            </Heading>
-            <CopyTextfield url="http://feed.io/xby6Jnb" />
-          </FlexContainer>
-        </div>
-        <div {...css(styles.graphWrap)}>
-          {this.state.red > this.state.threshold ? (
-            <Warning {...this.state} />
-          ) : (
-            <Engagement {...this.state} />
-          )}
-        </div>
+        </FlexContainer>
+        <FlexContainer fullWidth="1" align="end" justify="end">
+          <Heading size="2" appearance="white">
+            {props.data.attendees} attendees
+          </Heading>
+          <CopyTextfield url={props.data.sessionId} />
+        </FlexContainer>
       </div>
-    );
-  }
-}
+      {props.data.status.isPaused ? <Paused {...props} /> : ""}
+      <div {...css(styles.graphWrap)}>
+        {/* TODO: Fix threshold when isAverage! */}
+        {props.data.engagement.negative > props.data.status.threshold ? (
+          <Warning {...props} />
+        ) : (
+          <Engagement {...props} />
+        )}
+      </div>
+    </div>
+  );
+};
 
 export default withStyles(({ themes, text, colors }) => {
   return {
@@ -202,7 +80,7 @@ export default withStyles(({ themes, text, colors }) => {
       flexDirection: "column"
     },
     interface: {
-      zIndex: "99",
+      zIndex: "999",
       padding: "0px 16px",
       position: "absolute",
       width: "100%",
@@ -219,7 +97,7 @@ export default withStyles(({ themes, text, colors }) => {
       overflow: "hidden",
       flexDirection: "row",
       ":nth-child(1n) span": {
-        zIndex: "999"
+        zIndex: "997"
       }
     }
   };

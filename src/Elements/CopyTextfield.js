@@ -6,7 +6,7 @@ import FlexContainer from "../Containers/FlexContainer";
 import Button from "./Button";
 import Input from "./Input";
 
-const CopyTextfield = ({ url = "Url should go here", styles, ...props }) => {
+const CopyTextfield = ({ url = "SESSIONID", styles, ...props }) => {
   let inputElementRef;
 
   const copyToClipboard = event => {
@@ -35,7 +35,7 @@ const CopyTextfield = ({ url = "Url should go here", styles, ...props }) => {
         <Input
           inputRef={ref => (inputElementRef = ref)}
           onClick={copyToClipboard}
-          value={url}
+          value={`http://feed.io/${url}`}
           readOnly
         />
       </FlexContainer>

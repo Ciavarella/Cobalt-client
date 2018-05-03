@@ -2,13 +2,21 @@ import React from "react";
 import { css, withStyles } from "../../withStyles";
 
 const Engagement = ({ styles, ...props }) => {
+  let negative = props.data.engagement.negative;
+  let positive = props.data.engagement.positive;
+
+  if (props.data.status.isAverage) {
+    positive = props.getPercentageFromAvg(props.data.engagement.average);
+    negative = 100 - positive;
+  }
+
   return (
     <React.Fragment>
-      <div {...css(styles.graphRed)} style={{ width: `${props.red}%` }}>
-        <span>{props.red > 10 ? `${props.red}%` : null}</span>
+      <div {...css(styles.graphRed)} style={{ width: `${negative}%` }}>
+        <span>{negative > 10 ? `${negative}%` : null}</span>
       </div>
-      <div {...css(styles.graphGreen)} style={{ width: `${props.green}%` }}>
-        <span>{props.green > 10 ? `${props.green}%` : null}</span>
+      <div {...css(styles.graphGreen)} style={{ width: `${positive}%` }}>
+        <span>{positive > 10 ? `${positive}%` : null}</span>
       </div>
     </React.Fragment>
   );

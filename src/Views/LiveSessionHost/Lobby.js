@@ -5,46 +5,68 @@ import Heading from "../../Elements/Heading";
 import Paragraph from "../../Elements/Paragraph";
 import Button from "../../Elements/Button";
 import CopyTextfield from "../../Elements/CopyTextfield";
-
-import io from "socket.io-client";
+import Modal from "../../Components/Modal";
 
 class Lobby extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor({ styles, ...props }) {
+    super(...props);
+    this.styles = styles;
     this.state = {
-      attendees: 0
+      showModal: false
     };
-    this.socket = io(process.env.REACT_APP_API_BASE_URL);
+
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
-  listenForEvents() {
-    this.socket.on("updateHost", data => {
-      console.log(data);
-      this.setState({
-        attendees: data.attendees,
-        settings: data.settings
-      });
+  toggleModal() {
+    this.setState({
+      showModal: !this.state.showModal
     });
   }
 
   render() {
-    const { styles } = this.props;
     return (
-      <div {...css(styles.lobby)}>
+      <div {...css(this.styles.lobby)}>
+        {this.state.showModal ? (
+          <Modal withAnimation>
+            <Heading size="3" appearance="white">
+              Are you sure you want to cancel this session?
+            </Heading>
+            <Paragraph appearance="white">
+              You will have to create a new session.
+            </Paragraph>
+            <FlexContainer direction="row">
+              <Button appearance="danger" onClick={this.props.stopSession}>
+                Yes, cancel
+              </Button>
+              <Button appearance="secondary" onClick={this.toggleModal}>
+                No
+              </Button>
+            </FlexContainer>
+          </Modal>
+        ) : (
+          " "
+        )}
         <FlexContainer direction="row" fullWidth="1" justify="end">
-          <Button appearance="danger">Cancel session </Button>
-          <Button appearance="secondary">Settings </Button>
+          <Button appearance="danger" onClick={this.toggleModal}>
+            Cancel session
+          </Button>
+          <Button appearance="disabled">Settings </Button>
         </FlexContainer>
         <FlexContainer flex="1" align="center" justify="center">
           <Heading size="2">Your session is ready!</Heading>
           <Paragraph>
             Whenever you are ready, click the button to start!
           </Paragraph>
-          <Button appearance="primary">Let's go!</Button>
-          <Heading size="3">{this.state.attendees} attendees in lobby</Heading>
+          <Button appearance="primary" onClick={this.props.startSession}>
+            Let's go!
+          </Button>
+          <Heading size="3">
+            {this.props.data.attendees} attendees in lobby
+          </Heading>
         </FlexContainer>
         <FlexContainer fullWidth="1" align="end" justify="end">
-          <CopyTextfield url="http://feed.io/xby6Jnb" />
+          <CopyTextfield url={this.props.data.sessionId} />
         </FlexContainer>
       </div>
     );
