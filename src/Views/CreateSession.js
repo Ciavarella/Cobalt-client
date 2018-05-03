@@ -53,8 +53,8 @@ class CreateSession extends React.Component {
 
     return newSessionCreated ? (
       <Modal withOverlay>
-        <SessionStarted sessionId={session} />
-        <ButtonLink to={"/session/" + session} appearance="secondary">
+        <SessionStarted sessionId={session.sessionId} />
+        <ButtonLink to={"/host/" + session.sessionId} appearance="secondary">
           GO TO PRESENTATION LOBBY
         </ButtonLink>
       </Modal>
