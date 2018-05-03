@@ -1,8 +1,12 @@
 import React from "react";
+import { css, withStyles } from "../withStyles";
 
 import Button from "../Elements/Button";
+import Heading from "../Elements/Heading";
+import Paragraph from "../Elements/Paragraph";
 import FlexContainer from "../Containers/FlexContainer";
 import VoteSlider from "../Components/VoteSlider";
+import Modal from "../Components/Modal";
 
 import io from "socket.io-client";
 
@@ -11,8 +15,25 @@ const withSocket = WrappedComponent => {
     constructor(props) {
       super(props);
 
+      // this.state = {
+      //   data: {},
+      // };
       this.state = {
-        data: {}
+        data: {
+          description: {
+            title: "Sample title",
+            description: "This is a description"
+          },
+          engagementDescription: {
+            up: "Faster",
+            down: "Slower"
+          },
+          status: {
+            isPaused: false,
+            isStopped: false,
+            time: "10:40"
+          }
+        }
       };
 
       const {
@@ -67,19 +88,52 @@ const withSocket = WrappedComponent => {
   };
 };
 
-const Client = ({ data, handleVote }) => {
+const Client = ({ data, handleVote, styles }) => {
+  console.log(data.data);
   return (
-    <React.Fragment>
+    <div {...css(styles.client)}>
       <FlexContainer
-        direction="row"
         justify="center"
         align="center"
         style={{ height: "100vh" }}
       >
-        <VoteSlider handleVote={handleVote} />
+        <FlexContainer>
+          <Heading appearance="primary" size="2">
+            {data.data.description.title}
+          </Heading>
+          <Heading appearance="primary" size="3">
+            {data.data.description.description}
+          </Heading>
+          <Paragraph appearance="white">{data.data.status.time}</Paragraph>
+          {data.data.status.isPaused ? (
+            <Modal withOverlay>
+              <Heading size="2">This session is currently paused</Heading>
+              <Paragraph>Wait for the host to resume the session</Paragraph>
+            </Modal>
+          ) : (
+            ""
+          )}
+          <FlexContainer align="start">
+            <Paragraph appearance="success">
+              {data.data.engagementDescription.up}
+            </Paragraph>
+            <VoteSlider handleVote={handleVote} />
+            <Paragraph appearance="danger">
+              {data.data.engagementDescription.down}
+            </Paragraph>
+          </FlexContainer>
+        </FlexContainer>
       </FlexContainer>
-    </React.Fragment>
+    </div>
   );
 };
 
-export default withSocket(Client);
+const socket = withSocket(Client);
+
+export default withStyles(({ themes, colors }) => {
+  return {
+    client: {
+      backgroundColor: colors.nightsky
+    }
+  };
+})(socket);
