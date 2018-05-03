@@ -13,6 +13,10 @@ class VoteSlider extends React.Component {
       canvas: {
         height: "",
         width: ""
+      },
+      window: {
+        width: window.innerWidth,
+        height: window.innerHeight
       }
     };
   }
@@ -20,6 +24,21 @@ class VoteSlider extends React.Component {
   componentDidMount() {
     const canvas = document.getElementById("myCanvas");
     const ctx = canvas.getContext("2d");
+
+    // Canvas styling
+    const voteCircleColor = this.props.styles.voteCircleColor._definition;
+    const voteCircleFontColor = this.props.styles.voteCircleFontColor
+      ._definition;
+
+    this.state.window.width < breakPoint
+      ? this.setState({
+          ...this.state,
+          canvas: {
+            height: canvas.height,
+            width: canvas.width
+          }
+        })
+      : "";
 
     this.setState({
       ...this.state,
@@ -29,14 +48,10 @@ class VoteSlider extends React.Component {
       }
     });
 
-    // Canvas styling
-    const voteCircleColor = this.props.styles.voteCircleColor._definition;
-    const voteCircleFontColor = this.props.styles.voteCircleFontColor
-      ._definition;
-
     const HEIGHT = canvas.height;
     const WIDTH = canvas.width;
-    const windowHeight = window.innerHeight;
+    const windowHeight = this.state.window.height;
+    const breakPoint = 420;
 
     const heightDifference = () => {
       let heightToDivide = windowHeight - HEIGHT;
@@ -61,8 +76,8 @@ class VoteSlider extends React.Component {
         circleAnimation.reset();
         arcPosition.last.y = arcPosition.y;
         if (
-          yPosition > heightDifference() &&
-          yPosition < HEIGHT + heightDifference()
+          yPosition > heightDifference() + voteCircleSize &&
+          yPosition < HEIGHT + heightDifference() + voteCircleSize
         ) {
           arcPosition.y = yPosition - heightDifference();
         }
@@ -104,7 +119,9 @@ class VoteSlider extends React.Component {
           const mousePos = yPosition;
           if (
             mousePos > heightDifference() + voteCircleSize &&
-            mousePos < HEIGHT + heightDifference() - voteCircleSize
+            this.state.window.width < 420
+              ? mousePos < HEIGHT + heightDifference() - voteCircleSize * 0.1
+              : mousePos < HEIGHT + heightDifference() - voteCircleSize
           ) {
             arcPosition.y = mousePos - heightDifference();
           }
@@ -337,12 +354,7 @@ class VoteSlider extends React.Component {
 
   render() {
     return (
-      <FlexContainer
-        align="center"
-        justify="center"
-        direction="row"
-        style={{ height: "100vh", width: "100vw" }}
-      >
+      <FlexContainer align="center" justify="center" direction="row">
         <FlexContainer
           align="center"
           justify="between"
@@ -351,41 +363,71 @@ class VoteSlider extends React.Component {
             width: "25px"
           }}
         >
-          <Paragraph size={this.state.currentVote === "5" ? "leading" : "sub"}>
+          <Paragraph
+            appearance="white"
+            size={this.state.currentVote === "5" ? "leading" : "sub"}
+          >
             +5
           </Paragraph>
-          <Paragraph size={this.state.currentVote === "4" ? "leading" : "sub"}>
+          <Paragraph
+            appearance="white"
+            size={this.state.currentVote === "4" ? "leading" : "sub"}
+          >
             +4
           </Paragraph>
-          <Paragraph size={this.state.currentVote === "3" ? "leading" : "sub"}>
+          <Paragraph
+            appearance="white"
+            size={this.state.currentVote === "3" ? "leading" : "sub"}
+          >
             +3
           </Paragraph>
-          <Paragraph size={this.state.currentVote === "2" ? "leading" : "sub"}>
+          <Paragraph
+            appearance="white"
+            size={this.state.currentVote === "2" ? "leading" : "sub"}
+          >
             +2
           </Paragraph>
-          <Paragraph size={this.state.currentVote === "1" ? "leading" : "sub"}>
+          <Paragraph
+            appearance="white"
+            size={this.state.currentVote === "1" ? "leading" : "sub"}
+          >
             +1
           </Paragraph>
-          <Paragraph size={this.state.currentVote === "-1" ? "leading" : "sub"}>
+          <Paragraph
+            appearance="white"
+            size={this.state.currentVote === "-1" ? "leading" : "sub"}
+          >
             -1
           </Paragraph>
-          <Paragraph size={this.state.currentVote === "-2" ? "leading" : "sub"}>
+          <Paragraph
+            appearance="white"
+            size={this.state.currentVote === "-2" ? "leading" : "sub"}
+          >
             -2
           </Paragraph>
-          <Paragraph size={this.state.currentVote === "-3" ? "leading" : "sub"}>
+          <Paragraph
+            appearance="white"
+            size={this.state.currentVote === "-3" ? "leading" : "sub"}
+          >
             -3
           </Paragraph>
-          <Paragraph size={this.state.currentVote === "-4" ? "leading" : "sub"}>
+          <Paragraph
+            appearance="white"
+            size={this.state.currentVote === "-4" ? "leading" : "sub"}
+          >
             -4
           </Paragraph>
-          <Paragraph size={this.state.currentVote === "-5" ? "leading" : "sub"}>
+          <Paragraph
+            appearance="white"
+            size={this.state.currentVote === "-5" ? "leading" : "sub"}
+          >
             -5
           </Paragraph>
         </FlexContainer>
 
         <canvas
           id="myCanvas"
-          height="450"
+          height={this.state.window.width < 420 ? "450" : "800"}
           width="300"
           {...css(
             this.props.styles.voteSlider,
@@ -403,7 +445,8 @@ class VoteSlider extends React.Component {
 export default withStyles(({ themes, colors, rounded }) => {
   return {
     voteSlider: {
-      border: "2px solid #d3d3d3",
+      border: "2px solid",
+      borderColor: colors.nightsky,
       background: `linear-gradient(${colors.success}, ${colors.danger})`,
       touchAction: "none"
     },
