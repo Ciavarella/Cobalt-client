@@ -70,9 +70,12 @@ const withSocket = WrappedComponent => {
 const Client = ({ data, handleVote }) => {
   return (
     <React.Fragment>
-      <FlexContainer direction="row" justify="center" align="center">
-        <h1>Client View</h1>
-        <pre>{JSON.stringify(data, null, 2)}</pre>
+      <FlexContainer
+        direction="row"
+        justify="center"
+        align="center"
+        style={{ height: "100vh" }}
+      >
         <VoteSlider handleVote={handleVote} />
       </FlexContainer>
     </React.Fragment>

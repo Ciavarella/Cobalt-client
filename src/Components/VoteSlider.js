@@ -97,7 +97,7 @@ class VoteSlider extends React.Component {
       }
     };
 
-    const onMouseMove = yPosition => {
+    const onMouseMove = (yPosition, event) => {
       if (!onCoolDown) {
         setCurrentVote();
         if (isDraggable) {
@@ -385,7 +385,7 @@ class VoteSlider extends React.Component {
 
         <canvas
           id="myCanvas"
-          height="800"
+          height="450"
           width="300"
           {...css(
             this.props.styles.voteSlider,
@@ -404,7 +404,8 @@ export default withStyles(({ themes, colors, rounded }) => {
   return {
     voteSlider: {
       border: "2px solid #d3d3d3",
-      background: `linear-gradient(${colors.success}, ${colors.danger})`
+      background: `linear-gradient(${colors.success}, ${colors.danger})`,
+      touchAction: "none"
     },
     rounded: rounded,
     voteCircleColor: colors.nightsky,
