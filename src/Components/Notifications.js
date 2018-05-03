@@ -5,84 +5,46 @@ import { CSSTransitionGroup } from "react-transition-group";
 import Notification from "../Elements/Notification";
 import FlexContainer from "../Containers/FlexContainer";
 
-let mockNotifications = []; // Will be removed
-
 class Notifications extends Component {
-  constructor({ styles, ...props }) {
+  constructor({ styles, position = "bottomRight", ...props }) {
     super(props);
     this.styles = styles;
-    this.state = {
-      notifications: mockNotifications,
-      removedNotifications: []
-    };
-    /**Just to simulate notifications coming in */
-    let id = 0;
-    this.adder = setInterval(() => {
-      id++;
-      let newNotification = {
-        _id: id,
-        text: `Some text here ${id}`,
-        notificationType: id % 2 == 0 ? "success" : "danger"
-      };
-      mockNotifications.push(newNotification);
-      this.updateState();
-    }, 2000);
+    this.position = position;
 
-    /**Removes notifications after some time and saves the removed ones on a different array */
-    this.removeNotification = setInterval(() => {
-      this.setState({
-        ...this.state,
-        removedNotifications: [
-          ...this.state.removedNotifications,
-          mockNotifications[0]
-        ]
-      });
-      mockNotifications.shift();
-      this.updateState();
-    }, 4000);
-
-    this.handleClick = this.handleClick.bind(this);
+    this.removeNotification;
   }
 
-  updateState() {
-    this.setState({
-      ...this.state,
-      notifications: mockNotifications
-    });
+  componentWillReceiveProps() {
+    // console.log("props recieved");
   }
 
   componentWillUnmount() {
-    clearInterval(this.adder);
-    clearInterval(this.removeNotification);
-    console.log(this.state);
-  }
-
-  handleClick(e) {
-    mockNotifications.map((notification, i) => {
-      if (notification._id == e.target.id) {
-        mockNotifications.splice(i, 1);
-      }
-    });
-    this.updateState();
+    // clearInterval(this.removeNotification);
+    console.log(this.props.notifications);
   }
 
   render() {
+    this.props.notifications.length
+      ? (this.removeNotification = setInterval(() => {
+          this.props.removeNotifications();
+        }, 1000))
+      : clearInterval(this.removeNotification);
     return (
-      <div {...css(this.styles.notifications)}>
+      <div {...css(this.styles.notifications, this.styles[this.position])}>
         <CSSTransitionGroup
           transitionName="notification"
-          transitionEnterTimeout={5000}
-          transitionLeaveTimeout={3000}
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={500}
         >
-          {this.state.notifications.map(notification => {
+          {Object.values(this.props.notifications).map(notification => {
             return (
               <Notification
-                appearance={notification.notificationType}
-                id={notification._id}
-                key={notification._id}
-                handleClick={this.handleClick}
+                appearance="danger"
+                id={notification}
+                key={notification}
+                handleClick={this.props.handleClick}
               >
-                {notification.text}
+                {notification.body}
               </Notification>
             );
           })}
@@ -97,9 +59,21 @@ export default withStyles(({ themes }) => {
     notifications: {
       display: "flex",
       flexDirection: "column",
+      position: "fixed",
+      width: "30%",
+      zIndex: "199",
       ":nth-child(1n) div": {
         marginBottom: "15px"
       }
+    },
+    /* Position */
+    bottomRight: {
+      bottom: "2.5rem",
+      right: "2.5rem"
+    },
+    bottomLeft: {
+      bottom: "2.5rem",
+      left: "2.5rem"
     }
   };
 })(Notifications);
