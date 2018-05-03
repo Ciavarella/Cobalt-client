@@ -1,12 +1,8 @@
 import React from "react";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { Route, Switch } from "react-router-dom";
 import { css, withStyles } from "../../withStyles";
 import FlexContainer from "../../Containers/FlexContainer";
-import Paragraph from "../../Elements/Paragraph";
-import Icon from "../../Elements/Icon";
 import Avatar from "../../Elements/Avatar";
-import Heading from "../../Elements/Heading";
 import Button from "../../Elements/Button";
 import Navigation from "../../Components/Navigation";
 import Sessions from "./Sessions";
@@ -14,8 +10,6 @@ import CreateSession from "../CreateSession";
 import Upgrade from "./Upgrade";
 import Profile from "./Profile";
 import Settings from "./Settings";
-
-import openBoxIcon from "../../assets/open-box.svg";
 
 const Dashboard = ({ styles, ...props }) => {
   return (

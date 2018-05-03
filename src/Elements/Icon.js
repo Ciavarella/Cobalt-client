@@ -1,6 +1,5 @@
 import React from "react";
 import { css, withStyles } from "../withStyles";
-import fontawesome from "@fortawesome/fontawesome";
 import FontAwesomeIcon from "@fortawesome/react-fontawesome";
 import {
   faCheck,

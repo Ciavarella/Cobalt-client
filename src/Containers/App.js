@@ -34,7 +34,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={this.LandingPage} />
           <Route exact path="/login" component={this.Login} />
-          <Route exact path="/createsession" component={this.CreateSession} />
+          <Route exact path="/createsession" component={CreateSession} />
           <Route exact path="/signup" component={this.SignUp} />
           <Route path="/session/:sessionId" component={SocketClient} />
           <Route path="/host/:sessionId" component={this.LiveSessionHost} />

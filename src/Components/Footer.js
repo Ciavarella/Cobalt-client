@@ -9,16 +9,16 @@ const Footer = ({ size = "medium", styles, ...props }) => (
     <FlexContainer direction="column" align="start">
       <List direction="row">
         <ListItem>
-          <a href="#">About</a>
+          <a href="/">About</a>
         </ListItem>
         <ListItem>
-          <a href="#">Press</a>
+          <a href="/">Press</a>
         </ListItem>
         <ListItem>
-          <a href="#">Developers</a>
+          <a href="/">Developers</a>
         </ListItem>
         <ListItem>
-          <a href="#">Channels</a>
+          <a href="/">Channels</a>
         </ListItem>
       </List>
     </FlexContainer>

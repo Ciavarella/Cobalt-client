@@ -3,7 +3,6 @@ import { css, withStyles } from "../withStyles";
 import { Link } from "react-router-dom";
 
 import FlexContainer from "../Containers/FlexContainer";
-import Button from "../Elements/Button";
 import ButtonLink from "../Elements/ButtonLink";
 import List from "../Elements/List";
 import ListItem from "../Elements/ListItem";

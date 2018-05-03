@@ -3,10 +3,7 @@ import { css, withStyles } from "../withStyles";
 
 import FlexContainer from "../Containers/FlexContainer";
 import Modal from "./Modal";
-import Heading from "../Elements/Heading";
-import Paragraph from "../Elements/Paragraph";
 import Button from "../Elements/Button";
-import Input from "../Elements/Input";
 import Icon from "../Elements/Icon";
 import Loader from "../Elements/Loader";
 
