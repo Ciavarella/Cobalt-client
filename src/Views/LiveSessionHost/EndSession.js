@@ -1,5 +1,6 @@
 import React from "react";
 import { css, withStyles } from "../../withStyles";
+
 import FlexContainer from "../../Containers/FlexContainer";
 import Heading from "../../Elements/Heading";
 import Paragraph from "../../Elements/Paragraph";
@@ -17,9 +18,7 @@ const EndSession = ({ styles, ...props }) => {
           gathered from your audience!
         </Paragraph>
         <FlexContainer direction="row">
-          <Button appearance="primary" onClick={props.startSession}>
-            View summary
-          </Button>
+          <Button appearance="disabled">View summary</Button>
           <ButtonLink to="/dashboard" appearance="danger">
             Return
           </ButtonLink>
