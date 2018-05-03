@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
 import { css, withStyles } from "../../withStyles";
 import FlexContainer from "../../Containers/FlexContainer";
 import Avatar from "../../Elements/Avatar";
@@ -11,47 +12,76 @@ import Upgrade from "./Upgrade";
 import Profile from "./Profile";
 import Settings from "./Settings";
 
-const Dashboard = ({ styles, ...props }) => {
-  return (
-    <div {...css(styles.dashboard)}>
-      <Navigation {...props} />
-      <div {...css(styles.main)}>
-        <div {...css(styles.header)}>
-          <FlexContainer direction="row" align="center" justify="end">
-            <Button appearance="secondary">New session</Button>
-            <Avatar
-              size="medium"
-              image="https://avatars1.githubusercontent.com/u/24225542?s=460&v=4"
+import openBoxIcon from "../../assets/open-box.svg";
+
+import { requestUser } from "../../redux/user/actions";
+
+class Dashboard extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    this.props.dispatch(requestUser("5aeb08668ddddc2475c45dad"));
+  }
+  render() {
+    const { styles, auth } = this.props;
+    console.log(auth);
+    return (
+      <div {...css(styles.dashboard)}>
+        <Navigation {...this.props} />
+        <div {...css(styles.main)}>
+          <div {...css(styles.header)}>
+            <FlexContainer direction="row" align="center" justify="end">
+              <Button appearance="secondary">New session</Button>
+              <Avatar
+                size="medium"
+                image="https://avatars1.githubusercontent.com/u/24225542?s=460&v=4"
+              />
+            </FlexContainer>
+          </div>
+          <Switch location={this.props.location}>
+            <Route
+              exact
+              path={`${this.props.match.url}`}
+              component={Sessions}
             />
-          </FlexContainer>
+            <Route
+              exact
+              path={`${this.props.match.url}/new`}
+              component={CreateSession}
+            />
+            <Route
+              exact
+              path={`${this.props.match.url}/profile`}
+              component={Profile}
+            />
+            <Route
+              exact
+              path={`${this.props.match.url}/upgrade`}
+              component={Upgrade}
+            />
+            <Route
+              exact
+              path={`${this.props.match.url}/settings`}
+              component={Settings}
+            />
+          </Switch>
         </div>
-        <Switch location={props.location}>
-          <Route exact path={`${props.match.url}`} component={Sessions} />
-          <Route
-            exact
-            path={`${props.match.url}/new`}
-            component={CreateSession}
-          />
-          <Route
-            exact
-            path={`${props.match.url}/profile`}
-            component={Profile}
-          />
-          <Route
-            exact
-            path={`${props.match.url}/upgrade`}
-            component={Upgrade}
-          />
-          <Route
-            exact
-            path={`${props.match.url}/settings`}
-            component={Settings}
-          />
-        </Switch>
       </div>
-    </div>
-  );
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    auth: state.auth,
+    isAuthenticated: state.auth.isAuthenticated,
+    user: state.user.user
+  };
 };
+
+Dashboard = connect(mapStateToProps)(Dashboard);
 
 export default withStyles(({ colors }) => {
   return {

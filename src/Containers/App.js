@@ -65,7 +65,7 @@ class App extends React.Component {
           <Route path="/session/:sessionId" component={Client} />
           <Route path="/host/:sessionId" component={this.LiveSessionHost} />
           <Route path="/lobby" component={this.Lobby} />
-          <Route path="/dashboard" component={this.Dashboard} />
+          <Route path="/dashboard" component={Dashboard} />
           <Route path="*" component={NotFound} />
         </Switch>
       </div>
