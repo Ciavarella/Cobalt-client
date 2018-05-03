@@ -7,7 +7,8 @@ import {
 const initialState = {
   user: {},
   isFetching: false,
-  message: null
+  message: null,
+  success: false
 };
 
 const signupReducer = (state = initialState, action) => {
@@ -19,14 +20,16 @@ const signupReducer = (state = initialState, action) => {
         ...state,
         user: action.payload.user,
         isFetching: false,
-        message: action.payload.message
+        message: action.payload.message,
+        success: action.payload.success
       };
     case REQUEST_SIGNUP_FAIL:
       return {
         ...state,
         user: {},
         isFetching: false,
-        message: action.payload.message
+        message: action.payload.message,
+        success: action.payload.success
       };
     default:
       return state;
