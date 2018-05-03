@@ -21,6 +21,23 @@ class VoteSlider extends React.Component {
     };
   }
 
+  componentWillMount() {
+    let initialCanvasWidth = Math.round(window.innerWidth / 5);
+    let initialCanvasHeight = Math.round(window.innerHeight / 1.5);
+
+    this.setState({
+      ...this.state,
+      canvas: {
+        width: initialCanvasWidth,
+        height: initialCanvasHeight
+      },
+      window: {
+        width: window.innerWidth,
+        height: window.innerHeight
+      }
+    });
+  }
+
   componentDidMount() {
     const canvas = document.getElementById("myCanvas");
     const ctx = canvas.getContext("2d");
@@ -30,34 +47,15 @@ class VoteSlider extends React.Component {
     const voteCircleFontColor = this.props.styles.voteCircleFontColor
       ._definition;
 
-    this.state.window.width < breakPoint
-      ? this.setState({
-          ...this.state,
-          canvas: {
-            height: canvas.height,
-            width: canvas.width
-          }
-        })
-      : "";
-
-    this.setState({
-      ...this.state,
-      canvas: {
-        height: canvas.height,
-        width: canvas.width
-      }
-    });
-
-    const HEIGHT = canvas.height;
-    const WIDTH = canvas.width;
-    const windowHeight = this.state.window.height;
-    const breakPoint = 420;
+    let HEIGHT = this.state.canvas.height;
+    let WIDTH = this.state.canvas.width;
+    let windowHeight = this.state.window.height;
 
     const heightDifference = () => {
       let heightToDivide = windowHeight - HEIGHT;
       return heightToDivide / 2;
     };
-    const voteCircleSize = 50;
+    let voteCircleSize = WIDTH * 0.2;
     let GRAVITY = 1;
     let isDraggable = false;
     let onCoolDown = false;
@@ -79,7 +77,7 @@ class VoteSlider extends React.Component {
           yPosition > heightDifference() + voteCircleSize &&
           yPosition < HEIGHT + heightDifference() + voteCircleSize
         ) {
-          arcPosition.y = yPosition - heightDifference();
+          arcPosition.y = yPosition - heightDifference() - voteCircleSize;
         }
       }
     };
@@ -119,9 +117,7 @@ class VoteSlider extends React.Component {
           const mousePos = yPosition;
           if (
             mousePos > heightDifference() + voteCircleSize &&
-            this.state.window.width < 420
-              ? mousePos < HEIGHT + heightDifference() - voteCircleSize * 0.1
-              : mousePos < HEIGHT + heightDifference() - voteCircleSize
+            mousePos < HEIGHT + heightDifference() - voteCircleSize
           ) {
             arcPosition.y = mousePos - heightDifference();
           }
@@ -142,6 +138,60 @@ class VoteSlider extends React.Component {
     canvas.addEventListener("touchmove", ({ touches }) =>
       onMouseMove(touches[0].clientY)
     );
+
+    let arcPosition = {
+      x: WIDTH / 2,
+      y: HEIGHT / 2,
+
+      last: {
+        x: null,
+        y: null
+      }
+    };
+
+    const resizeCanvas = () => {
+      let canvasWidth = Math.round(window.innerWidth / 5);
+      let canvasHeight = Math.round(window.innerHeight / 1.5);
+      voteCircleSize = WIDTH * 0.2;
+      if (voteCircleSize < 30) {
+        voteCircleSize = 30;
+      }
+      if (voteCircleSize > 50) {
+        voteCircleSize = 50;
+      }
+      console.log(voteCircleSize);
+      this.setState(
+        {
+          ...this.state,
+          canvas: {
+            width: canvasWidth,
+            height: canvasHeight
+          },
+          window: {
+            width: window.innerWidth,
+            height: window.innerHeight
+          }
+        },
+        () => {
+          HEIGHT = this.state.canvas.height;
+          WIDTH = this.state.canvas.width;
+        }
+      );
+
+      arcPosition = {
+        x: this.state.canvas.width / 2,
+        y: this.state.canvas.height / 2,
+
+        last: {
+          x: null,
+          y: null
+        }
+      };
+
+      redraw();
+    };
+
+    window.addEventListener("resize", resizeCanvas, false);
 
     const CircleAnimation = () => {
       let t = 0,
@@ -177,15 +227,6 @@ class VoteSlider extends React.Component {
 
     const circleAnimation = CircleAnimation();
 
-    const arcPosition = {
-      x: WIDTH / 2,
-      y: HEIGHT / 2,
-
-      last: {
-        x: null,
-        y: null
-      }
-    };
     function moveToMiddle() {
       parseInt(arcPosition.y) < HEIGHT / 2 + 2 &&
       parseInt(arcPosition.y) > HEIGHT / 2 - 2
@@ -199,6 +240,16 @@ class VoteSlider extends React.Component {
 
     function easeInOut(t) {
       return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+    }
+
+    function redraw() {
+      requestAnimationFrame(redraw);
+
+      ctx.clearRect(0, 0, WIDTH, HEIGHT);
+      ctx.beginPath();
+      ctx.arc(arcPosition.x, arcPosition.y, voteCircleSize, 0, 2 * Math.PI);
+      ctx.fillStyle = voteCircleColor;
+      ctx.fill();
     }
 
     function draw() {
@@ -247,6 +298,7 @@ class VoteSlider extends React.Component {
     }
 
     draw();
+    resizeCanvas();
 
     var EasingFunctions = {
       easeInOutQuad: function(t) {
@@ -354,13 +406,21 @@ class VoteSlider extends React.Component {
 
   render() {
     return (
-      <FlexContainer align="center" justify="center" direction="row">
+      <FlexContainer
+        align="center"
+        justify="center"
+        direction="row"
+        style={{ position: "relative" }}
+      >
         <FlexContainer
           align="center"
           justify="between"
           style={{
             height: `${this.state.canvas.height * 0.9}px`,
-            width: "25px"
+            width: "25px",
+            zIndex: "800",
+            position: "absolute",
+            left: "5px"
           }}
         >
           <Paragraph
@@ -427,8 +487,16 @@ class VoteSlider extends React.Component {
 
         <canvas
           id="myCanvas"
-          height={this.state.window.width < 420 ? "450" : "800"}
-          width="300"
+          height={
+            this.state.window.width < 420
+              ? this.state.window.height
+              : this.state.canvas.height
+          }
+          width={
+            this.state.window.width < 420
+              ? this.state.window.width
+              : this.state.canvas.width
+          }
           {...css(
             this.props.styles.voteSlider,
             this.props.styles.background,
