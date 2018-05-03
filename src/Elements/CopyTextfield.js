@@ -7,15 +7,23 @@ import Button from "./Button";
 import Input from "./Input";
 
 const CopyTextfield = ({ url = "Url should go here", styles, ...props }) => {
-  let textInput;
+  let inputElementRef;
 
   const copyToClipboard = event => {
     event.preventDefault();
 
-    textInput = ReactDOM.findDOMNode(textInput);
-    textInput.select();
+    if (!inputElementRef) return;
 
-    document.execCommand("copy");
+    inputElementRef.focus();
+    inputElementRef.select();
+
+    let success = document.execCommand("copy");
+
+    if (!success) {
+      throw new Error("Could not copy the contents to clipboard.");
+    } else {
+      // TODO: Add notification that the message has been copied
+    }
   };
 
   return (
@@ -25,7 +33,7 @@ const CopyTextfield = ({ url = "Url should go here", styles, ...props }) => {
           Copy
         </Button>
         <Input
-          ref={nodeRef => (textInput = nodeRef)}
+          inputRef={ref => (inputElementRef = ref)}
           onClick={copyToClipboard}
           value={url}
           readOnly

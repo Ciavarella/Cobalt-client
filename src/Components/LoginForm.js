@@ -1,6 +1,6 @@
 import React from "react";
-import { css, withStyles } from "../withStyles";
 import { Link } from "react-router-dom";
+import { css, withStyles } from "../withStyles";
 
 import { withFormik } from "formik";
 import Yup from "yup";

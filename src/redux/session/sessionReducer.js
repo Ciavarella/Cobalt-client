@@ -19,7 +19,7 @@ const sessionReducer = (state = initialState, action) => {
     case REQUEST_SESSION_SUCCESS:
       return {
         ...state,
-        session: action.payload.session,
+        session: action.payload.presentation,
         newSessionCreated: true,
         isFetching: false,
         message: action.payload.message

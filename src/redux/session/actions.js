@@ -41,11 +41,9 @@ export const requestNewSession = data => dispatch => {
       name,
       description: message,
       settings: {
-        isAverage: isAverage === "on" ? true : false,
-        comments: comments === "on" ? true : false,
         maxAttendees,
         threshold,
-        engagementDesc: {
+        engagementDescription: {
           up: descriptionPositive,
           down: descriptionNegative
         }
