@@ -16,12 +16,12 @@ import Paused from "./Paused";
 import EndSession from "./EndSession";
 
 const LiveSessionHost = ({ styles, ...props }) => {
-  if (props.data.status.hasStarted === false) {
-    return <Lobby {...props} />;
-  }
-
   if (props.data.status.isStopped) {
     return <EndSession {...props} />;
+  }
+
+  if (props.data.status.hasStarted === false) {
+    return <Lobby {...props} />;
   }
 
   return (
