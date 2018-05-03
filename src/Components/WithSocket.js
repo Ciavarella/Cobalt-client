@@ -15,27 +15,29 @@ const withSocket = WrappedComponent => {
       } = this.props;
 
       this.state = {
-        sessionId: sessionId,
         data: {
-          time: 0,
-          attendees: 814,
-          description: {
-            title: "Default title",
-            description: "Default description"
+          sessionId: sessionId,
+          presentation: {
+            name: "Session name",
+            description: "Session description"
+          },
+          settings: {
+            threshold: 50,
+            maxAttendees: 50,
+            engagementDescription: "Engagement description"
+          },
+          status: {
+            hasStarted: false,
+            hasEnded: false,
+            isPaused: false,
+            time: 0
           },
           engagement: {
             average: 0,
-            negative: 50,
-            positive: 50
+            positive: 50,
+            negative: 50
           },
-          status: {
-            isAverage: false,
-            hasStarted: false,
-            isPaused: false,
-            isStopped: false,
-            maxAttendees: 50,
-            threshold: 50
-          }
+          attendees: 0
         }
       };
 
@@ -93,7 +95,7 @@ const withSocket = WrappedComponent => {
             ...this.state.data,
             status: {
               ...this.state.data.status,
-              isStopped: true
+              hasEnded: true
             }
           }
         },
@@ -122,7 +124,7 @@ const withSocket = WrappedComponent => {
 
     requestSave(time) {
       this.socket.emit("presenterRequestsSave", {
-        sessionId: this.state.sessionId,
+        sessionId: this.state.data.sessionId,
         timeStamp: time,
         value: this.state.data.engagement
       });

@@ -16,7 +16,7 @@ import Paused from "./Paused";
 import EndSession from "./EndSession";
 
 const LiveSessionHost = ({ styles, ...props }) => {
-  if (props.data.status.isStopped) {
+  if (props.data.status.hasEnded) {
     return <EndSession {...props} />;
   }
 
@@ -52,11 +52,12 @@ const LiveSessionHost = ({ styles, ...props }) => {
           <Heading size="2" appearance="white">
             {props.data.attendees} attendees
           </Heading>
-          <CopyTextfield url={props.sessionId} />
+          <CopyTextfield url={props.data.sessionId} />
         </FlexContainer>
       </div>
       {props.data.status.isPaused ? <Paused {...props} /> : ""}
       <div {...css(styles.graphWrap)}>
+        {/* TODO: Fix threshold when isAverage! */}
         {props.data.engagement.negative > props.data.status.threshold ? (
           <Warning {...props} />
         ) : (
