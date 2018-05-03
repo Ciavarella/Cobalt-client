@@ -1,5 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import { css, withStyles } from "../withStyles";
+import { Link } from "react-router-dom";
+
 import { withFormik } from "formik";
 import Yup from "yup";
 
@@ -173,7 +175,7 @@ let SignUpForm = ({
           </FlexContainer>
         </form>
         <Paragraph appearance="white">
-          Already have an account? <a href="#">Log in here!</a>
+          Already have an account? <Link to="login">Log in here!</Link>
         </Paragraph>
       </FlexContainer>
     </div>

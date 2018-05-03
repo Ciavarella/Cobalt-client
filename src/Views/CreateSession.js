@@ -1,5 +1,5 @@
 import React from "react";
-import { css, withStyles } from "../withStyles";
+import { withStyles } from "../withStyles";
 import { connect } from "react-redux";
 
 import Wizard from "../Components/Wizard";

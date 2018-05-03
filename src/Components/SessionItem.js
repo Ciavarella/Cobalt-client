@@ -2,7 +2,6 @@ import React from "react";
 import { css, withStyles } from "../withStyles";
 
 import Card from "../Elements/Card";
-import Button from "../Elements/Button";
 import Heading from "../Elements/Heading";
 import Paragraph from "../Elements/Paragraph";
 import FlexContainer from "../Containers/FlexContainer";

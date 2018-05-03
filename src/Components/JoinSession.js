@@ -1,11 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import { Redirect } from "react-router-dom";
 import { css, withStyles } from "../withStyles";
 
 import FlexContainer from "../Containers/FlexContainer";
 import Button from "../Elements/Button";
 import Heading from "../Elements/Heading";
-import Paragraph from "../Elements/Paragraph";
 import Input from "../Elements/Input";
 
 class JoinSession extends React.Component {

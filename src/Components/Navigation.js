@@ -3,9 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { css, withStyles } from "../withStyles";
 
 import FlexContainer from "../Containers/FlexContainer";
-import List from "../Elements/List";
 import Icon from "../Elements/Icon";
-import ListItem from "../Elements/ListItem";
 import Heading from "../Elements/Heading";
 
 const Navigation = ({ styles, colors, match, ...props }) => {
@@ -61,16 +59,16 @@ const Navigation = ({ styles, colors, match, ...props }) => {
       </FlexContainer>
       <ul {...css(styles.footer)}>
         <li>
-          <a href="#">About</a>
+          <a href="/">About</a>
         </li>
         <li>
-          <a href="#">Github</a>
+          <a href="/">Github</a>
         </li>
         <li>
-          <a href="#">Developers</a>
+          <a href="/">Developers</a>
         </li>
         <li>
-          <a href="#">Chas Academy</a>
+          <a href="/">Chas Academy</a>
         </li>
       </ul>
     </aside>
