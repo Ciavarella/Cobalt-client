@@ -12,6 +12,8 @@ let SignUp = ({ styles, dispatch, ...props }) => {
     dispatch(requestSignup(data));
   };
 
+  console.log(props.success);
+
   if (props.success) {
     return <Redirect to="/login" />;
   }
@@ -26,7 +28,7 @@ let SignUp = ({ styles, dispatch, ...props }) => {
 };
 
 const mapStateToProps = state => ({
-  success: state.signup.message
+  success: state.signup.success
 });
 
 /* Redux Connect */

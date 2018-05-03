@@ -21,7 +21,7 @@ let withPublicRoot = ComposedComponent => {
 
   const mapStateToProps = state => ({
     isAuthenticated: state.auth.isAuthenticated,
-    success: state.signup.message
+    success: state.signup.success
   });
 
   return connect(mapStateToProps)(PublicRoot);
