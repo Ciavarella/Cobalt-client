@@ -26,7 +26,16 @@ export default withStyles(({ themes, text }) => {
       margin: "12px 12px 12px 0px",
       fontWeight: "bold",
       textTransform: "uppercase",
-      color: "white"
+      color: "white",
+      letterSpacing: "0.1rem",
+      textAlign: "center",
+      fontSize: "12px",
+      ":hover": {
+        color: "white !important"
+      },
+      ":visited": {
+        color: "white"
+      }
     },
 
     /* Color */
