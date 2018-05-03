@@ -38,7 +38,11 @@ const withSocket = WrappedComponent => {
             hasStarted: true
           }
         },
-        fireRedirect: false
+        fireRedirect: false,
+        windowSize: {
+          width: window.innerWidth,
+          height: window.innerHeight
+        }
       };
 
       const {
@@ -52,12 +56,30 @@ const withSocket = WrappedComponent => {
       this.socket = io(`http://10.126.4.146:7770`);
     }
 
+    componentWillMount() {
+      this.updateWindowSize();
+      this.updateWindowSize = this.updateWindowSize.bind(this);
+    }
+
     componentDidMount() {
       this.socket.on("connect", () => {
         this.socket.emit("joinSession", this.sessionId);
       });
 
+      window.addEventListener("resize", this.updateWindowSize);
+
       this.listenForEvents();
+    }
+
+    updateWindowSize() {
+      console.log("resizing");
+      this.setState({
+        ...this.state,
+        windowSize: {
+          width: window.innerWidth,
+          height: window.innerHeight
+        }
+      });
     }
 
     listenForEvents() {
@@ -90,6 +112,7 @@ const withSocket = WrappedComponent => {
           handleVote={this.handleVote}
           handleClick={this.handleClick}
           data={this.state.data}
+          windowSize={this.state.windowSize}
           {...this.props}
         />
       );
@@ -97,7 +120,14 @@ const withSocket = WrappedComponent => {
   };
 };
 
-const Client = ({ data, handleVote, handleClick, styles, ...props }) => {
+const Client = ({
+  data,
+  handleVote,
+  handleClick,
+  windowSize,
+  styles,
+  ...props
+}) => {
   console.log(data);
   return (
     <div {...css(styles.client)}>
@@ -119,13 +149,19 @@ const Client = ({ data, handleVote, handleClick, styles, ...props }) => {
             ""
           )}
           <FlexContainer>
-            <Heading appearance="primary" size="2">
-              {data.presentation.name}
-            </Heading>
-            <Heading appearance="primary" size="3">
-              {data.presentation.description}
-            </Heading>
-            <Paragraph appearance="white">{data.status.time}</Paragraph>
+            {windowSize.width > 420 ? (
+              <div>
+                <Heading appearance="primary" size="2">
+                  {data.presentation.name}
+                </Heading>
+                <Heading appearance="primary" size="3">
+                  {data.presentation.description}
+                </Heading>
+                <Paragraph appearance="white">{data.status.time}</Paragraph>
+              </div>
+            ) : (
+              ""
+            )}
             {data.status.isPaused ? (
               <Modal withOverlay>
                 <Heading size="2">This session is currently paused</Heading>
