@@ -12,12 +12,11 @@ import Warning from "./Warning";
 import Engagement from "./Engagement";
 import Timer from "./Timer";
 import Lobby from "./Lobby";
+import Paused from "./Paused";
 import EndSession from "./EndSession";
 
 /* TODO: Figure out better name */
 const LiveSessionHost = ({ styles, ...props }) => {
-  console.log("LiveSessionHost Props: ", props);
-  console.log(props.data.status.hasStarted);
   if (props.data.status.hasStarted === false) {
     return <Lobby {...props} />;
   }
@@ -57,6 +56,7 @@ const LiveSessionHost = ({ styles, ...props }) => {
           <CopyTextfield url={props.sessionId} />
         </FlexContainer>
       </div>
+      {props.data.status.isPaused ? <Paused {...props} /> : ""}
       <div {...css(styles.graphWrap)}>
         {props.data.engagement.negative > props.data.status.threshold ? (
           <Warning {...props} />
@@ -80,7 +80,7 @@ export default withStyles(({ themes, text, colors }) => {
       flexDirection: "column"
     },
     interface: {
-      zIndex: "99",
+      zIndex: "999",
       padding: "0px 16px",
       position: "absolute",
       width: "100%",
@@ -97,7 +97,7 @@ export default withStyles(({ themes, text, colors }) => {
       overflow: "hidden",
       flexDirection: "row",
       ":nth-child(1n) span": {
-        zIndex: "999"
+        zIndex: "997"
       }
     }
   };

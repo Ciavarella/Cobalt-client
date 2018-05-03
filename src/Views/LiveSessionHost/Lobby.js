@@ -25,7 +25,6 @@ class Lobby extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div {...css(this.styles.lobby)}>
         {this.state.showModal ? (
