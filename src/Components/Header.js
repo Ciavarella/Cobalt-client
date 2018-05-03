@@ -10,7 +10,7 @@ import ListItem from "../Elements/ListItem";
 import Heading from "../Elements/Heading";
 
 const Header = ({ styles, ...props }) => (
-  <header {...css(styles.header)} {...props}>
+  <header {...css(styles.header)}>
     <FlexContainer direction="row" justify="between">
       <FlexContainer direction="row" justify="start" flex="1">
         <Heading {...css(styles.logo)} size="2">

@@ -1,11 +1,15 @@
 import React from "react";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
+import { verifyAuth } from "../redux/auth/actions";
 
 import { connect } from "react-redux";
 
 let withPublicRoot = ComposedComponent => {
   class PublicRoot extends React.Component {
+    componentWillMount() {
+      this.props.dispatch(verifyAuth());
+    }
     render() {
       return (
         <React.Fragment>

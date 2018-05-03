@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-// import { Loader } from "../";
+import { verifyAuth } from "../redux/auth/actions";
+import Loader from "../Elements/Loader";
 
 const requireAuth = ComposedComponent => {
   class Authentication extends Component {
@@ -11,13 +12,17 @@ const requireAuth = ComposedComponent => {
       }
     }
 
-    render() {
-      const { isAuthenticated } = this.props;
+    componentWillMount() {
+      this.props.dispatch(verifyAuth());
+    }
 
-      /* When loader component is ready */
-      // if (isFetching) {
-      //   return <Loader />;
-      // }
+    render() {
+      const { isAuthenticated, isFetching } = this.props;
+      console.log("fetching: ", isFetching, isAuthenticated);
+
+      if (isFetching) {
+        return <Loader />;
+      }
 
       if (isAuthenticated) {
         return <ComposedComponent {...this.props} />;
@@ -29,7 +34,8 @@ const requireAuth = ComposedComponent => {
 
   const mapStateToProps = state => {
     return {
-      isAuthenticated: state.auth.isAuthenticated
+      isAuthenticated: state.auth.isAuthenticated,
+      isFetching: state.auth.isFetching
     };
   };
 
