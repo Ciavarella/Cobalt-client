@@ -38,15 +38,11 @@ class Wizard extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-
     const data = new FormData(e.target);
     this.props.handleSubmit(data);
-
-    // this.props.handleSubmit ? this.props.handleSubmit(data) : console.log(data);
   }
 
   render() {
-    console.log(this.props.sessionId);
     return (
       <div {...css(this.props.styles.wizard)} {...this.props}>
         <form onSubmit={this.handleSubmit}>

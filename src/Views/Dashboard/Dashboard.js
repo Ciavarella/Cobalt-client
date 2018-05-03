@@ -10,6 +10,7 @@ import Heading from "../../Elements/Heading";
 import Button from "../../Elements/Button";
 import Navigation from "../../Components/Navigation";
 import Sessions from "./Sessions";
+import CreateSession from "../CreateSession";
 import Upgrade from "./Upgrade";
 import Profile from "./Profile";
 import Settings from "./Settings";
@@ -32,7 +33,11 @@ const Dashboard = ({ styles, ...props }) => {
         </div>
         <Switch location={props.location}>
           <Route exact path={`${props.match.url}`} component={Sessions} />
-          <Route exact path={`${props.match.url}/new`} component={Sessions} />
+          <Route
+            exact
+            path={`${props.match.url}/new`}
+            component={CreateSession}
+          />
           <Route
             exact
             path={`${props.match.url}/profile`}

@@ -29,7 +29,8 @@ const Preferences = ({ styles }) => (
         <FlexContainer align="start">
           <Paragraph size="sub">Max attendees</Paragraph>
           <Input
-            name="attendees"
+            type="number"
+            name="maxAttendees"
             icon="fas fa-users"
             iconFillColor="white"
             iconBackground="primary"
@@ -49,15 +50,21 @@ const Preferences = ({ styles }) => (
 
       <FlexContainer
         direction="row"
+        align="start"
         justify="between"
         style={{ width: "450px", marginBottom: "20px" }}
       >
-        <FlexContainer align="start">
-          <Paragraph size="sub">Engagement description</Paragraph>
+        <FlexContainer justify="around" align="start">
+          <Paragraph size="sub">Engagement descriptions</Paragraph>
           <Input
-            name="description"
-            placeholder="Ex. Are you able to follow..?"
+            name="descriptionPositive"
+            placeholder="Are you able to follow..?"
             style={{ marginLeft: "0px", marginTop: "0px", width: "200px" }}
+          />
+          <Input
+            name="descriptionNegative"
+            placeholder="Are you not able to follow..?"
+            style={{ marginLeft: "0px", marginTop: "5px", width: "200px" }}
           />
         </FlexContainer>
 
@@ -78,12 +85,12 @@ const Preferences = ({ styles }) => (
       >
         <FlexContainer direction="row">
           <Checkbox name="comments" />
-          <Paragraph>Allow comments</Paragraph>
+          <Paragraph size="sub">Allow comments</Paragraph>
         </FlexContainer>
 
         <FlexContainer direction="row">
-          <Checkbox name="setting" />
-          <Paragraph>Some other setting</Paragraph>
+          <Checkbox name="isAverage" />
+          <Paragraph size="sub">Show average as percentage</Paragraph>
         </FlexContainer>
       </FlexContainer>
     </FlexContainer>
