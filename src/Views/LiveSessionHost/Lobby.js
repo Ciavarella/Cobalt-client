@@ -51,7 +51,7 @@ class Lobby extends React.Component {
           <Button appearance="danger" onClick={this.toggleModal}>
             Cancel session
           </Button>
-          <Button appearance="secondary">Settings </Button>
+          <Button appearance="disabled">Settings </Button>
         </FlexContainer>
         <FlexContainer flex="1" align="center" justify="center">
           <Heading size="2">Your session is ready!</Heading>
