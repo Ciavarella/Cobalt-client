@@ -8,7 +8,7 @@ const Warning = ({ styles, ...props }) => {
       <Heading size="1" appearance="white">
         Engagement threshold reached
       </Heading>
-      <span {...css(styles.value)}>{props.red}%</span>
+      <span {...css(styles.value)}>{props.data.engagement.negative}%</span>
     </div>
   );
 };
@@ -25,7 +25,8 @@ export default withStyles(({ colors }) => {
       backgroundColor: colors.danger,
       color: "white",
       fontSize: "48px",
-      animation: "swipe 0.5s ease"
+      animation: "fade 0.5s ease",
+      willChange: "transform"
     },
     value: {
       fontSize: "120px",

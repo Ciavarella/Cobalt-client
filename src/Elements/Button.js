@@ -33,6 +33,10 @@ export default withStyles(({ themes, text }) => {
     primaryGradient: themes.primaryGradient,
     secondaryGradient: themes.secondaryGradient,
     successGradient: themes.successGradient,
-    dangerGradient: themes.dangerGradient
+    dangerGradient: themes.dangerGradient,
+    disabled: {
+      cursor: "inherit",
+      backgroundColor: "#b7b7b7"
+    }
   };
 })(Button);
