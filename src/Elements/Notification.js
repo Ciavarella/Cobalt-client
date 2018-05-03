@@ -21,8 +21,6 @@ const Notification = ({
 export default withStyles(({ themes, colors }) => {
   return {
     notification: {
-      // position: "fixed",
-
       /* FlexContainer? */
       display: "flex",
       justifyContent: "center",
