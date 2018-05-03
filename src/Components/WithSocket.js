@@ -40,7 +40,7 @@ const withSocket = WrappedComponent => {
       };
 
       this.sessionId = sessionId;
-      this.socket = io(`http://10.126.4.146:7770`);
+      this.socket = io(process.env.REACT_APP_API_BASE_URL);
       this.startSession = this.startSession.bind(this);
       this.stopSession = this.stopSession.bind(this);
       this.pauseSession = this.pauseSession.bind(this);
@@ -58,7 +58,6 @@ const withSocket = WrappedComponent => {
 
     listenForEvents() {
       this.socket.on("updateHost", data => {
-        console.log("Data from Socket: ", data);
         this.setState({
           data: data
         });
@@ -127,7 +126,6 @@ const withSocket = WrappedComponent => {
         timeStamp: time,
         value: this.state.data.engagement
       });
-      console.log("timestamp: ", time);
     }
 
     switchData() {

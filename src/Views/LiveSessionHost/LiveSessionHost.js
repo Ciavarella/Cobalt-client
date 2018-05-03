@@ -15,7 +15,6 @@ import Lobby from "./Lobby";
 import Paused from "./Paused";
 import EndSession from "./EndSession";
 
-/* TODO: Figure out better name */
 const LiveSessionHost = ({ styles, ...props }) => {
   if (props.data.status.hasStarted === false) {
     return <Lobby {...props} />;
