@@ -8,14 +8,7 @@ import FlexContainer from "../Containers/FlexContainer";
 
 const stripStringLength = string => string.slice(0, 80) + "...";
 
-const SessionItem = ({
-  date = "June 12, 2018",
-  attendees = "233",
-  title = "Session title",
-  description = "This is the default description",
-  styles,
-  ...props
-}) => {
+const SessionItem = ({ styles, ...props }) => {
   return (
     <div {...css(styles, styles.sessionItem)}>
       <FlexContainer
@@ -30,15 +23,15 @@ const SessionItem = ({
             align="start"
             style={{ marginBottom: "50px" }}
           >
-            <Paragraph size="sub">{date}</Paragraph>
-            <Paragraph size="sub">Attendees: {attendees}</Paragraph>
+            <Paragraph size="sub">{props.data.date}</Paragraph>
+            <Paragraph size="sub">Attendees: {props.data.attendees}</Paragraph>
           </FlexContainer>
           <FlexContainer align="start">
             <Heading size="3" appearance="white">
-              {title}
+              {props.data.name}
             </Heading>
             <Paragraph style={{ height: "32px" }}>
-              {stripStringLength(description)}
+              {stripStringLength(props.data.description)}
             </Paragraph>
           </FlexContainer>
         </Card>

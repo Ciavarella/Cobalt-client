@@ -21,6 +21,7 @@ export const requestUser = id => dispatch => {
 
   fetch(`${process.env.REACT_APP_API_BASE_URL}/api/user/${id}`, {
     method: "GET",
+    credentials: "include",
     headers: {
       "Content-Type": "application/json"
     }

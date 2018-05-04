@@ -22,11 +22,10 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(requestUser("5aeb08668ddddc2475c45dad"));
+    this.props.dispatch(requestUser());
   }
   render() {
-    const { styles, auth } = this.props;
-    console.log(auth);
+    const { styles, auth, user } = this.props;
     return (
       <div {...css(styles.dashboard)}>
         <Navigation {...this.props} />
@@ -44,7 +43,7 @@ class Dashboard extends React.Component {
             <Route
               exact
               path={`${this.props.match.url}`}
-              component={Sessions}
+              render={() => <Sessions data={user} />}
             />
             <Route
               exact
