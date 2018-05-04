@@ -162,7 +162,7 @@ const Client = ({
             ) : (
               ""
             )}
-            {data.status.isPaused ? (
+            {data.status.isPaused && !data.status.hasEnded ? (
               <Modal withOverlay>
                 <Heading size="2">This session is currently paused</Heading>
                 <Paragraph>Wait for the host to resume the session</Paragraph>
