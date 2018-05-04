@@ -79,7 +79,8 @@ const withSocket = WrappedComponent => {
           })
           .catch(err => {
             this.setState({
-              isLoading: false
+              isLoading: false,
+              shouldRedirect: true
             });
             console.log("not the owner", err);
           });
@@ -88,7 +89,6 @@ const withSocket = WrappedComponent => {
 
     listenForEvents() {
       this.socket.on("updateHost", data => {
-        console.log(data);
         this.setState({
           isLoading: false,
           data: data
@@ -97,7 +97,6 @@ const withSocket = WrappedComponent => {
     }
 
     updateSession() {
-      console.log(this.state.data);
       this.socket.emit("presenterPayload", {
         session: this.sessionId,
         payload: this.state.data
@@ -177,6 +176,7 @@ const withSocket = WrappedComponent => {
     }
 
     render() {
+      console.log(this.state.isLoading);
       if (this.state.isLoading) return <Loader fillColor="dawn" size="large" />;
 
       if (this.state.shouldRedirect) return <Redirect to="/" />;
