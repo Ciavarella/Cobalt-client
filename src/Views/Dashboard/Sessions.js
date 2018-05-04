@@ -20,6 +20,7 @@ const Sessions = ({ styles, ...props }) => {
   }
 
   let sessions = props.data.workspaces[0].presentations;
+  let workspaceName = props.data.workspaces[0].name;
 
   if (sessions.length <= 0) {
     return (
@@ -46,7 +47,7 @@ const Sessions = ({ styles, ...props }) => {
       >
         {sessions.map((session, i) => {
           if (i > 5) return;
-          return <SessionItem data={session} />;
+          return <SessionItem data={session} workspace={workspaceName} />;
         })}
       </FlexContainer>
     </div>

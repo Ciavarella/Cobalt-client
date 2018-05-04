@@ -1,5 +1,6 @@
 import React from "react";
 import { css, withStyles } from "../withStyles";
+import moment from "moment";
 
 import Card from "../Elements/Card";
 import Heading from "../Elements/Heading";
@@ -23,12 +24,17 @@ const SessionItem = ({ styles, ...props }) => {
             align="start"
             style={{ marginBottom: "50px" }}
           >
-            <Paragraph size="sub">{props.data.date}</Paragraph>
+            <Paragraph size="sub">
+              {moment(props.data.date).format("dddd, MMMM Do YYYY")}
+            </Paragraph>
             <Paragraph size="sub">Attendees: {props.data.attendees}</Paragraph>
           </FlexContainer>
           <FlexContainer align="start">
             <Heading size="3" appearance="white">
               {props.data.name}
+            </Heading>
+            <Heading size="5" appearance="white">
+              Workspace: {props.workspace}
             </Heading>
             <Paragraph style={{ height: "32px" }}>
               {stripStringLength(props.data.description)}

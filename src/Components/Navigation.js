@@ -30,11 +30,6 @@ const Navigation = ({ styles, colors, match, ...props }) => {
               <Icon fillColor="dawn" icon="fas fa-columns" />Dashboard
             </li>
           </NavLink>
-          <NavLink activeStyle={activeLink} exact to={`${match.url}/new`}>
-            <li>
-              <Icon fillColor="dawn" icon="fas fa-plus" />New session
-            </li>
-          </NavLink>
           <NavLink activeStyle={activeLink} exact to={`${match.url}/profile`}>
             <li>
               <Icon fillColor="dawn" icon="fas fa-user" />My profile

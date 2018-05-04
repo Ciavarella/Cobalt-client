@@ -5,6 +5,7 @@ import { css, withStyles } from "../../withStyles";
 import FlexContainer from "../../Containers/FlexContainer";
 import Avatar from "../../Elements/Avatar";
 import Button from "../../Elements/Button";
+import ButtonLink from "../../Elements/ButtonLink";
 import Navigation from "../../Components/Navigation";
 import Sessions from "./Sessions";
 import CreateSession from "../CreateSession";
@@ -32,7 +33,12 @@ class Dashboard extends React.Component {
         <div {...css(styles.main)}>
           <div {...css(styles.header)}>
             <FlexContainer direction="row" align="center" justify="end">
-              <Button appearance="secondary">New session</Button>
+              <ButtonLink
+                to={`${this.props.match.url}/new`}
+                appearance="secondary"
+              >
+                New session
+              </ButtonLink>
               <Avatar
                 size="medium"
                 image="https://avatars1.githubusercontent.com/u/24225542?s=460&v=4"
@@ -50,6 +56,7 @@ class Dashboard extends React.Component {
               path={`${this.props.match.url}/new`}
               component={CreateSession}
             />
+
             <Route
               exact
               path={`${this.props.match.url}/profile`}
