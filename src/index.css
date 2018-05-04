@@ -104,6 +104,26 @@ input:last-child {
   margin-right: 0;
 }
 
+.notification-enter {
+  opacity: 0.01;
+}
+
+.notification-enter.notification-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.notification-leave {
+  opacity: 1;
+  transition: opacity 500ms ease, padding 500ms ease 500ms;
+}
+
+.notification-leave.notification-leave-active {
+  opacity: 0.01;
+  transition: all 500ms ease-in;
+  padding: 0;
+}
+
 @keyframes spin {
   100% {
     -webkit-transform: rotate(360deg);
