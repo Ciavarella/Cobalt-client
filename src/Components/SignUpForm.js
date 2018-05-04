@@ -221,7 +221,8 @@ export default withStyles(({ themes, text, colors }) => {
       },
       ":nth-child(1n) label": {
         marginTop: "20px",
-        marginBottom: "5px"
+        marginBottom: "5px",
+        color: "white"
       }
     },
     primary: colors.primary,
