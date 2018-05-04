@@ -30,9 +30,11 @@ const mapStateToProps = ({
 class CreateSession extends React.Component {
   constructor({ styles, handleSubmit = null, ...props }) {
     super(props);
-
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  // TODO: Get real workspaces
+  workspaces = ["Chas academy", "Ballerina", "KTH", "Hoppla"];
 
   handleSubmit(data) {
     let newObj = {};
@@ -40,7 +42,6 @@ class CreateSession extends React.Component {
     for (const [key, value] of data.entries()) {
       newObj[key] = value;
     }
-
     this.props.requestNewSession(newObj);
   }
 
@@ -60,7 +61,7 @@ class CreateSession extends React.Component {
       </Modal>
     ) : (
       <Wizard handleSubmit={this.handleSubmit} isLoading={isFetching}>
-        <Name />
+        <Name workspace={this.workspaces} />
         <Preferences />
       </Wizard>
     );

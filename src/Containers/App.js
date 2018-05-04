@@ -22,8 +22,13 @@ class App extends React.Component {
     this.LandingPage = withPublicRoot(LandingPage);
     this.Login = withPublicRoot(Login);
     this.SignUp = withPublicRoot(SignUp);
-    this.CreateSession = requireAuth(CreateSession);
-    this.LiveSessionHost = withSocket(LiveSessionHost);
+    {
+      /* THIS SHOULD BE PROTECTED */
+    }
+    // this.CreateSession = requireAuth(CreateSession);
+    this.CreateSession = CreateSession;
+
+    this.LiveSessionHost = requireAuth(LiveSessionHost);
     this.Dashboard = requireAuth(Dashboard);
     this.Lobby = requireAuth(Lobby);
   }
