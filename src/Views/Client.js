@@ -52,6 +52,8 @@ const withSocket = WrappedComponent => {
       } = this.props;
 
       this.handleClick = this.handleClick.bind(this);
+      this.preventBounce = this.preventBounce.bind(this);
+
       this.sessionId = sessionId;
       this.socket = io(`http://10.126.4.146:7770`);
     }
@@ -66,9 +68,19 @@ const withSocket = WrappedComponent => {
         this.socket.emit("joinSession", this.sessionId);
       });
 
+      //  Bounces
+      // NOTE: This will break any other type of scrolling for touch devices if not configured properly
+      // TODO: Check client type (navigator.userAgent somehow, if mobile and IOS safari -> do this)
+      window.addEventListener("touchmove", this.preventBounce);
+
       window.addEventListener("resize", this.updateWindowSize);
 
       this.listenForEvents();
+    }
+
+    preventBounce(event) {
+      event.preventDefault();
+      event.stopPropagation();
     }
 
     updateWindowSize() {
@@ -130,12 +142,18 @@ const Client = ({
 }) => {
   console.log(data);
   return (
-    <div {...css(styles.client)}>
+    <div
+      {...css(styles.client)}
+      style={{
+        height: windowSize.width < 420 ? "0px" : "100%",
+        position: windowSize.width < 420 ? "fixed" : ""
+      }}
+    >
       {data.status.hasStarted ? (
         <FlexContainer
           justify="center"
           align="center"
-          style={{ height: "100vh" }}
+          style={{ height: windowSize.width < 420 ? "" : "100vh" }}
         >
           {data.status.hasEnded ? (
             <Modal withOverlay>
@@ -170,14 +188,29 @@ const Client = ({
             ) : (
               ""
             )}
-            <FlexContainer align="start">
-              <Paragraph appearance="success">
+            <FlexContainer align="start" style={{ position: "relative" }}>
+              <Paragraph
+                appearance="danger"
+                style={{
+                  position: "absolute",
+                  zIndex: "10",
+                  top: "5px",
+                  right: "10px"
+                }}
+              >
                 {data.engagementDescription.up}
               </Paragraph>
               <VoteSlider handleVote={handleVote} />
               <Paragraph
-                appearance="danger"
-                style={{ marginTop: "12px", marginBottom: "0px" }}
+                appearance="success"
+                style={{
+                  marginTop: "12px",
+                  marginBottom: "0px",
+                  position: "absolute",
+                  zIndex: "10",
+                  bottom: "5px",
+                  right: "10px"
+                }}
               >
                 {data.engagementDescription.down}
               </Paragraph>
@@ -211,7 +244,8 @@ const ClientWithSocket = withSocket(Client);
 export default withStyles(({ themes, colors }) => {
   return {
     client: {
-      backgroundColor: colors.nightsky
+      backgroundColor: colors.nightsky,
+      touchAction: "none"
     },
     spinner: {
       ":nth-child(1n) span": {

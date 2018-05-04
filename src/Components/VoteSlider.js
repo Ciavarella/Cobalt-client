@@ -24,7 +24,10 @@ class VoteSlider extends React.Component {
   componentWillMount() {
     let initialCanvasWidth = Math.round(window.innerWidth / 5);
     let initialCanvasHeight = Math.round(window.innerHeight / 1.5);
-
+    if (window.innerWidth < 420) {
+      initialCanvasWidth = window.innerWidth;
+      initialCanvasHeight = window.innerHeight;
+    }
     this.setState({
       ...this.state,
       canvas: {
@@ -74,10 +77,10 @@ class VoteSlider extends React.Component {
         circleAnimation.reset();
         arcPosition.last.y = arcPosition.y;
         if (
-          yPosition > heightDifference() + voteCircleSize &&
+          yPosition > heightDifference() - voteCircleSize &&
           yPosition < HEIGHT + heightDifference() + voteCircleSize
         ) {
-          arcPosition.y = yPosition - heightDifference() - voteCircleSize;
+          arcPosition.y = yPosition - heightDifference();
         }
       }
     };
@@ -159,7 +162,16 @@ class VoteSlider extends React.Component {
       if (voteCircleSize > 50) {
         voteCircleSize = 50;
       }
-      console.log(voteCircleSize);
+      if (window.innerWidth < 420) {
+        canvasWidth = window.innerWidth;
+        canvasHeight = window.innerHeight;
+        voteCircleSize = 30;
+      }
+
+      if (canvasWidth < 230) {
+        canvasWidth = 230;
+      }
+
       this.setState(
         {
           ...this.state,
@@ -487,16 +499,8 @@ class VoteSlider extends React.Component {
 
         <canvas
           id="myCanvas"
-          height={
-            this.state.window.width < 420
-              ? this.state.window.height
-              : this.state.canvas.height
-          }
-          width={
-            this.state.window.width < 420
-              ? this.state.window.width
-              : this.state.canvas.width
-          }
+          height={this.state.canvas.height}
+          width={this.state.canvas.width}
           {...css(
             this.props.styles.voteSlider,
             this.props.styles.background,
@@ -513,7 +517,6 @@ class VoteSlider extends React.Component {
 export default withStyles(({ themes, colors, rounded }) => {
   return {
     voteSlider: {
-      border: "2px solid",
       borderColor: colors.nightsky,
       background: `linear-gradient(${colors.success}, ${colors.danger})`,
       touchAction: "none"
