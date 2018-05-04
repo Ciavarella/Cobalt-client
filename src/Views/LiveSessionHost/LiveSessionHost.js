@@ -62,7 +62,7 @@ const LiveSessionHost = ({ styles, ...props }) => {
       {props.data.status.isPaused ? <Paused {...props} /> : ""}
       <div {...css(styles.graphWrap)}>
         {/* TODO: Fix threshold when isAverage! */}
-        {props.data.engagement.negative > props.data.status.threshold ? (
+        {props.data.engagement.negative > props.data.settings.threshold ? (
           <Warning {...props} />
         ) : (
           <Engagement {...props} />
