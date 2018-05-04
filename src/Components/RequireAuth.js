@@ -18,7 +18,6 @@ const requireAuth = ComposedComponent => {
 
     render() {
       const { isAuthenticated, isFetching } = this.props;
-      console.log("fetching: ", isFetching, isAuthenticated);
 
       if (isFetching) {
         return <Loader />;
@@ -27,7 +26,7 @@ const requireAuth = ComposedComponent => {
       if (isAuthenticated) {
         return <ComposedComponent {...this.props} />;
       }
-      console.log("You are not authenticated");
+
       return <Redirect to="/login" />;
     }
   }

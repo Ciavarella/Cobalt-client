@@ -38,6 +38,8 @@ import JoinSession from "./Components/JoinSession";
 import SessionItem from "./Components/SessionItem";
 import SessionItemCard from "./Components/SessionItemCard";
 import Wizard from "./Components/Wizard";
+import Notifications from "./Components/Notifications";
+import VoteSlider from "./Components/VoteSlider";
 
 /* Containers */
 import FlexContainer from "./Containers/FlexContainer";
