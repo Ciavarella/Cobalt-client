@@ -20,7 +20,6 @@ class Notifications extends Component {
   }
 
   render() {
-    console.log(this.props.notifications);
     return (
       <div {...css(this.styles.notifications, this.styles[this.position])}>
         <CSSTransitionGroup
@@ -30,22 +29,24 @@ class Notifications extends Component {
         >
           {Object.entries(this.props.notifications).map(
             ([key, notification]) => {
-              return (
-                <Notification
-                  appearance={
-                    notification.notificationType == "warning"
-                      ? "danger"
-                      : "success"
-                  }
-                  timer={setTimeout(() => {
-                    this.props.removeNotifications(notification.id);
-                  }, 5000)}
-                  key={key}
-                  handleClick={e => this.handleClick(notification.id, e)}
-                >
-                  {notification.body}
-                </Notification>
-              );
+              if (notification.body) {
+                return (
+                  <Notification
+                    appearance={
+                      notification.notificationType == "warning"
+                        ? "danger"
+                        : "success"
+                    }
+                    timer={setTimeout(() => {
+                      this.props.removeNotifications(notification.id);
+                    }, 5000)}
+                    key={key}
+                    handleClick={e => this.handleClick(notification.id, e)}
+                  >
+                    {notification.body}
+                  </Notification>
+                );
+              }
             }
           )}
         </CSSTransitionGroup>
