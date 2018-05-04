@@ -7,26 +7,7 @@ import { REMOVE_OLD_NOTIFICATION } from "./constants";
 import { indexOf } from "benchmark";
 
 const initialState = {
-  messages: [
-    {
-      id: 4,
-      success: true,
-      title: "Something 1",
-      body: "Some text 1 "
-    },
-    {
-      id: 5,
-      success: true,
-      title: "Something 2",
-      body: "Some text 2"
-    },
-    {
-      id: 6,
-      success: true,
-      title: "Something 3",
-      body: "Some text 3"
-    }
-  ],
+  messages: [],
   counter: 0
 };
 

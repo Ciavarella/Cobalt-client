@@ -28,15 +28,7 @@ export const requestAuth = credentials => dispatch => {
     body: JSON.stringify(credentials)
   })
     .then(handleResponse)
-    .then(data => {
-      //Remove
-      data.message = {
-        success: true,
-        title: "Something",
-        body: "Some text"
-      };
-      dispatch(requestAuthSuccess(data));
-    })
+    .then(data => dispatch(requestAuthSuccess(data)))
     .catch(err => dispatch(requestAuthFail(err)));
 };
 
