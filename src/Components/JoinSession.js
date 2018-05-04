@@ -63,7 +63,11 @@ class JoinSession extends React.Component {
                 borderRadius: "0px 4px 4px 0px"
               }}
             />
-            <Button appearance="secondary" type="submit">
+            <Button
+              style={{ marginLeft: "15px" }}
+              appearance="secondary"
+              type="submit"
+            >
               JOIN
             </Button>
           </FlexContainer>
