@@ -26,7 +26,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    removeOldNotification: () => dispatch(removeOldNotification())
+    removeOldNotification: notifications =>
+      dispatch(removeOldNotification(notifications))
   };
 };
 
@@ -43,12 +44,11 @@ class App extends React.Component {
     this.removeNotifications = this.removeNotifications.bind(this);
   }
 
-  removeNotifications() {
-    this.props.removeOldNotification();
+  removeNotifications(id) {
+    this.props.removeOldNotification(id);
   }
 
   render() {
-    console.log(this.props);
     return (
       <div className="App">
         <Notifications

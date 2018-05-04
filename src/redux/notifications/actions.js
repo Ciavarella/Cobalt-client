@@ -1,5 +1,6 @@
 import { REMOVE_OLD_NOTIFICATION } from "./constants";
 
-export const removeOldNotification = () => ({
-  type: REMOVE_OLD_NOTIFICATION
+export const removeOldNotification = notification => ({
+  type: REMOVE_OLD_NOTIFICATION,
+  payload: notification
 });

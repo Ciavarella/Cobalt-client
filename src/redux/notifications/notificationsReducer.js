@@ -4,9 +4,30 @@ import {
   REQUEST_AUTH_FAIL
 } from "../auth/constants";
 import { REMOVE_OLD_NOTIFICATION } from "./constants";
+import { indexOf } from "benchmark";
 
 const initialState = {
-  messages: []
+  messages: [
+    {
+      id: 4,
+      success: true,
+      title: "Something 1",
+      body: "Some text 1 "
+    },
+    {
+      id: 5,
+      success: true,
+      title: "Something 2",
+      body: "Some text 2"
+    },
+    {
+      id: 6,
+      success: true,
+      title: "Something 3",
+      body: "Some text 3"
+    }
+  ],
+  counter: 0
 };
 
 const notificationsReducer = (state = initialState, action) => {
@@ -15,11 +36,16 @@ const notificationsReducer = (state = initialState, action) => {
     case REQUEST_AUTH_FAIL:
       return {
         ...state,
-        messages: [...state.messages, action.payload.message]
+        messages: [
+          ...state.messages,
+          Object.assign({}, action.payload.message, { id: state.counter })
+        ],
+        counter: state.counter++
       };
     case REMOVE_OLD_NOTIFICATION:
       return {
-        messages: state.messages.shift()
+        ...state,
+        messages: state.messages.filter(i => i.id !== action.payload)
       };
     default:
       return state;

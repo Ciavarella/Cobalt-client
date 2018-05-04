@@ -12,23 +12,15 @@ class Notifications extends Component {
     this.position = position;
 
     this.removeNotification;
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  componentWillReceiveProps() {
-    // console.log("props recieved");
-  }
-
-  componentWillUnmount() {
-    // clearInterval(this.removeNotification);
-    console.log(this.props.notifications);
+  handleClick(id, e) {
+    return this.props.removeNotifications(id);
   }
 
   render() {
-    this.props.notifications.length
-      ? (this.removeNotification = setInterval(() => {
-          this.props.removeNotifications();
-        }, 1000))
-      : clearInterval(this.removeNotification);
+    console.log(this.props.notifications);
     return (
       <div {...css(this.styles.notifications, this.styles[this.position])}>
         <CSSTransitionGroup
@@ -36,18 +28,26 @@ class Notifications extends Component {
           transitionEnterTimeout={500}
           transitionLeaveTimeout={500}
         >
-          {Object.values(this.props.notifications).map(notification => {
-            return (
-              <Notification
-                appearance="danger"
-                id={notification}
-                key={notification}
-                handleClick={this.props.handleClick}
-              >
-                {notification.body}
-              </Notification>
-            );
-          })}
+          {Object.entries(this.props.notifications).map(
+            ([key, notification]) => {
+              return (
+                <Notification
+                  appearance={
+                    notification.notificationType == "warning"
+                      ? "danger"
+                      : "success"
+                  }
+                  timer={setTimeout(() => {
+                    this.props.removeNotifications(notification.id);
+                  }, 5000)}
+                  key={key}
+                  handleClick={e => this.handleClick(notification.id, e)}
+                >
+                  {notification.body}
+                </Notification>
+              );
+            }
+          )}
         </CSSTransitionGroup>
       </div>
     );
