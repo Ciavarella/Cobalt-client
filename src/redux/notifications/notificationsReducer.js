@@ -1,6 +1,12 @@
-import { REQUEST_AUTH_SUCCESS, REQUEST_AUTH_FAIL } from "../auth/constants";
+import {
+  REQUEST_SIGNUP_SUCCESS,
+  REQUEST_SIGNUP_FAIL
+} from "../signup/constants";
+import {
+  REQUEST_SESSION_SUCCESS,
+  REQUEST_SESSION_FAIL
+} from "../session/constants";
 import { REMOVE_OLD_NOTIFICATION } from "./constants";
-import { indexOf } from "benchmark";
 
 const initialState = {
   messages: [],
@@ -9,8 +15,10 @@ const initialState = {
 
 const notificationsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case REQUEST_AUTH_SUCCESS:
-    case REQUEST_AUTH_FAIL:
+    case REQUEST_SIGNUP_SUCCESS:
+    case REQUEST_SIGNUP_FAIL:
+    case REQUEST_SESSION_SUCCESS:
+    case REQUEST_SESSION_FAIL:
       return {
         ...state,
         messages: [

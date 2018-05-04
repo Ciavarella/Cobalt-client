@@ -33,9 +33,7 @@ class Notifications extends Component {
                 return (
                   <Notification
                     appearance={
-                      notification.notificationType == "warning"
-                        ? "danger"
-                        : "success"
+                      notification.type == "warning" ? "danger" : "success"
                     }
                     timer={setTimeout(() => {
                       this.props.removeNotifications(notification.id);

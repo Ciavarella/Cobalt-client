@@ -40,12 +40,5 @@ export const verifyAuth = () => dispatch => {
   })
     .then(handleResponse)
     .then(data => dispatch(requestAuthSuccess(data)))
-    .catch(err => {
-      err.message = {
-        notificationType: "warning",
-        title: "Error",
-        body: err.message
-      };
-      dispatch(requestAuthFail(err));
-    });
+    .catch(err => dispatch(requestAuthFail(err)));
 };
