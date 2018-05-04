@@ -1,5 +1,6 @@
 import React from "react";
 import { css, withStyles } from "../withStyles";
+import moment from "moment";
 
 import Card from "../Elements/Card";
 import Heading from "../Elements/Heading";
@@ -8,14 +9,7 @@ import FlexContainer from "../Containers/FlexContainer";
 
 const stripStringLength = string => string.slice(0, 80) + "...";
 
-const SessionItem = ({
-  date = "June 12, 2018",
-  attendees = "233",
-  title = "Session title",
-  description = "This is the default description",
-  styles,
-  ...props
-}) => {
+const SessionItem = ({ styles, ...props }) => {
   return (
     <div {...css(styles, styles.sessionItem)}>
       <FlexContainer
@@ -30,15 +24,20 @@ const SessionItem = ({
             align="start"
             style={{ marginBottom: "50px" }}
           >
-            <Paragraph size="sub">{date}</Paragraph>
-            <Paragraph size="sub">Attendees: {attendees}</Paragraph>
+            <Paragraph size="sub">
+              {moment(props.data.date).format("dddd, MMMM Do YYYY")}
+            </Paragraph>
+            <Paragraph size="sub">Attendees: {props.data.attendees}</Paragraph>
           </FlexContainer>
           <FlexContainer align="start">
             <Heading size="3" appearance="white">
-              {title}
+              {props.data.name}
+            </Heading>
+            <Heading size="5" appearance="white">
+              Workspace: {props.workspace}
             </Heading>
             <Paragraph style={{ height: "32px" }}>
-              {stripStringLength(description)}
+              {stripStringLength(props.data.description)}
             </Paragraph>
           </FlexContainer>
         </Card>
