@@ -52,7 +52,11 @@ const LiveSessionHost = ({ styles, ...props }) => {
           <Heading size="2" appearance="white">
             {props.data.attendees} attendees
           </Heading>
-          <CopyTextfield url={props.data.sessionId} />
+          <CopyTextfield
+            url={`${process.env.REACT_APP_CLIENT_BASE_URL}/session/${
+              props.data.sessionId
+            }`}
+          />
         </FlexContainer>
       </div>
       {props.data.status.isPaused ? <Paused {...props} /> : ""}

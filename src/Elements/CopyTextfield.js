@@ -35,7 +35,7 @@ const CopyTextfield = ({ url = "SESSIONID", styles, ...props }) => {
         <Input
           inputRef={ref => (inputElementRef = ref)}
           onClick={copyToClipboard}
-          value={`http://feed.io/${url}`}
+          value={url}
           readOnly
         />
       </FlexContainer>

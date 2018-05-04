@@ -14,7 +14,7 @@ const SessionStarted = ({ sessionId = null }) => (
       Here is your unique session url. Share it with your audience.
     </Paragraph>
     <CopyTextfield
-      url={`http://feedback.io/${sessionId}`}
+      url={`${process.env.REACT_APP_CLIENT_BASE_URL}/session/${sessionId}`}
       style={{ width: "100%" }}
     />
   </FlexContainer>

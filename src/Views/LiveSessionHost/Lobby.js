@@ -66,7 +66,11 @@ class Lobby extends React.Component {
           </Heading>
         </FlexContainer>
         <FlexContainer fullWidth="1" align="end" justify="end">
-          <CopyTextfield url={this.props.data.sessionId} />
+          <CopyTextfield
+            url={`${process.env.REACT_APP_CLIENT_BASE_URL}/session/${
+              this.props.data.sessionId
+            }`}
+          />
         </FlexContainer>
       </div>
     );
