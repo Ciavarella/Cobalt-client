@@ -39,7 +39,7 @@ const withSocket = WrappedComponent => {
       this.preventBounce = this.preventBounce.bind(this);
 
       this.sessionId = sessionId;
-      this.socket = io(`http://10.126.4.146:7770`);
+      this.socket = io(process.env.REACT_APP_API_BASE_URL);
     }
 
     componentWillMount() {
