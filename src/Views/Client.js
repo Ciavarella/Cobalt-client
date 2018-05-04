@@ -16,26 +16,10 @@ const withSocket = WrappedComponent => {
     constructor(props) {
       super(props);
 
-      // this.state = {
-      //   data: {
-      //     status: {
-      //       hasStarted: false
-      //     }
-      //   },
-      //   fireRedirect: false
-      // };
       this.state = {
         data: {
-          presentation: {
-            name: "Example name",
-            description: "Example description"
-          },
-          engagementDescription: {
-            up: "faster",
-            down: "slower"
-          },
           status: {
-            hasStarted: true
+            hasStarted: false
           }
         },
         fireRedirect: false,
@@ -84,7 +68,6 @@ const withSocket = WrappedComponent => {
     }
 
     updateWindowSize() {
-      console.log("resizing");
       this.setState({
         ...this.state,
         windowSize: {
@@ -96,7 +79,6 @@ const withSocket = WrappedComponent => {
 
     listenForEvents() {
       this.socket.on("updateClient", data => {
-        console.log("updateClient", data);
         this.setState({
           data: data
         });
