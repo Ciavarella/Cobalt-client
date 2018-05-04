@@ -3,6 +3,8 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import io from "socket.io-client";
 
+import Loader from "../Elements/Loader";
+
 const withSocket = WrappedComponent => {
   return class extends React.Component {
     constructor(props) {
@@ -66,6 +68,11 @@ const withSocket = WrappedComponent => {
           .then(res => {
             if (res.success) {
               this.socket.emit("joinSession", this.sessionId);
+            } else {
+              this.setState({
+                shouldRedirect: true,
+                isLoading: false
+              });
             }
 
             this.listenForEvents();
@@ -170,7 +177,9 @@ const withSocket = WrappedComponent => {
     }
 
     render() {
-      if (this.state.isLoading) return <h2>Checking your credz</h2>;
+      if (this.state.isLoading) return <Loader fillColor="dawn" size="large" />;
+
+      if (this.state.shouldRedirect) return <Redirect to="/" />;
 
       return (
         <WrappedComponent
