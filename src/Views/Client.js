@@ -21,7 +21,7 @@ const withSocket = WrappedComponent => {
       } = this.props;
 
       this.sessionId = sessionId;
-      this.socket = io(`http://10.126.4.146:7770`);
+      this.socket = io(`http://localhost:7770`);
     }
 
     componentDidMount() {

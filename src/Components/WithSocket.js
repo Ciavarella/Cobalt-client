@@ -15,29 +15,30 @@ const withSocket = WrappedComponent => {
       } = this.props;
 
       this.state = {
+        isLoading: true,
         data: {
-          sessionId: sessionId,
-          presentation: {
-            name: "Session name",
-            description: "Session description"
-          },
-          settings: {
-            threshold: 50,
-            maxAttendees: 50,
-            engagementDescription: "Engagement description"
-          },
-          status: {
-            hasStarted: false,
-            hasEnded: false,
-            isPaused: false,
-            time: 0
-          },
-          engagement: {
-            average: 0,
-            positive: 50,
-            negative: 50
-          },
-          attendees: 0
+          // sessionId: sessionId,
+          // presentation: {
+          //   name: "Session name",
+          //   description: "Session description"
+          // },
+          // settings: {
+          //   threshold: 50,
+          //   maxAttendees: 50,
+          //   engagementDescription: "Engagement description"
+          // },
+          // status: {
+          //   hasStarted: false,
+          //   hasEnded: false,
+          //   isPaused: false,
+          //   time: 0
+          // },
+          // engagement: {
+          //   average: 0,
+          //   positive: 50,
+          //   negative: 50
+          // },
+          // attendees: 0
         }
       };
 
@@ -48,25 +49,48 @@ const withSocket = WrappedComponent => {
       this.pauseSession = this.pauseSession.bind(this);
       this.requestSave = this.requestSave.bind(this);
       this.switchData = this.switchData.bind(this);
+      this.listenForEvents = this.listenForEvents.bind(this);
     }
 
     componentDidMount() {
-      this.socket.on("connect", () => {
-        this.socket.emit("joinSession", this.sessionId);
-      });
+      this.socket.on("connect", socket => {
+        fetch(
+          `${process.env.REACT_APP_API_BASE_URL}/api/session/${
+            this.sessionId
+          }/${this.socket.id}`,
+          {
+            credentials: "include"
+          }
+        )
+          .then(res => res.json())
+          .then(res => {
+            if (res.success) {
+              this.socket.emit("joinSession", this.sessionId);
+            }
 
-      this.listenForEvents();
+            this.listenForEvents();
+          })
+          .catch(err => {
+            this.setState({
+              isLoading: false
+            });
+            console.log("not the owner", err);
+          });
+      });
     }
 
     listenForEvents() {
       this.socket.on("updateHost", data => {
+        console.log(data);
         this.setState({
+          isLoading: false,
           data: data
         });
       });
     }
 
     updateSession() {
+      console.log(this.state.data);
       this.socket.emit("presenterPayload", {
         session: this.sessionId,
         payload: this.state.data
@@ -146,6 +170,8 @@ const withSocket = WrappedComponent => {
     }
 
     render() {
+      if (this.state.isLoading) return <h2>Checking your credz</h2>;
+
       return (
         <WrappedComponent
           startSession={this.startSession}
