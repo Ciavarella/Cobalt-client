@@ -20,6 +20,12 @@ class Notifications extends Component {
   }
 
   render() {
+    const notifications = Object.keys(this.props.notifications).map(
+      key => this.props.notifications[key]
+    );
+    notifications.map(n => {
+      console.log(n);
+    });
     return (
       <div {...css(this.styles.notifications, this.styles[this.position])}>
         <CSSTransitionGroup
@@ -27,26 +33,24 @@ class Notifications extends Component {
           transitionEnterTimeout={500}
           transitionLeaveTimeout={500}
         >
-          {Object.entries(this.props.notifications).map(
-            ([key, notification]) => {
-              if (notification.body) {
-                return (
-                  <Notification
-                    appearance={
-                      notification.type == "warning" ? "danger" : "success"
-                    }
-                    timer={setTimeout(() => {
-                      this.props.removeNotifications(notification.id);
-                    }, 5000)}
-                    key={key}
-                    handleClick={e => this.handleClick(notification.id, e)}
-                  >
-                    {notification.body}
-                  </Notification>
-                );
-              }
+          {notifications.map(notification => {
+            if (notification.body) {
+              return (
+                <Notification
+                  appearance={
+                    notification.type == "warning" ? "danger" : "success"
+                  }
+                  timer={setTimeout(() => {
+                    this.props.removeNotifications(notification.id);
+                  }, 5000)}
+                  key={notification.id}
+                  handleClick={e => this.handleClick(notification.id, e)}
+                >
+                  {notification.body}
+                </Notification>
+              );
             }
-          )}
+          })}
         </CSSTransitionGroup>
       </div>
     );
@@ -60,7 +64,7 @@ export default withStyles(({ themes }) => {
       flexDirection: "column",
       position: "fixed",
       width: "30%",
-      zIndex: "199",
+      zIndex: "100000",
       ":nth-child(1n) div": {
         marginBottom: "15px"
       }
