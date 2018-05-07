@@ -124,37 +124,43 @@ const Client = ({
 }) => {
   if (!data.status.hasStarted) {
     return (
-      <div {...css(styles.waitingForHost)}>
-        <Heading size="2" appearance="white" style={{ textAlign: "center" }}>
-          Waiting for host to start session
-        </Heading>
-        <div {...css(styles.spinner)}>
-          <Loader />
-        </div>
+      <div {...css(styles.message)}>
+        <FlexContainer flex="1" align="center" justify="center">
+          <Heading size="2" style={{ textAlign: "center" }}>
+            Waiting for host to start session
+          </Heading>
+          <div {...css(styles.spinner)}>
+            <Loader fillColor="nightsky" />
+          </div>
+        </FlexContainer>
       </div>
     );
   }
 
   if (data.status.isPaused && !data.status.hasEnded) {
     return (
-      <FlexContainer flex="1" align="center" justify="center">
-        <Heading size="2" style={{ textAlign: "center" }}>
-          This session is currently paused
-        </Heading>
-        <Paragraph>Wait for the host to resume the session</Paragraph>
-      </FlexContainer>
+      <div {...css(styles.message)}>
+        <FlexContainer flex="1" align="center" justify="center">
+          <Heading size="2" style={{ textAlign: "center" }}>
+            This session is currently paused
+          </Heading>
+          <Paragraph>Wait for the host to resume the session</Paragraph>
+        </FlexContainer>
+      </div>
     );
   }
 
   if (data.status.hasEnded) {
     return (
-      <FlexContainer flex="1" align="center" justify="center">
-        <Heading size="2">The session has ended</Heading>
-        <Paragraph>Thank you for participating</Paragraph>
-        <Button onClick={handleClick} appearance="secondary">
-          LEAVE SESSION
-        </Button>
-      </FlexContainer>
+      <div {...css(styles.message)}>
+        <FlexContainer flex="1" align="center" justify="center">
+          <Heading size="2">The session has ended</Heading>
+          <Paragraph>Thank you for participating</Paragraph>
+          <Button onClick={handleClick} appearance="secondary">
+            LEAVE SESSION
+          </Button>
+        </FlexContainer>
+      </div>
     );
   }
 
@@ -232,7 +238,20 @@ export default withStyles(({ themes, colors }) => {
       alignItems: "center",
       height: "100vh",
       flexDirection: "column",
-      backgroundColor: colors.nightsky
+      backgroundColor: colors.nightsky,
+      animation: "fade 0.5s ease",
+      willChange: "transform, opacity"
+    },
+    message: {
+      display: "flex",
+      padding: "0px 20px",
+      flexDirection: "column",
+      justifyContent: "start",
+      alignItems: "center",
+      height: "100vh",
+      backgroundColor: colors.sand,
+      animation: "fade 0.5s ease",
+      willChange: "transform, opacity"
     },
     spinner: {
       ":nth-child(1n) span": {
