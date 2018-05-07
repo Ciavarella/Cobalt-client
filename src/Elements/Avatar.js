@@ -40,6 +40,7 @@ export default withStyles(({ themes }) => {
     /* Size */
     small: { width: "3.2rem", height: "3.2rem" },
     medium: { width: "4.8rem", height: "4.8rem" },
-    large: { width: "6.4rem", height: "6.4rem" }
+    large: { width: "6.4rem", height: "6.4rem" },
+    xl: { width: "12.8rem", height: "12.8rem" }
   };
 })(Avatar);
