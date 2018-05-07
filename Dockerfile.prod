@@ -1,5 +1,6 @@
-FROM mhart/alpine-node:latest as app-builder
+FROM mhart/alpine-node:9.11.1 as app-builder
 
+ADD yarn.lock /yarn.lock
 ADD package.json /package.json
 
 ENV NODE_PATH=/node_modules
@@ -8,10 +9,15 @@ ENV PATH=$PATH:/node_modules/.bin
 WORKDIR /app
 COPY . /app
 
-RUN yarn
+RUN yarn --ignore-engines
+
 RUN yarn run build
 
-FROM nginx:latest
+FROM nginx:stable-alpine
+
+RUN rm -rf /etc/nginx/conf.d
+COPY conf /etc/nginx
+
 COPY --from=app-builder /app/build /usr/share/nginx/html
 
 EXPOSE 80
