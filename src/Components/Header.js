@@ -1,12 +1,15 @@
 import React from "react";
 import { css, withStyles } from "../withStyles";
 import { Link } from "react-router-dom";
+import Media from "react-media";
 
 import FlexContainer from "../Containers/FlexContainer";
 import ButtonLink from "../Elements/ButtonLink";
 import List from "../Elements/List";
 import ListItem from "../Elements/ListItem";
 import Heading from "../Elements/Heading";
+import Icon from "../Elements/Icon";
+import Paragraph from "../Elements/Paragraph";
 
 const Header = ({ styles, ...props }) => (
   <header {...css(styles.header)}>
@@ -17,36 +20,73 @@ const Header = ({ styles, ...props }) => (
         </Heading>
       </FlexContainer>
 
-      <FlexContainer direction="row" justify="end" flex="1">
-        <List direction="row">
-          <ListItem>
-            <Link to="about">About</Link>
-          </ListItem>
-          <ListItem>
-            <Link to="tour">Tour</Link>
-          </ListItem>
-          <ListItem>
-            <Link to="pricing">Pricing</Link>
-          </ListItem>
-          <ListItem>
-            <Link to="contact">Contact</Link>
-          </ListItem>
-        </List>
-      </FlexContainer>
+      <Media query={{ maxWidth: 480 }}>
+        {matches =>
+          matches ? (
+            ""
+          ) : (
+            <FlexContainer direction="row" justify="end" flex="1">
+              <List direction="row">
+                <ListItem>
+                  <Link to="about">About</Link>
+                </ListItem>
+                <ListItem>
+                  <Link to="tour">Tour</Link>
+                </ListItem>
+                <ListItem>
+                  <Link to="pricing">Pricing</Link>
+                </ListItem>
+                <ListItem>
+                  <Link to="contact">Contact</Link>
+                </ListItem>
+              </List>
+            </FlexContainer>
+          )
+        }
+      </Media>
+
       {props.isAuthenticated != true ? (
-        <FlexContainer direction="row">
-          <ButtonLink to="login" appearance="secondary">
-            LOG IN
-          </ButtonLink>
-          <ButtonLink to="signup" appearance="primary">
-            SIGN UP
-          </ButtonLink>
-        </FlexContainer>
+        <Media query={{ maxWidth: 480 }}>
+          {matches => (
+            <FlexContainer direction="row">
+              <ButtonLink
+                to="login"
+                size={matches ? "small" : "medium"}
+                appearance="secondary"
+              >
+                LOG IN
+              </ButtonLink>
+              <ButtonLink
+                to="signup"
+                size={matches ? "small" : "medium"}
+                appearance="primary"
+                style={matches ? { marginRight: 0 } : {}}
+              >
+                SIGN UP
+              </ButtonLink>
+            </FlexContainer>
+          )}
+        </Media>
       ) : (
         <FlexContainer direction="row">
-          <ButtonLink to="dashboard" appearance="secondary">
-            Dashboard
-          </ButtonLink>
+          <Media query={{ maxWidth: 480 }}>
+            {matches =>
+              matches ? (
+                <Link to="dashboard">
+                  <FlexContainer direction="row" align="center">
+                    <Paragraph appearance="white" style={{ margin: 0 }}>
+                      Dashboard
+                    </Paragraph>
+                    <Icon size="large" icon="fas fa-columns" />
+                  </FlexContainer>
+                </Link>
+              ) : (
+                <ButtonLink to="dashboard" appearance="secondary">
+                  Dashboard
+                </ButtonLink>
+              )
+            }
+          </Media>
         </FlexContainer>
       )}
     </FlexContainer>
@@ -72,6 +112,7 @@ export default withStyles(({ themes, colors }) => {
     },
     logo: {
       color: "#FFF",
+      marginBottom: "0px",
       ":nth-child(1n) span": {
         color: colors.danger
       }

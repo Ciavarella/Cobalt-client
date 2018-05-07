@@ -1,6 +1,7 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import { css, withStyles } from "../withStyles";
+import Media from "react-media";
 
 import FlexContainer from "../Containers/FlexContainer";
 import Button from "../Elements/Button";
@@ -33,13 +34,13 @@ class JoinSession extends React.Component {
 
   render() {
     const { fireRedirect } = this.state;
-
+    console.log(window.innerWidth);
     if (fireRedirect) {
       return <Redirect to={`/session/${this.state.code}`} />;
     }
 
     return (
-      <FlexContainer>
+      <FlexContainer flex="1" style={{ textAlign: "center", width: "inherit" }}>
         <Heading size="1" appearance="white">
           Have a unique code?
         </Heading>
@@ -47,22 +48,39 @@ class JoinSession extends React.Component {
           Paste it here to enter your session!
         </Heading>
         <form onSubmit={this.handleSubmit}>
-          <FlexContainer direction="row">
-            <span {...css(this.props.styles.inputPrefix)}>
-              http://feedback.io/
-            </span>
-            <Input
-              name="code"
-              type="text"
-              placeholder="Session code..."
-              value={this.state.code}
-              onChange={this.handleChange}
-              style={{
-                marginLeft: "0px",
-                width: "400px",
-                borderRadius: "0px 4px 4px 0px"
-              }}
-            />
+          <FlexContainer
+            direction="row"
+            justify="center"
+            style={{ flexWrap: "wrap" }}
+          >
+            <FlexContainer direction="row">
+              <span {...css(this.props.styles.inputPrefix)}>
+                http://feedback.io/
+              </span>
+              <Media query={{ maxWidth: 480 }}>
+                {matches => (
+                  <div
+                    {...css(
+                      matches
+                        ? this.props.styles.mobileInput
+                        : this.props.styles.desktopInput
+                    )}
+                  >
+                    <Input
+                      name="code"
+                      type="text"
+                      placeholder="Session code..."
+                      value={this.state.code}
+                      onChange={this.handleChange}
+                      style={{
+                        marginLeft: "0px",
+                        borderRadius: "0px 4px 4px 0px"
+                      }}
+                    />
+                  </div>
+                )}
+              </Media>
+            </FlexContainer>
             <Button
               style={{ marginLeft: "15px" }}
               appearance="secondary"
@@ -89,6 +107,16 @@ export default withStyles(({ themes, text, colors }) => {
       padding: "16px",
       fontWeight: "600",
       borderRadius: "4px 0px 0px 4px"
+    },
+    mobileInput: {
+      ":nth-child(1n) input": {
+        width: "180px"
+      }
+    },
+    desktopInput: {
+      ":nth-child(1n) input": {
+        width: "400px"
+      }
     }
   };
 })(JoinSession);
