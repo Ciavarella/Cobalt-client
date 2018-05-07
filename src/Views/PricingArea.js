@@ -51,8 +51,6 @@ class PricingArea extends Component {
     this.state = {
       cardActive: "2"
     };
-
-    this.handleClick = this.handleClick.bind(this);
   }
 
   render() {
