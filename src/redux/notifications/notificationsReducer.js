@@ -9,10 +9,7 @@ import {
 import { REMOVE_OLD_NOTIFICATION } from "./constants";
 
 const initialState = {
-  messages: [
-    { id: 1, title: "test", body: "testBody" },
-    { id: 2, title: "test", body: "testBody" }
-  ],
+  messages: [],
   counter: 0
 };
 

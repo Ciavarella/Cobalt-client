@@ -23,9 +23,7 @@ class Notifications extends Component {
     const notifications = Object.keys(this.props.notifications).map(
       key => this.props.notifications[key]
     );
-    notifications.map(n => {
-      console.log(n);
-    });
+
     return (
       <div {...css(this.styles.notifications, this.styles[this.position])}>
         <CSSTransitionGroup
