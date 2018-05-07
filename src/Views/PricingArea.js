@@ -47,7 +47,6 @@ const mockSubscriptionCards = [
 class PricingArea extends Component {
   constructor({ styles, ...props }) {
     super(props);
-
     this.styles = styles;
     this.state = {
       cardActive: "2"
@@ -56,17 +55,10 @@ class PricingArea extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(id) {
-    this.setState({
-      cardActive: id
-    });
-  }
-
   render() {
     return (
       <div {...css(this.styles.content)}>
         <SubscriptionCard
-          handleClick={this.handleClick}
           SubscriptionCards={mockSubscriptionCards}
           cardActive={this.state.cardActive}
         />

@@ -16,7 +16,6 @@ const SubscriptionCard = ({ styles, ...props }) => {
       {props.SubscriptionCards.map(card => {
         return (
           <Card
-            onClick={() => props.handleClick(card._id)}
             style={{
               borderRadius: "4px",
               width: "350px",
