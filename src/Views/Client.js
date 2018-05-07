@@ -16,32 +16,10 @@ const withSocket = WrappedComponent => {
     constructor(props) {
       super(props);
 
-      // this.state = {
-      //   data: {
-      //     status: {
-      //       hasStarted: false
-      //     }
-      //   },
-      //   fireRedirect: false,
-      //   windowSize: {
-      //     width: window.innerWidth,
-      //     height: window.innerHeight
-      //   }
-      // };
       this.state = {
         data: {
-          presentation: {
-            name: "this is a title",
-            description: "this is a description"
-          },
-          engagementDescription: {
-            up: "up",
-            down: "down"
-          },
           status: {
-            hasStarted: true,
-            isPaused: true,
-            hasEnded: true
+            hasStarted: false
           }
         },
         fireRedirect: false,
