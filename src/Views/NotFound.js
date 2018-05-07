@@ -17,7 +17,9 @@ const NotFound = ({ styles, ...props }) => {
           We are sorry but the page: "{props.location.pathname.replace("/", "")}"
           could not be found
         </Paragraph>
-        <Button appearance="primary">Click here to go back</Button>
+        <Button onClick={() => props.history.go(-1)} appearance="primary">
+          Click here to go back
+        </Button>
       </FlexContainer>
     </div>
   );
