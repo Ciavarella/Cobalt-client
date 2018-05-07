@@ -16,10 +16,32 @@ const withSocket = WrappedComponent => {
     constructor(props) {
       super(props);
 
+      // this.state = {
+      //   data: {
+      //     status: {
+      //       hasStarted: false
+      //     }
+      //   },
+      //   fireRedirect: false,
+      //   windowSize: {
+      //     width: window.innerWidth,
+      //     height: window.innerHeight
+      //   }
+      // };
       this.state = {
         data: {
+          presentation: {
+            name: "this is a title",
+            description: "this is a description"
+          },
+          engagementDescription: {
+            up: "up",
+            down: "down"
+          },
           status: {
-            hasStarted: false
+            hasStarted: true,
+            isPaused: true,
+            hasEnded: true
           }
         },
         fireRedirect: false,
@@ -122,7 +144,42 @@ const Client = ({
   styles,
   ...props
 }) => {
-  console.log(data);
+  if (!data.status.hasStarted) {
+    return (
+      <div {...css(styles.waitingForHost)}>
+        <Heading size="2" appearance="white" style={{ textAlign: "center" }}>
+          Waiting for host to start session
+        </Heading>
+        <div {...css(styles.spinner)}>
+          <Loader />
+        </div>
+      </div>
+    );
+  }
+
+  if (data.status.isPaused && !data.status.hasEnded) {
+    return (
+      <FlexContainer flex="1" align="center" justify="center">
+        <Heading size="2" style={{ textAlign: "center" }}>
+          This session is currently paused
+        </Heading>
+        <Paragraph>Wait for the host to resume the session</Paragraph>
+      </FlexContainer>
+    );
+  }
+
+  if (data.status.hasEnded) {
+    return (
+      <FlexContainer flex="1" align="center" justify="center">
+        <Heading size="2">The session has ended</Heading>
+        <Paragraph>Thank you for participating</Paragraph>
+        <Button onClick={handleClick} appearance="secondary">
+          LEAVE SESSION
+        </Button>
+      </FlexContainer>
+    );
+  }
+
   return (
     <div
       {...css(styles.client)}
@@ -131,92 +188,54 @@ const Client = ({
         position: windowSize.width < 420 ? "fixed" : ""
       }}
     >
-      {data.status.hasStarted ? (
-        <FlexContainer
-          justify="center"
-          align="center"
-          style={{ height: windowSize.width < 420 ? "" : "100vh" }}
-        >
-          {data.status.hasEnded ? (
-            <Modal withOverlay>
-              <Heading size="2">The session has ended</Heading>
-              <Paragraph>Thank you for participating</Paragraph>
-              <Button onClick={handleClick} appearance="secondary">
-                LEAVE SESSION
-              </Button>
-            </Modal>
+      <FlexContainer
+        justify="center"
+        align="center"
+        style={{ height: windowSize.width < 420 ? "" : "100vh" }}
+      >
+        <FlexContainer>
+          {windowSize.width > 420 ? (
+            <div>
+              <Heading appearance="primary" size="2">
+                {data.presentation.name}
+              </Heading>
+              <Heading appearance="primary" size="3">
+                {data.presentation.description}
+              </Heading>
+              <Paragraph appearance="white">{data.status.time}</Paragraph>
+            </div>
           ) : (
             ""
           )}
-          <FlexContainer>
-            {windowSize.width > 420 ? (
-              <div>
-                <Heading appearance="primary" size="2">
-                  {data.presentation.name}
-                </Heading>
-                <Heading appearance="primary" size="3">
-                  {data.presentation.description}
-                </Heading>
-                <Paragraph appearance="white">{data.status.time}</Paragraph>
-              </div>
-            ) : (
-              ""
-            )}
-            {data.status.isPaused && !data.status.hasEnded ? (
-              <Modal withOverlay>
-                <Heading size="2">This session is currently paused</Heading>
-                <Paragraph>Wait for the host to resume the session</Paragraph>
-              </Modal>
-            ) : (
-              ""
-            )}
-            <FlexContainer align="start" style={{ position: "relative" }}>
-              <Paragraph
-                appearance="danger"
-                style={{
-                  position: "absolute",
-                  zIndex: "10",
-                  top: "5px",
-                  right: "10px"
-                }}
-              >
-                {data.engagementDescription.up}
-              </Paragraph>
-              <VoteSlider handleVote={handleVote} />
-              <Paragraph
-                appearance="success"
-                style={{
-                  marginTop: "12px",
-                  marginBottom: "0px",
-                  position: "absolute",
-                  zIndex: "10",
-                  bottom: "5px",
-                  right: "10px"
-                }}
-              >
-                {data.engagementDescription.down}
-              </Paragraph>
-            </FlexContainer>
+          <FlexContainer align="start" style={{ position: "relative" }}>
+            <Paragraph
+              appearance="danger"
+              style={{
+                position: "absolute",
+                zIndex: "10",
+                top: "5px",
+                right: "10px"
+              }}
+            >
+              {data.engagementDescription.up}
+            </Paragraph>
+            <VoteSlider handleVote={handleVote} />
+            <Paragraph
+              appearance="success"
+              style={{
+                marginTop: "12px",
+                marginBottom: "0px",
+                position: "absolute",
+                zIndex: "10",
+                bottom: "5px",
+                right: "10px"
+              }}
+            >
+              {data.engagementDescription.down}
+            </Paragraph>
           </FlexContainer>
         </FlexContainer>
-      ) : (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            height: "100vh",
-            flexDirection: "column"
-          }}
-        >
-          <Heading size="2" appearance="white" style={{ textAlign: "center" }}>
-            Waiting for host to start session
-          </Heading>
-          <div {...css(styles.spinner)}>
-            <Loader />
-          </div>
-        </div>
-      )}
+      </FlexContainer>
     </div>
   );
 };
@@ -228,6 +247,14 @@ export default withStyles(({ themes, colors }) => {
     client: {
       backgroundColor: colors.nightsky,
       touchAction: "none"
+    },
+    waitingForHost: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      height: "100vh",
+      flexDirection: "column",
+      backgroundColor: colors.nightsky
     },
     spinner: {
       ":nth-child(1n) span": {
