@@ -6,26 +6,34 @@ import FlexContainer from "../Containers/FlexContainer";
 import Button from "./Button";
 import Input from "./Input";
 
-const CopyTextfield = ({ url = "Url should go here", styles, ...props }) => {
-  let textInput;
+const CopyTextfield = ({ url = "SESSIONID", styles, ...props }) => {
+  let inputElementRef;
 
   const copyToClipboard = event => {
     event.preventDefault();
 
-    textInput = ReactDOM.findDOMNode(textInput);
-    textInput.select();
+    if (!inputElementRef) return;
 
-    document.execCommand("copy");
+    inputElementRef.focus();
+    inputElementRef.select();
+
+    let success = document.execCommand("copy");
+
+    if (!success) {
+      throw new Error("Could not copy the contents to clipboard.");
+    } else {
+      // TODO: Add notification that the message has been copied
+    }
   };
 
   return (
     <div {...css(styles.textfield)} {...props}>
       <FlexContainer direction="row">
-        <Button appearance="primary" onClick={copyToClipboard}>
+        <Button appearance="secondary" onClick={copyToClipboard}>
           Copy
         </Button>
         <Input
-          ref={nodeRef => (textInput = nodeRef)}
+          inputRef={ref => (inputElementRef = ref)}
           onClick={copyToClipboard}
           value={url}
           readOnly
@@ -40,7 +48,7 @@ export default withStyles(({ themes }) => {
     textfield: {
       ":nth-child(1n) button": {
         marginRight: "0",
-        height: "41px",
+        height: "43px",
         borderRadius: "4px 0px 0px 4px"
       },
       ":nth-child(1n) input": {

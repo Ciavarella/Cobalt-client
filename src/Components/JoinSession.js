@@ -1,11 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import { Redirect } from "react-router-dom";
 import { css, withStyles } from "../withStyles";
 
 import FlexContainer from "../Containers/FlexContainer";
 import Button from "../Elements/Button";
 import Heading from "../Elements/Heading";
-import Paragraph from "../Elements/Paragraph";
 import Input from "../Elements/Input";
 
 class JoinSession extends React.Component {
@@ -64,7 +63,11 @@ class JoinSession extends React.Component {
                 borderRadius: "0px 4px 4px 0px"
               }}
             />
-            <Button appearance="secondary" type="submit">
+            <Button
+              style={{ marginLeft: "15px" }}
+              appearance="secondary"
+              type="submit"
+            >
               JOIN
             </Button>
           </FlexContainer>
@@ -80,7 +83,7 @@ export default withStyles(({ themes, text, colors }) => {
     inputPrefix: {
       backgroundColor: colors.secondary,
       color: "white",
-      height: "40px",
+      height: "43px",
       display: "flex",
       alignItems: "center",
       padding: "16px",

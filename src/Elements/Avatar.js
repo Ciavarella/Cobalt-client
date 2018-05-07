@@ -9,7 +9,7 @@ const Avatar = ({
   ...props
 }) => (
   <span {...css(styles.avatar, styles[size])} {...props}>
-    {image && <img {...css(styles.image)} src={image} />}
+    {image && <img {...css(styles.image)} src={image} alt="Avatar" />}
     {children}
   </span>
 );

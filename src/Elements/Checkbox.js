@@ -9,10 +9,12 @@ const Checkbox = ({
   ...props
 }) => {
   return (
-    <label {...css(styles[type], styles[appearance])}>
-      <input name={name} type={type} />
-      <span />
-    </label>
+    <div>
+      <label {...css(styles[type], styles[appearance])}>
+        <input name={name} type={type} />
+        <span />
+      </label>
+    </div>
   );
 };
 
@@ -30,7 +32,7 @@ export default withStyles(({ themes, colors }) => {
       msUserSelect: "none",
       userSelect: "none",
       ":nth-child(1n) input": {
-        position: "absolute",
+        position: "relative",
         opacity: "0",
         cursor: "pointer"
       },

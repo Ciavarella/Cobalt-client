@@ -1,5 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import { css, withStyles } from "../withStyles";
+import { Link } from "react-router-dom";
+
 import { withFormik } from "formik";
 import Yup from "yup";
 
@@ -9,7 +11,7 @@ import Heading from "../Elements/Heading";
 import Paragraph from "../Elements/Paragraph";
 import Input from "../Elements/Input";
 
-const SignUpForm = ({
+let SignUpForm = ({
   styles,
   handleSubmit,
   handleChange,
@@ -18,6 +20,7 @@ const SignUpForm = ({
   touched,
   handleBlur,
   isSubmitting,
+  signupRequest,
   ...props
 }) => {
   return (
@@ -172,7 +175,7 @@ const SignUpForm = ({
           </FlexContainer>
         </form>
         <Paragraph appearance="white">
-          Already have an account? <a href="#">Log in here!</a>
+          Already have an account? <Link to="login">Log in here!</Link>
         </Paragraph>
       </FlexContainer>
     </div>
@@ -203,17 +206,9 @@ const formikForm = withFormik({
       .min(6, "Password must be 6 characters or longer")
       .required("Password is required")
   }),
-  handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
+  handleSubmit(values, { props, resetForm, setErrors, setSubmitting }) {
     //TODO: send a request to db and check if the email already exists
-    setTimeout(() => {
-      if (values.email === "test@test.com") {
-        setErrors({ email: "That email is already registered" });
-      } else {
-        console.log(values);
-        resetForm();
-      }
-      setSubmitting(false);
-    }, 2000);
+    props.signupRequest(values);
   }
 })(SignUpForm);
 
@@ -221,7 +216,8 @@ export default withStyles(({ themes, text, colors }) => {
   return {
     signUpForm: {
       ":nth-child(1n) form input": {
-        margin: "0"
+        margin: "0",
+        borderRadius: "4px 0px 0px 4px"
       },
       ":nth-child(1n) label": {
         marginTop: "20px",

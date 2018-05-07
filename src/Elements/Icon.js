@@ -1,6 +1,5 @@
 import React from "react";
 import { css, withStyles } from "../withStyles";
-import fontawesome from "@fortawesome/fontawesome";
 import FontAwesomeIcon from "@fortawesome/react-fontawesome";
 import {
   faCheck,
@@ -17,7 +16,9 @@ import {
   faBriefcase,
   faBuilding,
   faBoxes,
-  faQuestion
+  faQuestion,
+  faExclamationTriangle,
+  faSpinner
 } from "@fortawesome/fontawesome-free-solid";
 
 const Icon = ({
@@ -71,6 +72,12 @@ const Icon = ({
     case "fas fa-boxes":
       faIcon = faBoxes;
       break;
+    case "fas fa-exclamation-triangle":
+      faIcon = faExclamationTriangle;
+      break;
+    case "fas fa-spinner":
+      faIcon = faSpinner;
+      break;
     default:
       faIcon = faQuestion;
   }
@@ -85,7 +92,10 @@ const Icon = ({
 export default withStyles(({ colors, text }) => {
   return {
     icon: {
-      padding: "14px"
+      padding: "13.5px",
+      ":nth-child(1) svg": {
+        verticalAlign: "0px"
+      }
     },
     /** TODO: change from fontawesome to svg? */
 

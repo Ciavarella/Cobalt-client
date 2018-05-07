@@ -5,19 +5,22 @@ const Notification = ({
   styles,
   appearance = "default",
   position = "bottomRight",
+  handleClick,
   ...props
 }) => (
   <div
     {...css(styles.notification, styles[appearance], styles[position])}
     {...props}
-  />
+    onClick={handleClick}
+  >
+    {props.children}
+    <span {...css(styles.cross)}>X</span>
+  </div>
 );
 
-export default withStyles(({ themes }) => {
+export default withStyles(({ themes, colors }) => {
   return {
     notification: {
-      position: "fixed",
-
       /* FlexContainer? */
       display: "flex",
       justifyContent: "center",
@@ -27,6 +30,10 @@ export default withStyles(({ themes }) => {
       border: "2px solid",
       borderRadius: "5px",
       padding: "2.5rem"
+    },
+    cross: {
+      position: "absolute",
+      right: "2.5rem"
     },
 
     /* Appearance */

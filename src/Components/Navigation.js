@@ -3,9 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { css, withStyles } from "../withStyles";
 
 import FlexContainer from "../Containers/FlexContainer";
-import List from "../Elements/List";
 import Icon from "../Elements/Icon";
-import ListItem from "../Elements/ListItem";
 import Heading from "../Elements/Heading";
 
 const Navigation = ({ styles, colors, match, ...props }) => {
@@ -32,11 +30,6 @@ const Navigation = ({ styles, colors, match, ...props }) => {
               <Icon fillColor="dawn" icon="fas fa-columns" />Dashboard
             </li>
           </NavLink>
-          <NavLink activeStyle={activeLink} exact to={`${match.url}/new`}>
-            <li>
-              <Icon fillColor="dawn" icon="fas fa-plus" />New session
-            </li>
-          </NavLink>
           <NavLink activeStyle={activeLink} exact to={`${match.url}/profile`}>
             <li>
               <Icon fillColor="dawn" icon="fas fa-user" />My profile
@@ -61,16 +54,16 @@ const Navigation = ({ styles, colors, match, ...props }) => {
       </FlexContainer>
       <ul {...css(styles.footer)}>
         <li>
-          <a href="#">About</a>
+          <a href="/">About</a>
         </li>
         <li>
-          <a href="#">Github</a>
+          <a href="/">Github</a>
         </li>
         <li>
-          <a href="#">Developers</a>
+          <a href="/">Developers</a>
         </li>
         <li>
-          <a href="#">Chas Academy</a>
+          <a href="/">Chas Academy</a>
         </li>
       </ul>
     </aside>

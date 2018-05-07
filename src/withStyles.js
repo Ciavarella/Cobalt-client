@@ -15,7 +15,11 @@ ThemedStyleSheet.registerTheme({
     carbon: THEME.COLOR_CARBON,
     aluminum: THEME.COLOR_ALUMINUM,
     darkMetal: THEME.COLOR_DARK_METAL,
-    sand: THEME.COLOR_SAND
+    sand: THEME.COLOR_SAND,
+    primaryHighlight: THEME.COLOR_PRIMARY_HIGHLIGHT,
+    secondaryHighlight: THEME.COLOR_SECONDARY_HIGHLIGHT,
+    successHighlight: THEME.COLOR_SUCCESS_HIGHLIGHT,
+    dangerHighlight: THEME.COLOR_DANGER_HIGHLIGHT
   },
   /* Gradients */
   gradients: {

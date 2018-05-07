@@ -3,13 +3,13 @@ import { css, withStyles } from "../withStyles";
 import { Link } from "react-router-dom";
 
 import FlexContainer from "../Containers/FlexContainer";
-import Button from "../Elements/Button";
+import ButtonLink from "../Elements/ButtonLink";
 import List from "../Elements/List";
 import ListItem from "../Elements/ListItem";
 import Heading from "../Elements/Heading";
 
 const Header = ({ styles, ...props }) => (
-  <header {...css(styles.header)} {...props}>
+  <header {...css(styles.header)}>
     <FlexContainer direction="row" justify="between">
       <FlexContainer direction="row" justify="start" flex="1">
         <Heading {...css(styles.logo)} size="2">
@@ -33,14 +33,22 @@ const Header = ({ styles, ...props }) => (
           </ListItem>
         </List>
       </FlexContainer>
-      <FlexContainer direction="row">
-        <Link to="dashboard">
-          <Button appearance="secondary">Log in</Button>
-        </Link>
-        <Link to="signup">
-          <Button appearance="primary">Sign up</Button>
-        </Link>
-      </FlexContainer>
+      {props.isAuthenticated != true ? (
+        <FlexContainer direction="row">
+          <ButtonLink to="login" appearance="secondary">
+            LOG IN
+          </ButtonLink>
+          <ButtonLink to="signup" appearance="primary">
+            SIGN UP
+          </ButtonLink>
+        </FlexContainer>
+      ) : (
+        <FlexContainer direction="row">
+          <ButtonLink to="dashboard" appearance="secondary">
+            Dashboard
+          </ButtonLink>
+        </FlexContainer>
+      )}
     </FlexContainer>
   </header>
 );

@@ -4,15 +4,27 @@ import FlexContainer from "../../Containers/FlexContainer";
 import Heading from "../../Elements/Heading";
 import Paragraph from "../../Elements/Paragraph";
 import Button from "../../Elements/Button";
+import Loader from "../../Elements/Loader";
 import SessionItem from "../../Components/SessionItem";
 
 import openBoxIcon from "../../assets/open-box.svg";
 
 const Sessions = ({ styles, ...props }) => {
-  let sessions = ["1"];
-  if (sessions.length < 1) {
+  /* TODO: MAJOR REFACTOR - VERY TEMPORARY */
+  if (!props.data.workspaces) {
     return (
-      <div {...css(styles.empty)}>
+      <div {...css(styles.centered)}>
+        <Loader fillColor="dawn" size="large" />
+      </div>
+    );
+  }
+
+  let sessions = props.data.workspaces[0].presentations;
+  let workspaceName = props.data.workspaces[0].name;
+
+  if (sessions.length <= 0) {
+    return (
+      <div {...css(styles.centered)}>
         <FlexContainer justify="center" align="center">
           <img {...css(styles.icon)} src={openBoxIcon} alt="Empty Box" />
           <Heading size="2">You don't have any sessions saved</Heading>
@@ -33,13 +45,10 @@ const Sessions = ({ styles, ...props }) => {
         direction="row"
         style={{ flexWrap: "wrap" }}
       >
-        <SessionItem description="This is a much longer longer description but it should only be two rows and not more than that" />
-        <SessionItem />
-        <SessionItem />
-        <SessionItem />
-        <SessionItem />
-        <SessionItem />
-        <SessionItem />
+        {sessions.map((session, i) => {
+          if (i > 5) return;
+          return <SessionItem data={session} workspace={workspaceName} />;
+        })}
       </FlexContainer>
     </div>
   );
@@ -47,9 +56,10 @@ const Sessions = ({ styles, ...props }) => {
 
 export default withStyles(({ colors }) => {
   return {
-    empty: {
+    centered: {
       height: "100%",
       display: "flex",
+      flexDirection: "column",
       alignItems: "center",
       justifyContent: "center"
     },
