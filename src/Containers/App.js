@@ -60,12 +60,12 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" component={this.LandingPage} />
           <Route exact path="/login" component={this.Login} />
-          <Route exact path="/createsession" component={CreateSession} />
+          <Route exact path="/createsession" component={this.CreateSession} />
           <Route exact path="/signup" component={this.SignUp} />
           <Route path="/session/:sessionId" component={Client} />
           <Route path="/host/:sessionId" component={this.LiveSessionHost} />
           <Route path="/lobby" component={this.Lobby} />
-          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/dashboard" component={this.Dashboard} />
           <Route path="*" component={NotFound} />
         </Switch>
       </div>
