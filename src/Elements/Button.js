@@ -23,6 +23,16 @@ export default withStyles(({ themes, text }) => {
       margin: "12px 12px 12px 0px",
       fontWeight: "bold"
     },
+    small: {
+      fontSize: "8px",
+      padding: "10px 18px",
+      minWidth: "60px"
+    },
+    medium: {
+      fontSize: "12px",
+      padding: "16px 24px",
+      minWidth: "100px"
+    },
 
     /* Color */
     default: themes.default,

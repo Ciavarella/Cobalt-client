@@ -33,10 +33,10 @@ let LoginForm = ({
             Log in as presenter
           </Heading>
         </Media>
-        <form onSubmit={handleSubmit}>
-          <FlexContainer>
-            <Media query={{ maxWidth: 480 }}>
-              {matches => (
+        <Media query={{ maxWidth: 480 }}>
+          {matches => (
+            <form onSubmit={handleSubmit}>
+              <FlexContainer>
                 <FlexContainer
                   align="start"
                   style={matches ? { width: "300px" } : { width: "400px" }}
@@ -152,11 +152,16 @@ let LoginForm = ({
                       )}
                   </FlexContainer>
                 </FlexContainer>
-              )}
-            </Media>
-            <Button disabled={isSubmitting}>Log In</Button>
-          </FlexContainer>
-        </form>
+                <Button
+                  size={matches ? "small" : "medium"}
+                  disabled={isSubmitting}
+                >
+                  Log In
+                </Button>
+              </FlexContainer>
+            </form>
+          )}
+        </Media>
         <Media query={{ minHeight: 400 }}>
           <Paragraph appearance="white">
             Don't have an account? <Link to="signup">Sign up here!</Link>

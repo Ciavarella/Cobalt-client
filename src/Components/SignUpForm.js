@@ -32,10 +32,10 @@ let SignUpForm = ({
             Sign up here
           </Heading>
         </Media>
-        <form onSubmit={handleSubmit}>
-          <FlexContainer>
-            <Media query={{ maxWidth: 480 }}>
-              {matches => (
+        <Media query={{ maxWidth: 480 }}>
+          {matches => (
+            <form onSubmit={handleSubmit}>
+              <FlexContainer>
                 <FlexContainer
                   align="start"
                   style={matches ? { width: "300px" } : { width: "400px" }}
@@ -220,11 +220,16 @@ let SignUpForm = ({
                       )}
                   </FlexContainer>
                 </FlexContainer>
-              )}
-            </Media>
-            <Button disabled={isSubmitting}>Sign Up</Button>
-          </FlexContainer>
-        </form>
+                <Button
+                  size={matches ? "small" : "medium"}
+                  disabled={isSubmitting}
+                >
+                  Sign Up
+                </Button>
+              </FlexContainer>
+            </form>
+          )}
+        </Media>
         <Media query={{ minHeight: 400 }}>
           <Paragraph appearance="white">
             Already have an account? <Link to="login">Log in here!</Link>

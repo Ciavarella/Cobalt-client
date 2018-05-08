@@ -45,7 +45,6 @@ export default withStyles(({ themes, text }) => {
       padding: "16px 24px",
       minWidth: "100px"
     },
-    large: {},
 
     /* Color */
     default: themes.default,
