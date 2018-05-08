@@ -24,7 +24,6 @@ export default withStyles(({ themes, text }) => {
       fontWeight: "bold"
     },
     small: {
-      fontSize: "8px",
       padding: "10px 18px",
       minWidth: "60px"
     },

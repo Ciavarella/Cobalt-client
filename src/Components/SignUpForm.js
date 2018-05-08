@@ -41,11 +41,7 @@ let SignUpForm = ({
                   style={matches ? { width: "300px" } : { width: "400px" }}
                 >
                   <label
-                    style={
-                      matches
-                        ? { margin: 0, color: "white" }
-                        : { marginBottom: "5px", color: "white" }
-                    }
+                    style={{ marginBottom: "5px", color: "white" }}
                     htmlFor="name"
                   >
                     Name
@@ -99,7 +95,8 @@ let SignUpForm = ({
                     style={
                       matches
                         ? {
-                            margin: 0,
+                            marginBottom: "5px",
+                            marginTop: "0px",
                             color: "white"
                           }
                         : {
@@ -161,7 +158,8 @@ let SignUpForm = ({
                     style={
                       matches
                         ? {
-                            margin: 0,
+                            marginBottom: "5px",
+                            marginTop: "0px",
                             color: "white"
                           }
                         : {

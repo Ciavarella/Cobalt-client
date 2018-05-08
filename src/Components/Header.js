@@ -16,9 +16,11 @@ const Header = ({ styles, ...props }) => (
     <Media query={{ minHeight: 400 }}>
       <FlexContainer direction="row" justify="between">
         <FlexContainer direction="row" justify="start" flex="1">
-          <Heading {...css(styles.logo)} size="2">
-            Feed<span>.io</span>
-          </Heading>
+          <Link to="/">
+            <Heading {...css(styles.logo)} size="2">
+              Feed<span>.io</span>
+            </Heading>
+          </Link>
         </FlexContainer>
 
         <Media query={{ maxWidth: 768 }}>
