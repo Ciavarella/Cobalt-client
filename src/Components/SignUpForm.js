@@ -32,7 +32,12 @@ let SignUpForm = ({
         <form onSubmit={handleSubmit}>
           <FlexContainer>
             <FlexContainer align="start" style={{ width: "400px" }}>
-              <label htmlFor="name">Name</label>
+              <label
+                style={{ marginBottom: "5px", color: "white" }}
+                htmlFor="name"
+              >
+                Name
+              </label>
               <Input
                 name="name"
                 appearance={
@@ -78,7 +83,16 @@ let SignUpForm = ({
                     </Paragraph>
                   )}
               </FlexContainer>
-              <label htmlFor="email">Email</label>
+              <label
+                style={{
+                  marginTop: "10px",
+                  marginBottom: "5px",
+                  color: "white"
+                }}
+                htmlFor="email"
+              >
+                Email
+              </label>
               <Input
                 name="email"
                 appearance={
@@ -124,7 +138,16 @@ let SignUpForm = ({
                     </Paragraph>
                   )}
               </FlexContainer>
-              <label htmlFor="password">Password</label>
+              <label
+                style={{
+                  marginTop: "10px",
+                  marginBottom: "5px",
+                  color: "white"
+                }}
+                htmlFor="password"
+              >
+                Password
+              </label>
               <Input
                 name="password"
                 appearance={
