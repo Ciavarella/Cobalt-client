@@ -11,7 +11,6 @@ import Lobby from "../Views/LiveSessionHost/Lobby";
 import Dashboard from "../Views/Dashboard/Dashboard";
 import Login from "../Views/Login";
 import LandingPage from "../Views/LandingPage";
-import PricingArea from "../Views/PricingArea";
 import CreateSession from "../Views/CreateSession";
 import SignUp from "../Views/SignUp";
 import Notifications from "../Components/Notifications";
@@ -40,7 +39,6 @@ class App extends React.Component {
     this.LandingPage = withPublicRoot(LandingPage);
     this.Login = withPublicRoot(Login);
     this.SignUp = withPublicRoot(SignUp);
-    this.PricingArea = withPublicRoot(PricingArea);
     this.CreateSession = requireAuth(CreateSession);
     this.LiveSessionHost = withSocket(LiveSessionHost);
     this.Dashboard = requireAuth(Dashboard);
@@ -64,7 +62,6 @@ class App extends React.Component {
           <Route exact path="/login" component={this.Login} />
           <Route exact path="/createsession" component={this.CreateSession} />
           <Route exact path="/signup" component={this.SignUp} />
-          <Route exact path="/pricing" component={this.PricingArea} />
           <Route path="/session/:sessionId" component={Client} />
           <Route path="/host/:sessionId" component={this.LiveSessionHost} />
           <Route path="/lobby" component={this.Lobby} />
