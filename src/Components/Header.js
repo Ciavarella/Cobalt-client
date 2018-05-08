@@ -20,7 +20,7 @@ const Header = ({ styles, ...props }) => (
         </Heading>
       </FlexContainer>
 
-      <Media query={{ maxWidth: 480 }}>
+      <Media query={{ maxWidth: 768 }}>
         {matches =>
           matches ? (
             ""
