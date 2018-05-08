@@ -41,7 +41,7 @@ class JoinSession extends React.Component {
 
     return (
       <FlexContainer flex="1" style={{ textAlign: "center", width: "inherit" }}>
-        <Media query={{ minHeight: 300 }}>
+        <Media query={{ minHeight: 400 }}>
           <div>
             <Heading size="1" appearance="white">
               Have a unique code?

@@ -9,7 +9,7 @@ import ListItem from "../Elements/ListItem";
 
 const Footer = ({ size = "medium", styles, ...props }) => (
   <footer {...css(styles.footer, styles[size])} {...props}>
-    <Media query={{ minHeight: 300 }}>
+    <Media query={{ minHeight: 400 }}>
       <List direction="row">
         <ListItem>
           <Link to="about">About</Link>
