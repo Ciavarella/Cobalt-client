@@ -41,12 +41,16 @@ class JoinSession extends React.Component {
 
     return (
       <FlexContainer flex="1" style={{ textAlign: "center", width: "inherit" }}>
-        <Heading size="1" appearance="white">
-          Have a unique code?
-        </Heading>
-        <Heading size="2" appearance="white">
-          Paste it here to enter your session!
-        </Heading>
+        <Media query={{ minHeight: 300 }}>
+          <div>
+            <Heading size="1" appearance="white">
+              Have a unique code?
+            </Heading>
+            <Heading size="2" appearance="white">
+              Paste it here to enter your session!
+            </Heading>
+          </div>
+        </Media>
         <form onSubmit={this.handleSubmit}>
           <FlexContainer
             direction="row"
