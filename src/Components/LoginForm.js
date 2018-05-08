@@ -200,7 +200,6 @@ const formikForm = withFormik({
 export default withStyles(({ themes, text, colors }) => {
   return {
     loginForm: {
-      touchAction: "none",
       ":nth-child(1n) form input": {
         margin: "0px"
       }

@@ -268,7 +268,6 @@ const formikForm = withFormik({
 export default withStyles(({ themes, text, colors }) => {
   return {
     signUpForm: {
-      touchAction: "none",
       ":nth-child(1n) form input": {
         margin: "0",
         borderRadius: "4px 0px 0px 4px"
