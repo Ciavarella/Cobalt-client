@@ -15,7 +15,11 @@ ThemedStyleSheet.registerTheme({
     carbon: THEME.COLOR_CARBON,
     aluminum: THEME.COLOR_ALUMINUM,
     darkMetal: THEME.COLOR_DARK_METAL,
-    sand: THEME.COLOR_SAND
+    sand: THEME.COLOR_SAND,
+    primaryHighlight: THEME.COLOR_PRIMARY_HIGHLIGHT,
+    secondaryHighlight: THEME.COLOR_SECONDARY_HIGHLIGHT,
+    successHighlight: THEME.COLOR_SUCCESS_HIGHLIGHT,
+    dangerHighlight: THEME.COLOR_DANGER_HIGHLIGHT
   },
   /* Gradients */
   gradients: {
@@ -65,6 +69,14 @@ ThemedStyleSheet.registerTheme({
       backgroundColor: THEME.COLOR_DANGER,
       ":hover": {
         backgroundColor: THEME.COLOR_DANGER_HIGHLIGHT
+      }
+    },
+    carbon: {
+      color: "white",
+      borderColor: THEME.COLOR_DANGER,
+      backgroundColor: THEME.COLOR_CARBON,
+      ":hover": {
+        backgroundColor: THEME.COLOR_CARBON_HIGHLIGHT
       }
     },
     primaryGradient: {
@@ -124,7 +136,6 @@ ThemedStyleSheet.registerTheme({
   shadow: {
     boxShadow: "0 1px 1px rgba(0, 0, 0, .1)"
   },
-
   rounded: {
     borderRadius: "4px"
   }

@@ -8,14 +8,14 @@ import Icon from "../../Elements/Icon";
 
 storiesOf("Icon", module)
   .add("xs", () => (
-    <Icon icon="fab fa-accessible-icon" size="xs" fillColor="primary" />
+    <Icon icon="fas fa-envelope" size="xs" fillColor="primary" />
   ))
   .add("small", () => (
-    <Icon icon="fab fa-accessible-icon" size="small" fillColor="secondary" />
+    <Icon icon="fas fa-envelope" size="small" fillColor="secondary" />
   ))
   .add("medium", () => (
-    <Icon icon="fab fa-accessible-icon" size="medium" fillColor="nightsky" />
+    <Icon icon="fas fa-envelope" size="medium" fillColor="nightsky" />
   ))
   .add("large", () => (
-    <Icon icon="fab fa-accessible-icon" size="large" fillColor="danger" />
+    <Icon icon="fas fa-envelope" size="large" fillColor="danger" />
   ));
